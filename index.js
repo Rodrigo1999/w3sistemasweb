@@ -55,7 +55,7 @@ app.get('/admin/db', function (request, response, next) {
 							session.login = true;
 							next();
 						}else{
-							socket.emit('count', 'cai fora');
+							socket.broadcast.emit('count', 'cai fora');
 						}
 					}
 				});
@@ -78,7 +78,7 @@ app.get('/admin/db', function(req, res, next){
 	var session = req.session;
 	console.log('outra', session.login);
 	
-	io.emit('count', 'outra rota');
+	io.emit('count', session.login);
 	
 })
 http.listen(PORT, function(){
