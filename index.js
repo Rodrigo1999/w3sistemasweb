@@ -40,7 +40,7 @@ app.get('/admin/db', function (request, response, next) {
 				client.query('SELECT * FROM admin WHERE login="rodrigo" and senha="123"', function(err, result){
 					done();
 					if (err) {
-						{ socket.emit('count', 'ff'); }
+						{ socket.emit('count', err); }
 					}else{
 						socket.emit('count', 'ff');
 					}
