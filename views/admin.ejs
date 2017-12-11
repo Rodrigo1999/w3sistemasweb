@@ -15,13 +15,12 @@
 					senha: evt.target.senha.value
 				}
 				socket.emit('logindb', data);
-				socket.on('logindb', function(data){
+				socket.on('login', function(data){
 					if(data){
-						window.location.href("https://w3sistemasweb.herokuapp.com/admin/db");
+						window.location.href = "https://w3sistemasweb.herokuapp.com/admin/db";
 					}else{
 						console.log('Negado');
 					}
-					
 				})
 				return false;
 			})
