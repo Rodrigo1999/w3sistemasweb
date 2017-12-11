@@ -53,8 +53,8 @@ app.get('/admin/db', function (request, response, next) {
 						
 						if(result.rows[0].count == 1){
 							session.login = true;
-							console.log('estou aqui')
-							console.log(session.login);
+							socket.emit('count', 'estou aqui')
+							socket.emit('count', session.login);
 							next();
 						}else{
 							socket.emit('count', 'cai fora');
