@@ -16,11 +16,12 @@
 				}
 				socket.emit('logindb', data);
 				socket.on('login', function(data){
-					if(data == true){
-						window.location.href = "https://w3sistemasweb.herokuapp.com/admin/db";
-					}else{
-						console.log('Negado');
-					}
+					// if(data == true){
+					// 	window.location.href = "https://w3sistemasweb.herokuapp.com/admin/db";
+					// }else{
+					// 	console.log('Negado');
+					// }
+					console.log(data);
 				})
 				return false;
 			})

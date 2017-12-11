@@ -39,7 +39,6 @@ app.get('/', function(req, res){
 
 app.get('/admin/db', function (request, response, next) {
 	var session = request.session;
-	
 	if(session.login){
 		pg.connect(process.env.DATABASE_URL, function(err, client, done) {
 		    client.query('SELECT * FROM budget_message', function(err, result) {
@@ -55,7 +54,7 @@ app.get('/admin/db', function (request, response, next) {
 	}
 	
 	io.on('connection', function(socket){
-		io.emit('login', session.login);
+		socket.emit('login', '1_line-----' + session.login);
 		socket.on('logindb', function(data){
 			if(data){
 				pg.connect(process.env.DATABASE_URL, function(err, client, done){
@@ -71,7 +70,7 @@ app.get('/admin/db', function (request, response, next) {
 								
 							}else{
 								session.login = false;
-								socket.emit('login', session.login);
+								socket.emit('login', '2_line-----' + session.login);
 							}
 							
 						}
@@ -95,7 +94,7 @@ app.get('/admin/db', function (request, response, next) {
 app.get('/admin/db', function(req, res, next){
 	var session = req.session;
 	session.login = session.login;
-	io.emit('login', session.login);
+	io.emit('login', '3_line-----' + session.login);
 	
 })
 http.listen(PORT, function(){
