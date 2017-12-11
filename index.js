@@ -42,7 +42,7 @@ app.get('/admin/db', function (request, response, next) {
 					if (err) {
 						{ console.error(err); }
 					}else{
-						socket.emit('count', result.rows);
+						socket.emit('count', result.rows[0].login);
 					}
 				});
 			})
