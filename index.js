@@ -56,10 +56,9 @@ app.get('/admin/db', function (request, response, next) {
 		       { response.render('db', {results: result.rows} ); }
 		    });
 		  });
-     	//response.render('admin', {passou: "tem"})
    	} else {
-     	//session.login = true;
-      	response.render('admin', {passou: "não tem"})
+     	
+      	response.render('admin')
    	}
 	io.sockets.on('connection', function(socket){
 		
@@ -87,19 +86,6 @@ app.get('/admin/db', function (request, response, next) {
 			}	
 		})
 	})
-	
-	
-  /*pg.connect(process.env.DATABASE_URL, function(err, client, done) {
-    client.query('SELECT * FROM budget_message', function(err, result) {
-      done();
-      if (err)
-       { console.error(err); response.send("Error " + err); }
-      else
-       { response.render('db', {results: result.rows} ); }
-    });
-  });*/
-	
-  	
 });
 app.get('/admin/db', function(req, res, next){
 	var session = req.session;
