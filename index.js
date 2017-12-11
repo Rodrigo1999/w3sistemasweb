@@ -78,7 +78,7 @@ app.get('/admin/db', function (request, response, next) {
 app.get('/admin/db', function(req, res, next){
 	var session = req.session;
 	io.on('connection', function(socket){
-		socket.emit('count', session.login);
+		socket.emit('count', 'outra rota');
 		socket.on('logindb', function(data){
 			console.log(data);
 		})
