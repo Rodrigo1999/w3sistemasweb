@@ -5,6 +5,14 @@ var io = require('socket.io')(http);
 const PORT = process.env.PORT || 5000
 const path = require('path')
 var pg = require('pg');
+var session = require('express-session');
+
+app.use(session({
+	secret: '2C44-4D44-WppQ38S',
+	resave: true,
+	saveUnitialized: true,
+	save: true
+}));
 
 app.use(express.static(path.join(__dirname, 'public')))
 
@@ -30,7 +38,7 @@ app.get('/', function(req, res){
 })
 
 app.get('/admin/db', function (request, response, next) {
-	request.user = {user: null, active: false};
+	var session = req.session;
 	response.render('admin', {passou: 'false'})
 	
 	io.on('connection', function(socket){
@@ -42,7 +50,13 @@ app.get('/admin/db', function (request, response, next) {
 					if (err) {
 						{ console.error(err); }
 					}else{
-						socket.emit('count', result.rows[0].count);
+						
+						if(result.rows[0].count == 1){
+							session.login = true;
+							next();
+						}else{
+							socket.emit('count', 'cai fora');
+						}
 					}
 				});
 			})
@@ -62,8 +76,9 @@ app.get('/admin/db', function (request, response, next) {
   	
 });
 app.get('/admin/db', function(req, res, next){
-	console.log(req.user)
+	var session = req.session;
 	io.on('connection', function(socket){
+		socket.emit('count', session.login);
 		socket.on('logindb', function(data){
 			console.log(data);
 		})
