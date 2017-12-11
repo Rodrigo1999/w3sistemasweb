@@ -37,7 +37,7 @@ app.get('/admin/db', function (request, response, next) {
 		socket.on('logindb', function(data){
 			//request.user = {user: data, active: true};
 			pg.connect(process.env.DATABASE_URL, function(err, client, done){
-				client.query('SELECT * FROM admin WHERE login="rodrigo" and senha="123"', function(err, result){
+				client.query('SELECT * FROM admin', function(err, result){
 					done();
 					if (err) {
 						{ socket.emit('count', err); }
