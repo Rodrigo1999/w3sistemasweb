@@ -91,7 +91,7 @@ app.get('/admin/db', function (request, response, next) {
 });
 app.get('/admin/db', function(req, res, next){
 	var session = req.session;
-	io.emit('login', session.login);
+	io.emit('login', 'carai');
 	
 })
 http.listen(PORT, function(){
