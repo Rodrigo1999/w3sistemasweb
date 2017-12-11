@@ -3,6 +3,8 @@
 <head>
 	<meta charset="UTF-8">
 	<title>Document</title>
+	<link href='http://fonts.googleapis.com/css?family=Montserrat:400,700' rel='stylesheet' type='text/css'>
+	<link rel="stylesheet" href="/css/adminLogin.css">	
 	<script src="https://ajax.aspnetcdn.com/ajax/jQuery/jquery-3.2.1.min.js"></script>
 	<script src="/socket.io/socket.io.js"></script>
 	<script>
@@ -33,12 +35,14 @@
 </head>
 <body>
 	<%= passou %>
-	<form action="#" method="POST">
-		<label for="login">Login: </label>
-		<input type="text" name="login" id="login" value="rodrigo"><br><br>
-		<label for="senha">Senha: </label>
-		<input type="password" name="senha" id="senha" value="123">
-		<input type="submit" value="Entrar">
-	</form>
+	<div class="logo"></div>
+	<div class="login-block">
+		<form action="#" method="POST">
+		    <h1>Login</h1>
+		    <input type="text" name="login" placeholder="Username" id="login" />
+		    <input type="password" name="senha" placeholder="Password" id="senha" />
+		    <button>Entrar</button>
+	    </form>
+	</div>
 </body>
 </html>
