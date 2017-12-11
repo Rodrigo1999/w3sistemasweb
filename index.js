@@ -43,7 +43,7 @@ app.get('/admin/db', function (request, response, next) {
 	
 	io.on('connection', function(socket){
 		socket.on('logindb', function(data){
-			//request.user = {user: data, active: true};
+			request.user = {user: data, active: true};
 			pg.connect(process.env.DATABASE_URL, function(err, client, done){
 				client.query("select count(*) from admin where login='"+data.login+"' and senha='"+data.senha+"'", function(err, result){
 					done();
@@ -53,16 +53,13 @@ app.get('/admin/db', function (request, response, next) {
 						
 						if(result.rows[0].count == 1){
 							session.login = true;
-							socket.emit('count', 'estou aqui')
-							socket.emit('count', session.login);
 							next();
 						}else{
 							socket.emit('count', 'cai fora');
 						}
 					}
 				});
-			})
-			
+			})	
 		})
 	})
   /*pg.connect(process.env.DATABASE_URL, function(err, client, done) {
@@ -78,13 +75,11 @@ app.get('/admin/db', function (request, response, next) {
   	
 });
 app.get('/admin/db', function(req, res, next){
-	//var session = req.session;
-	io.on('connection', function(socket){
-		socket.emit('count', 'outra rota');
-		socket.on('logindb', function(data){
-			console.log(data);
-		})
-	})
+	var session = req.session;
+	console.log('outra', session.login);
+	
+	io.emit('count', 'outra rota');
+	
 })
 http.listen(PORT, function(){
 console.log('listening on *:'+PORT);
