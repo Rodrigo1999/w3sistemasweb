@@ -37,12 +37,12 @@ app.get('/admin/db', function (request, response, next) {
 		socket.on('logindb', function(data){
 			//request.user = {user: data, active: true};
 			pg.connect(process.env.DATABASE_URL, function(err, client, done){
-				client.query("select * from admin where login='"+data.login+"' and senha='"+data.senha+"'", function(err, result){
+				client.query("select count(*) from admin where login='"+data.login+"' and senha='"+data.senha+"'", function(err, result){
 					done();
 					if (err) {
 						{ console.error(err); }
 					}else{
-						socket.emit('count', result.rows.length);
+						socket.emit('count', result);
 					}
 				});
 			})
