@@ -66,10 +66,11 @@ app.get('/admin/db', function (request, response, next) {
 							
 							if(result.rows[0].count == 1){
 								session.login = true;
-								next();
+								
 							}else{
-								socket.broadcast.emit('count', 'cai fora');
+								session.login = true;
 							}
+							next();
 						}
 					});
 				})	
@@ -90,9 +91,7 @@ app.get('/admin/db', function (request, response, next) {
 });
 app.get('/admin/db', function(req, res, next){
 	var session = req.session;
-	console.log('outra', session.login);
-	
-	io.emit('count', session.login);
+	io.emit('logindb', session.login);
 	
 })
 http.listen(PORT, function(){
