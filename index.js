@@ -23,7 +23,6 @@ app.get('/', function(req, res){
 			       { socket.emit('getDataPrimary-Response', true); }
 			    });
 			  });
-			
 		})
 	})
 
