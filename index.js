@@ -53,7 +53,8 @@ app.get('/admin/db', function (request, response, next) {
 						
 						if(result.rows[0].count == 1){
 							session.login = true;
-							next();
+							response.send("Error ");
+							// next();
 						}else{
 							socket.broadcast.emit('count', 'cai fora');
 						}
