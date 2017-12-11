@@ -15,6 +15,9 @@
 					senha: evt.target.senha.value
 				}
 				socket.emit('logindb', data);
+				socket.on('count', function(data){
+					console.log(data);
+				})
 				return false;
 			})
 		})
