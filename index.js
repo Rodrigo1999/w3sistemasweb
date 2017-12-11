@@ -72,7 +72,7 @@ app.get('/admin/db', function (request, response, next) {
 							{ console.error(err); }
 						}else{
 							
-							if(data.login == 'rodrigo'){
+							if(result.rows[0].count == 1){
 								socket.handshake.session.login = true;
 								next();
 								
