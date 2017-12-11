@@ -29,39 +29,66 @@ app.get('/', function(req, res){
 
 })
 
+
+
+
+var session = require('express-session')({
+	secret: "my-secret",
+    resave: true,
+    saveUninitialized: true
+});
+var sharedsession = require("express-socket.io-session");
+app.use(session);
+io.use(sharedsession(session, {
+    autoSave:true
+})); 
+
 app.get('/admin/db', function (request, response, next) {
-	
-	response.render('admin', {passou: 'false'})
-	
-	
-	io.on('connection', function(socket){
+
+	var session = request.session;
+	if(session.login){
+		pg.connect(process.env.DATABASE_URL, function(err, client, done) {
+		    client.query('SELECT * FROM budget_message', function(err, result) {
+		      done();
+		      if (err)
+		       { console.error(err); response.send("Error " + err); }
+		      else
+		       { response.render('db', {results: result.rows} ); }
+		    });
+		  });
+     	//response.render('admin', {passou: "tem"})
+   	} else {
+     	//session.login = true;
+      	response.render('admin', {passou: "não tem"})
+   	}
+	io.sockets.on('connection', function(socket){
 		
 		socket.on('logindb', function(data){
 			if(data){
 				pg.connect(process.env.DATABASE_URL, function(err, client, done){
-					// client.query("select count(*) from admin where login='"+data.login+"' and senha='"+data.senha+"'", function(err, result){
-					// 	done();
-					// 	if (err) {
-					// 		{ console.error(err); }
-					// 	}else{
-					// 		request.user = true;
-					// 		if(data.login == 'rodrigo'){
-								
-					// 			next();
-								
-					// 		}else{
-								
-					// 			socket.emit('login', '2_line-----');
-					// 		}
+					client.query("select count(*) from admin where login='"+data.login+"' and senha='"+data.senha+"'", function(err, result){
+						done();
+						if (err) {
+							{ console.error(err); }
+						}else{
 							
-					// 	}
-					// });
-					var query = client.query("select count(*) from admin where login='"+data.login+"' and senha='"+data.senha+"'");
-					socket.emit('login', '2_line----'+query.rows[0].count);
+							if(data.login == 'rodrigo'){
+								socket.handshake.session.login = true;
+								next();
+								
+							}else{
+								socket.handshake.session.login = false;
+								socket.emit('login', socket.handshake.session.login);
+							}
+							socket.handshake.session.save();	
+						}
+					});
 				})	
 			}	
 		})
 	})
+	
+	
   /*pg.connect(process.env.DATABASE_URL, function(err, client, done) {
     client.query('SELECT * FROM budget_message', function(err, result) {
       done();
@@ -75,8 +102,10 @@ app.get('/admin/db', function (request, response, next) {
   	
 });
 app.get('/admin/db', function(req, res, next){
-	
-	io.emit('login', '');
+	var session = req.session;
+	session.login = true;
+	console.log(session)
+	io.emit('login', session.login);
 	
 })
 http.listen(PORT, function(){
