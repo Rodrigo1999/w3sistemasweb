@@ -68,7 +68,7 @@ app.get('/admin/db', function (request, response, next) {
 								session.login = true;
 								
 							}else{
-								session.login = true;
+								session.login = false;
 							}
 							next();
 						}
