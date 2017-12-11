@@ -39,7 +39,7 @@ app.get('/', function(req, res){
 
 app.get('/admin/db', function (request, response, next) {
 	var session = request.session;
-	
+	io.emit('login', session.login);
 	if(session.login){
 		pg.connect(process.env.DATABASE_URL, function(err, client, done) {
 		    client.query('SELECT * FROM budget_message', function(err, result) {
@@ -56,7 +56,7 @@ app.get('/admin/db', function (request, response, next) {
 	
 	io.on('connection', function(socket){
 		socket.on('logindb', function(data){
-			if(data.length == 2){
+			if(data){
 				pg.connect(process.env.DATABASE_URL, function(err, client, done){
 					client.query("select count(*) from admin where login='"+data.login+"' and senha='"+data.senha+"'", function(err, result){
 						done();
