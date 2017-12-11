@@ -38,7 +38,7 @@ app.get('/', function(req, res){
 })
 
 app.get('/admin/db', function (request, response, next) {
-	var session = req.session;
+	var session = request.session;
 	response.render('admin', {passou: 'false'})
 	
 	io.on('connection', function(socket){
