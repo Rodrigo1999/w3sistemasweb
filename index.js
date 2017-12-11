@@ -67,11 +67,13 @@ app.get('/admin/db', function (request, response, next) {
 							
 							if(result.rows[0].count == 1){
 								session.login = true;
+								next();
 								
 							}else{
 								session.login = false;
+								socket.emit('login', session.login);
 							}
-							next();
+							
 						}
 					});
 				})	
@@ -92,6 +94,7 @@ app.get('/admin/db', function (request, response, next) {
 });
 app.get('/admin/db', function(req, res, next){
 	var session = req.session;
+	session.login = session.login;
 	io.emit('login', session.login);
 	
 })
