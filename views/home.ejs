@@ -22,11 +22,24 @@
 	<!-- ===================== js ============================== -->
 		<script src="https://ajax.aspnetcdn.com/ajax/jQuery/jquery-3.2.1.min.js"></script>
 		
+		<script src="js/global.js"></script>
 		<script src="js/header.js"></script>
 		<script src="js/desenvolviment.js"></script>
+		<script src="js/desenvolviment3.js"></script>
 		<script src="/socket.io/socket.io.js"></script>
+		<script src="js/mask.js"></script>
 		<script>
 			var socket = io();
+
+			$(document).ready(function(){
+				$(".mask").mask('(00) 0000-00000');
+				$(".mask").blur(function(){
+					if($(this).val().length < 14){
+						$(this).val('');
+					}
+				})
+			})
+
 		</script>
 </head>
 <body>
