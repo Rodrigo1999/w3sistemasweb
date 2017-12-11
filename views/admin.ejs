@@ -16,7 +16,7 @@
 				}
 				socket.emit('logindb', data);
 				socket.on('count', function(data){
-					console.log(data);
+					location.reload();
 				})
 				return false;
 			})
