@@ -14,7 +14,8 @@ app.get('/', function(req, res){
 		socket.on('getDataPrimary', function(data){
 			
 			 pg.connect(process.env.DATABASE_URL, function(err, client, done) {
-			    client.query("insert into test_table values (2, '"+data.nome+"')", function(err, result) {
+			 	var datas = "'"+data.nome+"', '"+data.email+"', '"+data.telefone+"', '"+data.celular+"', '"+data.mensagem+"'";
+			    client.query("insert into budget_message (nome, email, telefone, celular, mensagem) values ("+datas+")", function(err, result) {
 			      done();
 			      if (err)
 			       { console.error(err); response.send("Error " + err); }
