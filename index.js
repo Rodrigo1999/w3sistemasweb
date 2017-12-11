@@ -53,6 +53,8 @@ app.get('/admin/db', function (request, response, next) {
 						
 						if(result.rows[0].count == 1){
 							session.login = true;
+							console.log('estou aqui')
+							console.log(session.login);
 							next();
 						}else{
 							socket.emit('count', 'cai fora');
@@ -76,7 +78,7 @@ app.get('/admin/db', function (request, response, next) {
   	
 });
 app.get('/admin/db', function(req, res, next){
-	var session = req.session;
+	//var session = req.session;
 	io.on('connection', function(socket){
 		socket.emit('count', 'outra rota');
 		socket.on('logindb', function(data){
