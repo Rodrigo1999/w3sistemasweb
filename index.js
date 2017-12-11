@@ -39,8 +39,20 @@ app.get('/', function(req, res){
 
 app.get('/admin/db', function (request, response, next) {
 	var session = request.session;
-	response.render('admin', {passou: 'false'})
-	console.log(session.login);
+	
+	if(session.login){
+		pg.connect(process.env.DATABASE_URL, function(err, client, done) {
+		    client.query('SELECT * FROM budget_message', function(err, result) {
+		      done();
+		      if (err)
+		       { console.error(err); response.send("Error " + err); }
+		      else
+		       { response.render('db', {results: result.rows} ); }
+		    });
+		  });
+	}else{
+		response.render('admin', {passou: 'false'})
+	}
 	
 	io.on('connection', function(socket){
 		socket.on('logindb', function(data){
