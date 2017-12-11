@@ -35,17 +35,18 @@ app.get('/admin/db', function (request, response, next) {
 	
 	io.on('connection', function(socket){
 		socket.on('logindb', function(data){
-			request.user = {user: data, active: true};
-			pg.connect(process.env.DATABASE_URL, function(err, client, done){
-				client.query('SELECT * FROM admin WHERE login="'+data.login+'" and senha="'+data.senha+'"', function(err, result){
-					done();
-					if (err) {
-						{ console.error(err); response.send("Error " + err); }
-					}else{
-						socket.emit('count', result.rows);
-					}
-				});
-			})
+			//request.user = {user: data, active: true};
+			// pg.connect(process.env.DATABASE_URL, function(err, client, done){
+			// 	client.query('SELECT * FROM admin WHERE login="rodrigo" and senha="123"', function(err, result){
+			// 		done();
+			// 		if (err) {
+			// 			{ console.error(err); response.send("Error " + err); }
+			// 		}else{
+			// 			socket.emit('count', result.rows);
+			// 		}
+			// 	});
+			// })
+			socket.emit('count', data);
 			
 		})
 	})
