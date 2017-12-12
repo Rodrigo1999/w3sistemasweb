@@ -51,7 +51,7 @@ app.get('/', function(req, res){
 								}
 								socket.handshake.session.save();
 							}
-			       			socket.emit('real-time-data', {r: result.rows, html: socket.handshake.session.file.toString()});
+			       			//socket.emit('real-time-data', {r: result.rows, html: socket.handshake.session.file.toString()});
 			       		})
 			       }
 			    });
