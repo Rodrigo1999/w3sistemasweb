@@ -5,6 +5,19 @@ var io = require('socket.io')(http);
 const PORT = process.env.PORT || 5000
 const path = require('path')
 var pg = require('pg');
+var sharedsession = require("express-socket.io-session");
+
+
+
+
+var session = require('express-session')({
+	secret: "my-secret",
+    resave: true,
+    saveUninitialized: true
+});
+
+app.use(session);
+io.use(sharedsession(session, { autoSave:true })); 
 
 app.use(express.static(path.join(__dirname, 'public')))
 
@@ -28,21 +41,6 @@ app.get('/', function(req, res){
 	})
 
 })
-
-
-
-
-var session = require('express-session')({
-	secret: "my-secret",
-    resave: true,
-    saveUninitialized: true
-});
-var sharedsession = require("express-socket.io-session");
-app.use(session);
-io.use(sharedsession(session, {
-    autoSave:true
-})); 
-
 app.get('/admin/db', function (req, res, next) {
 
 	var session = req.session;
@@ -60,7 +58,9 @@ app.get('/admin/db', function (req, res, next) {
      	
       	res.render('admin')
    	}
-	io.sockets.on('connection', function(socket){
+	io.on('connection', function(socket){
+		
+		console.log(socket.id)
 		socket.on('del-item', function(data){
 			if(Array.isArray(data)){
 				pg.connect(process.env.DATABASE_URL, function(err, client, done) {
@@ -81,9 +81,11 @@ app.get('/admin/db', function (req, res, next) {
 				client.query('SELECT * FROM budget_message', function(err, result) {
 				    done();
 				    if (err){ 
-				     	socket.emit('getNewResult-Response', false); 
+				     	socket.emit('getNewResult-Response', function(func){ func(false); }); 
 				    }else{ 
-				   		socket.emit('getNewResult-Response', result.rows);
+				   		socket.emit('getNewResult-Response', function(func){
+				   			func(result.rows);
+				   		});
 				    }
 				});
 			});
