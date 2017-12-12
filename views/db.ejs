@@ -13,39 +13,42 @@
 	<script>
 		$(document).ready(function(){
 			var socket = io();
-			$(".div-search-primary").click(function(){
-				$(".opt-top-none").addClass("opt-top");
-			})
-			$(".a-close").click(function(){
-				$(".opt-top-none").removeClass("opt-top");
-			})
-			$("#checkbox-primary").change(function(){
-			  $("input[name='checkbox-del[]']").prop('checked', this.checked);
-			});
-			$("#del-item").click(function(){
-				checkboxCollection = [];
-				var checkbox = $("input[name='checkbox-del[]']");
-				checkbox.each(function(){
-					if($(this).is(':checked')){
-						checkboxCollection.push($(this).val());
-					}
-				})
-				if(checkboxCollection.length > 0){
-					console.log(checkboxCollection.join());
-					socket.emit('del-item', checkboxCollection);
+			socket.on('connect', function(){
 
-				}
-				socket.on('del-item-Response', function(data){
-					if(data){
-						socket.emit('getNewResult');
-					}
+				$(".div-search-primary").click(function(){
+					$(".opt-top-none").addClass("opt-top");
+				})
+				$(".a-close").click(function(){
+					$(".opt-top-none").removeClass("opt-top");
+				})
+				$("#checkbox-primary").change(function(){
+				  $("input[name='checkbox-del[]']").prop('checked', this.checked);
 				});
-				socket.on('getNewResult-Response', function(data){
-					data.forEach(function(r){
-						console.log(r.id);
+				$("#del-item").click(function(){
+					checkboxCollection = [];
+					var checkbox = $("input[name='checkbox-del[]']");
+					checkbox.each(function(){
+						if($(this).is(':checked')){
+							checkboxCollection.push($(this).val());
+						}
 					})
-				});
-				
+					if(checkboxCollection.length > 0){
+						console.log(checkboxCollection.join());
+						socket.emit('del-item', checkboxCollection);
+
+					}
+					socket.on('del-item-Response', function(data){
+						if(data){
+							socket.emit('getNewResult', function(data){
+								data.forEach(function(r){
+									console.log(r.id);
+								})
+								
+							});
+						}
+					});				
+				})
+
 			})
 		})
 	</script>

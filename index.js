@@ -76,14 +76,14 @@ app.get('/admin/db', function (req, res, next) {
 				  });
 			}
 		})
-		socket.on('getNewResult', function(){
+		socket.on('getNewResult', function(func){
 			pg.connect(process.env.DATABASE_URL, function(err, client, done) {
 				client.query('SELECT * FROM budget_message', function(err, result) {
 				    done();
 				    if (err){ 
-				     	socket.emit('getNewResult-Response', false); 
+				     	func(false); 
 				    }else{ 
-				   		socket.emit('getNewResult-Response', result.rows);
+				   		func(result.rows);
 				    }
 				});
 			});
