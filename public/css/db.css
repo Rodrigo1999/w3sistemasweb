@@ -81,16 +81,19 @@ section header nav .control a i{
   margin: 0 auto;
   font-size: 20px;
 }
-section header nav .control form i.fa-search-primary{
+section header nav .control i.fa-search-primary{
   font-size: 28px;
   display: block;
   margin: 0 auto;
   text-align: center;
   
 }
-section header nav .control form .input{
+section header nav form{
   position: absolute;
-  display: none;
+  
+}
+section header nav form .input{
+  display: flex;
 }
 section header nav .control form input{
  
