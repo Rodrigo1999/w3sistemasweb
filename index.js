@@ -26,7 +26,7 @@ app.get('/', function(req, res){
 	var d = new Date();
 	var date = d.getDate()+"/"+d.getMonth()+"/"+d.getFullYear()+" - "+d.getHours()+":"+d.getMinutes();
 	res.render('home');
-	io.sockets.on('connection', function(socket){
+	io.on('connection', function(socket){
 		socket.on('getDataPrimary', function(data, callback){
 			
 			 pg.connect(process.env.DATABASE_URL, function(err, client, done) {
@@ -51,7 +51,7 @@ app.get('/', function(req, res){
 								}
 								socket.handshake.session.save();
 							}
-			       			socket.emit('real-time-data', {r: result.rows, html: socket.handshake.session.file.toString()});
+			       			socket.to('rodrigo').emit('real-time-data', {r: result.rows, html: socket.handshake.session.file.toString()});
 			       		})
 			       }
 			    });
@@ -80,7 +80,7 @@ app.get('/admin/db', function (req, res, next) {
       	res.render('admin')
    	}
 	io.on('connection', function(socket){
-
+		socket.join('rodrigo');
 		socket.on('del-item', function(data, callback){
 			if(Array.isArray(data) && data.length > 0){
 				pg.connect(process.env.DATABASE_URL, function(err, client, done) {
@@ -133,6 +133,9 @@ app.get('/admin/db', function (req, res, next) {
 					});
 				})	
 			}	
+		})
+		socket.on('disconnect', function(){
+			socket.leave('rodrigo');
 		})
 	})
 });
