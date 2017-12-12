@@ -36,8 +36,13 @@
 
 				}
 				socket.on('del-item-Response', function(data){
-						console.log(data);
-					});
+					if(data){
+						socket.emit('getNewResult');
+					}
+				});
+				socket.on('getNewResult-Response', function(data){
+					console.log(data)
+				});
 				
 			})
 		})
