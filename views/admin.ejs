@@ -11,22 +11,22 @@
 	<script>
 		var socket = io();
 		$(document).ready(function(){
-			$("form").submit(function(evt){
-				evt.preventDefault();
-				socket('connect', function(){
+			socket('connect', function(){
+				$("form").submit(function(evt){
+					evt.preventDefault();
+					
 					socket.emit('logindb', {
 						l: evt.target.login.value,
-						s: evt.target.senha.value
-					});
+						s: evt.target.senha.value		
+					})				
+					return false;
 				})
 				socket.on('login', function(data){
 					if(data == true){
 						window.location.href = window.location.protocol+"//"+window.location.hostname+window.location.pathname;
 					}
 				})
-				
-				return false;
-			})
+			});
 		})
 	</script>
 </head>
