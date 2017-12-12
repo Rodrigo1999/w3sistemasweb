@@ -7,6 +7,7 @@
 	<link href='http://fonts.googleapis.com/css?family=Montserrat:400,700' rel='stylesheet' type='text/css'>
 	<link rel="stylesheet" href="/css/adminLogin.css">	
 	<script src="https://ajax.aspnetcdn.com/ajax/jQuery/jquery-3.2.1.min.js"></script>
+	<script src="https://npmcdn.com/js-alert/dist/jsalert.min.js"></script>
 	<script src="/socket.io/socket.io.js"></script>
 	<script>
 		var socket = io();
@@ -19,8 +20,10 @@
 					s: evt.target.senha.value
 				});
 				socket.on('login', function(data){
-					if(data == true){
+					if(data){
 						window.location.href = window.location.protocol+"//"+window.location.hostname+window.location.pathname;
+					}else{
+						JSAlert.alert("Login incorreto");
 					}
 				})
 				return false;

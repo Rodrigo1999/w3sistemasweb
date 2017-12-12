@@ -139,14 +139,6 @@ app.get('/admin/db', function (req, res, next) {
 		})
 	})
 });
-app.get('/admin/db', function(req, res, next){
-	var session = req.session;
-	session.login = true;
-	
-	io.on('connection', function(socket){
-		socket.emit('login', session.login);
-	})
-})
 http.listen(PORT, function(){
 console.log('listening on *:'+PORT);
 });
