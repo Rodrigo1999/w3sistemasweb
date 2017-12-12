@@ -197,7 +197,7 @@ section article ul#list-data li.parent:hover{
 }
 
 section article ul#list-data li.parent li.li-data-nome span{
-  font-size: 14px;
+  font-size: 15px;
   float: left;
   display: block;
   
@@ -205,7 +205,7 @@ section article ul#list-data li.parent li.li-data-nome span{
   color: rgb(50, 50, 50)
 }
 section article ul#list-data li.parent li.li-data-nome .span-data-date{
-  font-size:10px;
+  font-size:11px;
   color:#4385f3;
   font-weight:900;
   width: 50%;
@@ -218,7 +218,7 @@ section article ul#list-data li.parent li.li-data-date{
 section article ul#list-data li.parent li,
 section article ul#list-data li.parent li span{
   font-family: 'Calibri';
-  font-size: 12px;
+  font-size: 14px;
   white-space: nowrap; 
    overflow: hidden;
    text-overflow: ellipsis;
