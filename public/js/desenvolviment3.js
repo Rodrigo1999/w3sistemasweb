@@ -51,6 +51,7 @@ $(document).ready(function(){
 			socket.on('getDataPrimary-Response', function(data){
 				console.log(data);
 				l.stop();
+				JSAlert.alert("Mensagem enviada com sucesso");
 			});
 		}else{
 			
