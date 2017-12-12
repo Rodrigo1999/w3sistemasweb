@@ -41,13 +41,11 @@
 									$("#list-data").html('');
 									data.r.forEach(function(r){
 										
-										var html = data.html;
-
-										var mat = html.match(/<& \w+\W\w+ &>/g);
+										var mat = data.html.match(/<& \w+\W\w+ &>/g);
 										for (var i = 0; i < mat.length; i++) {
-											html = html.replace(/<& \w+\W\w+ &>/, r[mat[i].match(/\w+\W\w+/g)[0].substr(2)])
+											data.html = data.html.replace(/<& \w+\W\w+ &>/, r[mat[i].match(/\w+\W\w+/g)[0].substr(2)])
 										}
-										$("#list-data").append(html)
+										$("#list-data").append(data.html)
 										
 									})
 									
