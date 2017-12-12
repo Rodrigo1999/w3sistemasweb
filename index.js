@@ -58,7 +58,7 @@ app.get('/admin/db', function (req, res, next) {
 			      	console.error(err); 
 			       	res.send("Error " + err); 
 			    }else { 
-			       	res.render('db', {results: result.rows} ); 
+			       	res.render('db', {results: result.rows, count: result.rows.length} ); 
 			    }
 		    });
 		  });
