@@ -137,9 +137,6 @@ app.get('/admin/db', function (req, res, next) {
 				})	
 			}	
 		})
-		socket.on('disconnect', function(){
-			socket.leave('2C44-4D44-WppQ38S');
-		})
 	})
 });
 app.get('/admin/db', function(req, res, next){
