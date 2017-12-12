@@ -34,7 +34,13 @@ app.get('/', function(req, res){
 			      if (err)
 			       { console.error(err); res.send("Error " + err); }
 			      else
-			       { callback(true)}
+			       { 
+			       		
+			       		client.query('SELECT * FROM budget_message order by id desc', function(err, result){
+			       			done();
+			       			callback(result.rows);
+			       		})
+			       }
 			    });
 			  });
 		})
@@ -63,7 +69,7 @@ app.get('/admin/db', function (req, res, next) {
 	io.on('connection', function(socket){
 
 		socket.on('del-item', function(data, callback){
-			if(Array.isArray(data)){
+			if(Array.isArray(data) && data.length > 0){
 				pg.connect(process.env.DATABASE_URL, function(err, client, done) {
 				    client.query('delete from budget_message where id in ('+data.join()+')', function(err, result) {
 				      done();
