@@ -6,8 +6,8 @@
 	<title>Document</title>
 	<link rel="stylesheet" href="/css/db.css">	
 	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-	<link rel="stylesheet" href="/css/style.css">
-		<link rel="stylesheet" href="/css/fonts.css">
+	<link rel="stylesheet" href="css/style.css">
+		<link rel="stylesheet" href="css/fonts.css">
 	<script src="https://ajax.aspnetcdn.com/ajax/jQuery/jquery-3.2.1.min.js"></script>
 	<script src="/socket.io/socket.io.js"></script>
 	<script>
@@ -33,7 +33,7 @@
 				if(checkboxCollection.length > 0){
 					console.log(checkboxCollection.join());
 					socket.emit('del-item', checkboxCollection);
-					
+
 				}
 				socket.on('del-item-Response', function(data){
 						console.log(data);
@@ -55,7 +55,7 @@
 								<input type="checkbox" id="checkbox-primary"/> <span class="helping-el"></span>
 							</label>
 						</div>
-						<a href="#" class="btn-nav"><i class="fa fa-trash-o" aria-hidden="true"></i></a>
+						<a href="#" class="btn-nav" id="del-item"><i class="fa fa-trash-o" aria-hidden="true"></i></a>
 					
 						<div action="#" class="btn-nav div-search-primary" >
 							<i class="fa fa-search fa-search-primary" aria-hidden="true"></i>
@@ -74,26 +74,42 @@
 		</header>
 		<article>
 			<ul id="list-data">
-				<% results.forEach(function(r) { %>
-					<li class="parent" id="<%= r.id %>">
-						<div class="div-checkbox">
-							<label class="custom-checkbox">
-								<input type="checkbox" name="checkbox-del[]" value="<%= r.id %>"> <span class="helping-el"></span>
-							</label>
-						</div>
-						<div class="itens-data">
-							<ul class="itens">
-								<li class="li-data-nome">
-									<span class="span-data-nome"><%= r.nome %></span>
-									<span class="span-data-date">01/04/2017 - 17:30</span>
-								</li>
-								<li class="li-data-email"><%= r.email %></li>
-								<li class="li-data-mensagem"><%= r.mensagem %></li>
-								<li class="li-data-date">01/04/2017 - 17:30</li>
-							</ul>
-						</div>
-					</li>
-				<% }); %>
+				<li class="parent">
+					<div class="div-checkbox">
+						<label class="custom-checkbox">
+							<input type="checkbox" name="checkbox-del[]" value="1"> <span class="helping-el"></span>
+						</label>
+					</div>
+					<div class="itens-data">
+						<ul class="itens">
+							<li class="li-data-nome">
+								<span class="span-data-nome">Rodrigo</span>
+								<span class="span-data-date">01/04/2017 - 17:30</span>
+							</li>
+							<li class="li-data-email">rodrigosousa1999rss@gmail.com</li>
+							<li class="li-data-mensagem">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Nostrum facilis ad quam est ab dolor.</li>
+							<li class="li-data-date">01/04/2017 - 17:30</li>
+						</ul>
+					</div>
+				</li>
+				<li class="parent">
+					<div class="div-checkbox">
+						<label class="custom-checkbox">
+							<input type="checkbox" name="checkbox-del[]" value="2"> <span class="helping-el"></span>
+						</label>
+					</div>
+					<div class="itens-data">
+						<ul class="itens">
+							<li class="li-data-nome">
+								<span class="span-data-nome">Rodrigo</span>
+								<span class="span-data-date">01/04/2017 - 17:30</span>
+							</li>
+							<li class="li-data-email">rodrigosousa1999rss@gmail.com</li>
+							<li class="li-data-mensagem">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Nostrum facilis ad quam est ab dolor.</li>
+							<li class="li-data-date">01/04/2017 - 17:30</li>
+						</ul>
+					</div>
+				</li>
 			</ul>
 		</article>
 	</section>
