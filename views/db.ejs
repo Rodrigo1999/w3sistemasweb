@@ -37,17 +37,18 @@
 						socket.emit('del-item', checkboxCollection, function(data){
 							if(data){
 								socket.emit('getNewResult', function(data){
-									var u = 0;
+									
+									$("#list-data").html('');
 									data.r.forEach(function(r){
-										console.log(u++);
+										
 										var html = data.html;
 
 										var mat = html.match(/<& \w+\W\w+ &>/g);
 										for (var i = 0; i < mat.length; i++) {
 											html = html.replace(/<& \w+\W\w+ &>/, r[mat[i].match(/\w+\W\w+/g)[0].substr(2)])
 										}
-
-										$("#list-data").replaceWith(html);
+										$("#list-data").append(html)
+										
 									})
 									
 								});
