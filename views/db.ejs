@@ -33,7 +33,6 @@
 						}
 					})
 					if(checkboxCollection.length > 0){
-						console.log(checkboxCollection.join());
 						socket.emit('del-item', checkboxCollection, function(data){
 							if(data){
 								socket.emit('getNewResult', function(data){

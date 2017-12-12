@@ -230,6 +230,13 @@ section article ul#list-data li.parent .div-checkbox label{
   position: relative;
   bottom: 20px;
 }
+@media only screen and (min-width:355px){
+  section article ul#list-data li.parent .div-checkbox label{
+    position: relative;
+    bottom: 0px;
+    left:-20px;
+  }
+}
 @media only screen and (min-width:560px){
   .opt-top-none,
   .opt-top{
