@@ -3,7 +3,9 @@ body {
     background-size: cover;
     font-family: Montserrat;
 }
-
+* {
+    box-sizing: border-box;
+}
 .logo {
     width: 213px;
     height: 36px;
@@ -12,7 +14,8 @@ body {
 }
 
 .login-block {
-    width: 320px;
+    width: 95%;
+    max-width: 320px;
     padding: 20px;
     background: #fff;
     border-radius: 5px;
