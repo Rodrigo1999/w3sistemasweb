@@ -80,6 +80,9 @@ section header nav .control .btn-nav:nth-child(2){
  border-left: none;
   border-right:none;
 }
+section header nav .control .btn-nav:nth-child(3){
+  border-right:none;
+}
 section header nav .control .btn-nav:first-child{
   border-radius:4px 0 0 4px;
   
@@ -92,12 +95,19 @@ section header nav .control .div-search-primary{
 }
 section header nav .control .btn-nav i{
   color:#444;
+  
 }
 
-section header nav .control a i{
+section header nav .control a i,
+section header nav .control a#count-list span{
   display: block;
   margin: 0 auto;
   font-size: 20px;
+}
+section header nav .control a#count-list span{
+  font-size: 15px;
+  color:green;
+ 
 }
 section header nav .control i.fa-search-primary{
   font-size: 28px;
@@ -251,8 +261,7 @@ section article ul#list-data li.parent .div-checkbox label{
     display: none;
   }
   
-  section header nav .control .btn-nav:nth-child(2){
-   border-left: none;
+  section header nav .control .btn-nav:nth-child(3){
     border-radius:0 4px 4px 0;
     border-right:1px solid rgb(200, 200, 200);
   }
