@@ -47,7 +47,6 @@ $(document).ready(function(){
 		if(validate){
 			l.start();
 			socket.emit('getDataPrimary', data, function(data){
-				console.log(data);
 				l.stop();
 				JSAlert.alert("Mensagem enviada com sucesso");
 			});
