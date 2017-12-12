@@ -47,11 +47,13 @@ app.get('/admin/db', function (req, res, next) {
 	if(session.login){
 		pg.connect(process.env.DATABASE_URL, function(err, client, done) {
 		    client.query('SELECT * FROM budget_message', function(err, result) {
-		      done();
-		      if (err)
-		       { console.error(err); res.send("Error " + err); }
-		      else
-		       { res.render('db', {results: result.rows} ); }
+			    done();
+			    if (err) { 
+			      	console.error(err); 
+			       	res.send("Error " + err); 
+			    }else { 
+			       	res.render('db', {results: result.rows} ); 
+			    }
 		    });
 		  });
    	} else {
@@ -66,12 +68,9 @@ app.get('/admin/db', function (req, res, next) {
 				pg.connect(process.env.DATABASE_URL, function(err, client, done) {
 				    client.query('delete from budget_message where id in ('+data.join()+')', function(err, result) {
 				      done();
-				      if (err)
-				       { callback(false); }
-				      else
-				       { 
-				       		callback(true);
-				       }
+
+				      err ? callback(false) : callback(true);
+
 				    });
 				  });
 			}
@@ -80,11 +79,9 @@ app.get('/admin/db', function (req, res, next) {
 			pg.connect(process.env.DATABASE_URL, function(err, client, done) {
 				client.query('SELECT * FROM budget_message', function(err, result) {
 				    done();
-				    if (err){ 
-				     	func(false); 
-				    }else{ 
-				   		func(result.rows);
-				    }
+
+				    err ? func(false) : func({r: result.rows, html: '<ul><li>"+r.id+"</li></ul>'});
+				    
 				});
 			});
 		})

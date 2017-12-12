@@ -37,8 +37,9 @@
 						socket.emit('del-item', checkboxCollection, function(data){
 							if(data){
 								socket.emit('getNewResult', function(data){
-									data.forEach(function(r){
+									data.r.forEach(function(r){
 										console.log(r.id);
+										$("#list-data").replaceWith(""+data.html+"");
 									})
 									
 								});
