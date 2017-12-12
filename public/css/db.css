@@ -66,20 +66,31 @@ section header nav .control .btn-nav:first-child{
 }
 section header nav .control .btn-nav:last-child{
   border-radius:0 4px 4px 0;
+  display: flex;
+  justify-content: space-around;
+ 
 }
 section header nav .control .btn-nav i{
   color:#444;
+}
+section header nav .control a{
+  text-decoration: none; 
 }
 section header nav .control a i{
   display: block;
   margin: 0 auto;
   font-size: 20px;
 }
-section header nav .control form i{
+section header nav .control form i.fa-search-primary{
   font-size: 28px;
+  display: block;
   margin: 0 auto;
   text-align: center;
-  display: block;
+  
+}
+section header nav .control form .input{
+  position: absolute;
+  display: none;
 }
 section header nav .control form input{
  
