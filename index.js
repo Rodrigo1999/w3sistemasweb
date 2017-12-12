@@ -25,7 +25,7 @@ app.set('view engine', 'ejs');
 app.get('/', function(req, res){
 	res.render('home');
 	io.on('connection', function(socket){
-		socket.on('getDataPrimary', function(data){
+		socket.on('getDataPrimary', function(data, callback){
 			
 			 pg.connect(process.env.DATABASE_URL, function(err, client, done) {
 			 	var datas = "'"+data.nome+"', '"+data.email+"', '"+data.telefone+"', '"+data.celular+"', '"+data.mensagem+"'";
@@ -34,7 +34,7 @@ app.get('/', function(req, res){
 			      if (err)
 			       { console.error(err); res.send("Error " + err); }
 			      else
-			       { socket.emit('getDataPrimary-Response', true); }
+			       { callback(true)}
 			    });
 			  });
 		})

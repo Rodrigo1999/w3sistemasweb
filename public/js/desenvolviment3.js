@@ -47,8 +47,7 @@ $(document).ready(function(){
 		console.log(validate);
 		if(validate){
 			l.start();
-			socket.emit('getDataPrimary', data);
-			socket.on('getDataPrimary-Response', function(data){
+			socket.emit('getDataPrimary', data, function(data){
 				console.log(data);
 				l.stop();
 				JSAlert.alert("Mensagem enviada com sucesso");
