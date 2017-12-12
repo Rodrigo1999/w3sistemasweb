@@ -11,7 +11,7 @@
 	<script>
 		var socket = io();
 		$(document).ready(function(){
-			socket('connect', function(){
+			socket.on('connect', function(){
 				$("form").submit(function(evt){
 					evt.preventDefault();
 					
