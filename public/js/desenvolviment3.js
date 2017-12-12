@@ -44,7 +44,6 @@ $(document).ready(function(){
 				}
 			})
 		}
-		console.log(validate);
 		if(validate){
 			l.start();
 			socket.emit('getDataPrimary', data, function(data){
