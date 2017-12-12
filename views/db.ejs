@@ -34,19 +34,18 @@
 					})
 					if(checkboxCollection.length > 0){
 						console.log(checkboxCollection.join());
-						socket.emit('del-item', checkboxCollection);
+						socket.emit('del-item', checkboxCollection, function(data){
+							if(data){
+								socket.emit('getNewResult', function(data){
+									data.forEach(function(r){
+										console.log(r.id);
+									})
+									
+								});
+							}
+						});
 
-					}
-					socket.on('del-item-Response', function(data){
-						if(data){
-							socket.emit('getNewResult', function(data){
-								data.forEach(function(r){
-									console.log(r.id);
-								})
-								
-							});
-						}
-					});				
+					}		
 				})
 
 			})

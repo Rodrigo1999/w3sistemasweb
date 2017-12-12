@@ -61,16 +61,16 @@ app.get('/admin/db', function (req, res, next) {
 	io.on('connection', function(socket){
 		
 		console.log(socket.id)
-		socket.on('del-item', function(data){
+		socket.on('del-item', function(data, callback){
 			if(Array.isArray(data)){
 				pg.connect(process.env.DATABASE_URL, function(err, client, done) {
 				    client.query('delete from budget_message where id in ('+data.join()+')', function(err, result) {
 				      done();
 				      if (err)
-				       { socket.emit('del-item-Response', false); }
+				       { callback(false); }
 				      else
 				       { 
-				       		socket.emit('del-item-Response', true);
+				       		callback(true);
 				       }
 				    });
 				  });
