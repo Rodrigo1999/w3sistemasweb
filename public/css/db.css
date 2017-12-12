@@ -26,18 +26,26 @@ label.custom-checkbox input[type="checkbox"]:checked ~ .helping-el:after {
     top: -1px;
     
 }
+a{
+  text-decoration: none;
+}
 section{
   width: 100%;
   margin: 0 auto;
 }
 section header nav{
   width: 100%;
+  position: fixed;
+  top: 0;
+  left: 0;
 }
 * {
    box-sizing: border-box;
 }
 section header nav .content{
   width: 100%;
+  padding: 10px;
+  margin: 0 auto;
 }
 section header nav .control{
   width: 100%;
@@ -64,7 +72,7 @@ section header nav .control .btn-nav:first-child{
   border-radius:4px 0 0 4px;
   
 }
-section header nav .control .btn-nav:last-child{
+section header nav .control .div-search-primary{
   border-radius:0 4px 4px 0;
   display: flex;
   justify-content: space-around;
@@ -73,9 +81,7 @@ section header nav .control .btn-nav:last-child{
 section header nav .control .btn-nav i{
   color:#444;
 }
-section header nav .control a{
-  text-decoration: none; 
-}
+
 section header nav .control a i{
   display: block;
   margin: 0 auto;
@@ -88,22 +94,47 @@ section header nav .control i.fa-search-primary{
   text-align: center;
   
 }
+.opt-top-none{
+   top:-60px;
+  transition: 0.2s linear;
+}
+.opt-top{
+  top:0px;
+  transition: 0.2s linear;
+}
 section header nav form{
-  position: absolute;
-  
+  position: fixed;
+ 
+  left: 0;
+  width: 100%;
+}
+section header nav form .input a,
+section header nav form .input button{
+  background-color: #ce3f2e;
+  width: 50px;
+  display: flex;
+  align-items: center;
+  color: white;
+}
+section header nav form .input button{
+  display: none;
+}
+section header nav form .input a i{
+  display: block;
+  margin: 0 auto;
 }
 section header nav form .input{
   display: flex;
 }
-section header nav .control form input{
+section header nav  form input{
  
   width: 100%;
   border-radius: 2px !important;
     padding: 8px 12px;
 
-    display: none;
+    display: block;
     width: 100%;
-    height: 34px;
+    height: 44px;
     padding: 6px 12px;
     font-size: 14px;
     line-height: 1.42857143;
@@ -111,10 +142,52 @@ section header nav .control form input{
     background-color: #fff;
     background-image: none;
     border: 1px solid #ccc;
+  border-top: none;
     border-radius: 4px;
     -webkit-box-shadow: inset 0 1px 1px rgba(0,0,0,.075);
     box-shadow: inset 0 1px 1px rgba(0,0,0,.075);
     -webkit-transition: border-color ease-in-out .15s,-webkit-box-shadow ease-in-out .15s;
     -o-transition: border-color ease-in-out .15s,box-shadow ease-in-out .15s;
     transition: border-color ease-in-out .15s,box-shadow ease-in-out .15s;
+}
+@media only screen and (min-width:560px){
+  .opt-top-none,
+  .opt-top{
+   top:0;
+    transition: 0s linear;
+  }
+  section header nav .control .div-search-primary{
+    display: none;
+  }
+  section header nav .control .btn-nav{
+    width: 100px;
+  }
+  section header nav .control .btn-nav:nth-child(2){
+   border-left: none;
+    border-radius:0 4px 4px 0;
+    border-right:1px solid rgb(200, 200, 200);
+  }
+  section header nav form{
+    position: relative;
+
+    left: 0;
+    width: 90%;
+    margin-left: 10px;
+  }
+  section header nav  form input{
+    border-top: 1px solid #ccc;
+  }
+  section header nav form .input a{
+    display: none;
+  }
+  section header nav form .input button{
+    border:none;
+    width: 60px;
+    background-color:#4585f3;
+    display: block;
+  }
+  section header nav .content{
+    padding:20px 0;
+    border-bottom: 1px solid rgb(200, 200, 200);
+  }
 }
