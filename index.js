@@ -89,7 +89,7 @@ app.get('/admin/db', function (req, res, next) {
 			
 			
 			pg.connect(process.env.DATABASE_URL, function(err, client, done) {
-				client.query('SELECT * FROM budget_message', function(err, result) {
+				client.query('SELECT * FROM budget_message order by id desc', function(err, result) {
 				    done();
 
 				    err ? func(false) : func({r: result.rows, html: socket.handshake.session.file.toString()});
