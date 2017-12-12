@@ -114,7 +114,7 @@ app.get('/admin/db', function (req, res, next) {
 				  });
 			}
 		})
-		socket.on('logindb', function(data){
+		socket.on('logindb', function(data, callback){
 			if(data){
 				pg.connect(process.env.DATABASE_URL, function(err, client, done){
 					client.query("select count(*) from admin where login='"+data.l+"' and senha='"+data.s+"'", function(err, result){
@@ -125,11 +125,11 @@ app.get('/admin/db', function (req, res, next) {
 							
 							if(result.rows[0].count == 1){
 								socket.handshake.session.login = true;
-								socket.emit('login', socket.handshake.session.login);
+								callback(socket.handshake.session.login)
 								
 							}else{
 								socket.handshake.session.login = false;
-								socket.emit('login', socket.handshake.session.login);
+								callback(socket.handshake.session.login)
 							}
 							socket.handshake.session.save();	
 						}
