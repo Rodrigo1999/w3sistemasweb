@@ -62,19 +62,19 @@ app.get('/admin/db', function (req, res, next) {
    	}
 	io.sockets.on('connection', function(socket){
 		socket.on('del-item', function(data){
-			//if(Array.isArray(data)){
-				// pg.connect(process.env.DATABASE_URL, function(err, client, done) {
-				//     client.query('delete from budget_message where id in ('+data.join()+')', function(err, result) {
-				//       done();
-				//       if (err)
-				//        { console.error(err); res.send("Error " + err); }
-				//       else
-				//        { 
+			if(Array.isArray(data)){
+				pg.connect(process.env.DATABASE_URL, function(err, client, done) {
+				    client.query('delete from budget_message where id in ('+data.join()+')', function(err, result) {
+				      done();
+				      if (err)
+				       { console.error(err); res.send("Error " + err); }
+				      else
+				       { 
 				       		socket.emit('del-item-Response', true)
-				  //      }
-				  //   });
-				  // });
-			//}
+				       }
+				    });
+				  });
+			}
 		})
 		socket.on('logindb', function(data){
 			if(data){
