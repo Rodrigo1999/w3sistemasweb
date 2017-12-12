@@ -74,34 +74,29 @@ app.get('/admin/db', function (req, res, next) {
 				    client.query('delete from budget_message where id in ('+data.join()+')', function(err, result) {
 				      done();
 
-				      err ? callback(false) : callback(true);
+				      	if(!socket.handshake.session.file){
+
+							var directory = __dirname+'/views/readdingDbList.txt';
+							if(fs.existsSync(directory)){
+								socket.handshake.session.file = fs.readFileSync(directory);
+							}else{
+								socket.handshake.session.file = false;
+							}
+							socket.handshake.session.save();
+						}
+				      if(err){
+				      	callback(false)
+				      }else{
+				      	client.query('SELECT * FROM budget_message order by id desc', function(err, result) {
+						    done();
+
+						    err ? callback(false) : callback({r: result.rows, html: socket.handshake.session.file.toString()});   
+						});
+				      }
 
 				    });
 				  });
 			}
-		})
-		socket.on('getNewResult', function(func){
-			
-			if(!socket.handshake.session.file){
-
-				var directory = __dirname+'/views/readdingDbList.txt';
-				if(fs.existsSync(directory)){
-					socket.handshake.session.file = fs.readFileSync(directory);
-				}else{
-					socket.handshake.session.file = false;
-				}
-				socket.handshake.session.save();
-			}
-			
-			
-			pg.connect(process.env.DATABASE_URL, function(err, client, done) {
-				client.query('SELECT * FROM budget_message order by id desc', function(err, result) {
-				    done();
-
-				    err ? func(false) : func({r: result.rows, html: socket.handshake.session.file.toString()});
-				    
-				});
-			});
 		})
 		socket.on('logindb', function(data){
 			if(data){
