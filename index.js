@@ -21,7 +21,7 @@ app.get('/', function(req, res){
 			      if (err)
 			       { console.error(err); res.send("Error " + err); }
 			      else
-			       { socket.emit('getDataPrimary-res', true); }
+			       { socket.emit('getDataPrimary-Response', true); }
 			    });
 			  });
 		})
