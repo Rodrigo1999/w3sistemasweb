@@ -33,10 +33,11 @@
 				if(checkboxCollection.length > 0){
 					console.log(checkboxCollection.join());
 					socket.emit('del-item', checkboxCollection);
-					socket.on('del-item-Response', function(data){
+					
+				}
+				socket.on('del-item-Response', function(data){
 						console.log(data);
 					});
-				}
 				
 			})
 		})
