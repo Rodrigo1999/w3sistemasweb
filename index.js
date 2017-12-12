@@ -19,9 +19,9 @@ app.get('/', function(req, res){
 			    client.query("insert into budget_message (nome, email, telefone, celular, mensagem) values ("+datas+")", function(err, result) {
 			      done();
 			      if (err)
-			       { console.error(err); response.send("Error " + err); }
+			       { console.error(err); res.send("Error " + err); }
 			      else
-			       { socket.emit('getDataPrimary-Response', true); }
+			       { socket.emit('getDataPrimary-res', true); }
 			    });
 			  });
 		})
@@ -43,29 +43,29 @@ io.use(sharedsession(session, {
     autoSave:true
 })); 
 
-app.get('/admin/db', function (request, response, next) {
+app.get('/admin/db', function (req, res, next) {
 
-	var session = request.session;
+	var session = req.session;
 	if(session.login){
 		pg.connect(process.env.DATABASE_URL, function(err, client, done) {
 		    client.query('SELECT * FROM budget_message', function(err, result) {
 		      done();
 		      if (err)
-		       { console.error(err); response.send("Error " + err); }
+		       { console.error(err); res.send("Error " + err); }
 		      else
-		       { response.render('db', {results: result.rows} ); }
+		       { res.render('db', {results: result.rows} ); }
 		    });
 		  });
    	} else {
      	
-      	response.render('admin')
+      	res.render('admin')
    	}
 	io.sockets.on('connection', function(socket){
 		
 		socket.on('logindb', function(data){
 			if(data){
 				pg.connect(process.env.DATABASE_URL, function(err, client, done){
-					client.query("select count(*) from admin where login='"+data.login+"' and senha='"+data.senha+"'", function(err, result){
+					client.query("select count(*) from admin where login='"+data.l+"' and senha='"+data.s+"'", function(err, result){
 						done();
 						if (err) {
 							{ console.error(err); }

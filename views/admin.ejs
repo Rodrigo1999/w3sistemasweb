@@ -1,8 +1,8 @@
-<!DOCTYPE html>
+<!-- <!DOCTYPE html>
 <html lang="en">
 <head>
 	<meta charset="UTF-8">
-	<title>Document</title>
+	<title>Admin</title>
 	<link href='http://fonts.googleapis.com/css?family=Montserrat:400,700' rel='stylesheet' type='text/css'>
 	<link rel="stylesheet" href="/css/adminLogin.css">	
 	<script src="https://ajax.aspnetcdn.com/ajax/jQuery/jquery-3.2.1.min.js"></script>
@@ -14,12 +14,13 @@
 				evt.preventDefault();
 
 				socket.emit('logindb', {
-					login: evt.target.login.value,
-					senha: evt.target.senha.value
+					l: evt.target.login.value,
+					s: evt.target.senha.value
 				});
 				socket.on('login', function(data){
-					if(data == true) window.location.href = window.location.protocol+"//"+window.location.hostname+window.location.pathname;
-					
+					if(data == true){
+						window.location.href = window.location.protocol+"//"+window.location.hostname+window.location.pathname;
+					}
 				})
 				return false;
 			})
@@ -36,5 +37,50 @@
 		    <button>Entrar</button>
 	    </form>
 	</div>
+</body>
+</html> -->
+
+
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<link rel="stylesheet" href="/css/db.css">	
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+	<script src="https://ajax.aspnetcdn.com/ajax/jQuery/jquery-3.2.1.min.js"></script>
+	<script src="/socket.io/socket.io.js"></script>
+</head>
+<body>
+	<section>
+		<header>
+			<nav>
+				<div class="content">
+					<div class="control">
+						
+						<div class="btn-nav">
+							<label class="custom-checkbox">
+								<input type="checkbox" /> <span class="helping-el"></span>
+							</label>
+						</div>
+						<a href="#" class="btn-nav"><i class="fa fa-trash-o" aria-hidden="true"></i></a>
+					
+						<form action="#" class="btn-nav">
+							<input type="search" name="search" id="search" placeholder="Pesquisar:">
+							<i class="fa fa-search" aria-hidden="true"></i>
+						</form>
+
+					</div>
+				</div>
+			</nav>
+			<form action="#" method="POST">
+				<label class="custom-checkbox">
+					<input type="checkbox" /> <span class="helping-el"></span>
+				</label>
+			</form>
+		</header>
+	</section>
 </body>
 </html>
