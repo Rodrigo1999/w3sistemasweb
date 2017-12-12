@@ -51,6 +51,8 @@
 	<title>Document</title>
 	<link rel="stylesheet" href="/css/db.css">	
 	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+	<link rel="stylesheet" href="css/style.css">
+		<link rel="stylesheet" href="css/fonts.css">
 	<script src="https://ajax.aspnetcdn.com/ajax/jQuery/jquery-3.2.1.min.js"></script>
 	<script src="/socket.io/socket.io.js"></script>
 	<script>
@@ -92,12 +94,29 @@
 					
 				</div>
 			</nav>
-			<form action="#" method="POST">
-				<!-- <label class="custom-checkbox">
-					<input type="checkbox" /> <span class="helping-el"></span>
-				</label> -->
-			</form>
 		</header>
+		<article>
+			<ul id="list-data">
+				<li class="parent">
+					<div class="div-checkbox">
+						<label class="custom-checkbox">
+							<input type="checkbox" /> <span class="helping-el"></span>
+						</label>
+					</div>
+					<div class="itens-data">
+						<ul class="itens">
+							<li class="li-data-nome">
+								<span class="span-data-nome">Rodrigo</span>
+								<span class="span-data-date">01/04/2017 - 17:30</span>
+							</li>
+							<li class="li-data-email">rodrigosousa1999rss@gmail.com</li>
+							<li class="li-data-mensagem">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Nostrum facilis ad quam est ab dolor.</li>
+							<li class="li-data-date">01/04/2017 - 17:30</li>
+						</ul>
+					</div>
+				</li>
+			</ul>
+		</article>
 	</section>
 </body>
 </html>

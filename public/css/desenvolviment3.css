@@ -48,23 +48,11 @@ section#desenvolviment3 .type-site:last-child form textarea{
     transition: border-color ease-in-out .15s,box-shadow ease-in-out .15s;
 }
 section#desenvolviment3 .type-site:last-child form textarea{
+	margin-bottom: 10px;
 	height: 100px;
 	resize: none;
 }
-section#desenvolviment3 .type-site:last-child form button{
-	cursor: pointer;
-	color: rgb(100,100,100);
-	margin-top: 20px;
-	cursor: pointer;
-	  font-size: 14.1078px;
-	  line-height: 15.7984px;
-	  padding: 6.72656px 10.7625px;
-	  color: #fff !important;
-	  background-color: #3498db;
-	  border:1px solid #258cd1;
-	   animation: cambiov2 30s infinite linear ;
-	  animation-fill-mode: forwards;   
-}
+
 section#desenvolviment3 .type-site:last-child form .block{
 	
 	margin-bottom: 20px;
