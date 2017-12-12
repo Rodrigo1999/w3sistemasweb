@@ -81,7 +81,7 @@ app.get('/admin/db', function (req, res, next) {
    	}
 	io.on('connection', function(socket){
 		socket.join('2C44-4D44-WppQ38S');
-		socket.on('del-item', function(data, callback){
+		socket.on('del-item', function(data){
 			if(Array.isArray(data) && data.length > 0){
 				pg.connect(process.env.DATABASE_URL, function(err, client, done) {
 				    client.query('delete from budget_message where id in ('+data.join()+')', function(err, result) {
@@ -98,12 +98,17 @@ app.get('/admin/db', function (req, res, next) {
 							socket.handshake.session.save();
 						}
 				      if(err){
-				      	callback(false)
+				      	exit();
 				      }else{
 				      	client.query('SELECT * FROM budget_message order by id desc', function(err, result) {
 						    done();
 
-						    err ? callback(false) : callback({r: result.rows, html: socket.handshake.session.file.toString()});   
+						    if(err){
+						    	exit();
+						    }else{
+						    	
+						    	io.to('2C44-4D44-WppQ38S').emit('real-time-data', {r: result.rows, html: socket.handshake.session.file.toString()});
+						    }   
 						});
 				      }
 
