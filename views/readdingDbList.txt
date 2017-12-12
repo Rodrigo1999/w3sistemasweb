@@ -1,0 +1,20 @@
+<ul id="list-data">
+	<li class="parent" id="<& r.id &>">
+		<div class="div-checkbox">
+			<label class="custom-checkbox">
+				<input type="checkbox" name="checkbox-del[]" value="<& r.id &>"> <span class="helping-el"></span>
+			</label>
+		</div>
+		<div class="itens-data">
+			<ul class="itens">
+				<li class="li-data-nome">
+					<span class="span-data-nome"><& r.nome &></span>
+					<span class="span-data-date">01/04/2017 - 17:30</span>
+				</li>
+				<li class="li-data-email"><& r.email &></li>
+				<li class="li-data-mensagem"><& r.mensagem &></li>
+				<li class="li-data-date">01/04/2017 - 17:30</li>
+			</ul>
+		</div>
+	</li>
+</ul>

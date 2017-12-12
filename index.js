@@ -6,7 +6,7 @@ const PORT = process.env.PORT || 5000
 const path = require('path')
 var pg = require('pg');
 var sharedsession = require("express-socket.io-session");
-
+var fs = require('fs');
 
 
 
@@ -61,8 +61,7 @@ app.get('/admin/db', function (req, res, next) {
       	res.render('admin')
    	}
 	io.on('connection', function(socket){
-		
-		console.log(socket.id)
+
 		socket.on('del-item', function(data, callback){
 			if(Array.isArray(data)){
 				pg.connect(process.env.DATABASE_URL, function(err, client, done) {
@@ -76,11 +75,24 @@ app.get('/admin/db', function (req, res, next) {
 			}
 		})
 		socket.on('getNewResult', function(func){
+			
+			if(!socket.handshake.session.file){
+
+				var directory = __dirname+'/views/readdingDbList.txt';
+				if(fs.existsSync(directory)){
+					socket.handshake.session.file = fs.readFileSync(directory);
+				}else{
+					socket.handshake.session.file = false;
+				}
+				socket.handshake.session.save();
+			}
+			
+			
 			pg.connect(process.env.DATABASE_URL, function(err, client, done) {
 				client.query('SELECT * FROM budget_message', function(err, result) {
 				    done();
 
-				    err ? func(false) : func({r: result.rows, html: '<ul><li>"+r.id+"</li></ul>'});
+				    err ? func(false) : func({r: result.rows, html: socket.handshake.session.file});
 				    
 				});
 			});

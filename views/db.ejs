@@ -38,8 +38,8 @@
 							if(data){
 								socket.emit('getNewResult', function(data){
 									data.r.forEach(function(r){
-										console.log(r.id);
-										$("#list-data").replaceWith(""+data.html+"");
+										console.log(data.html.toString());
+										//$("#list-data").replaceWith("");
 									})
 									
 								});
