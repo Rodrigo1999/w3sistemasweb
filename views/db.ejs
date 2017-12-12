@@ -17,6 +17,7 @@
 				socket.on('real-time-data', function(data){
 
 					$("#list-data").html('');
+					$("#count-list span").text(data.r.length);
 					data.r.forEach(function(r){
 						
 						var html = data.html;
