@@ -142,8 +142,8 @@ app.get('/admin/db', function (req, res, next) {
 app.get('/admin/db', function(req, res, next){
 	var session = req.session;
 	session.login = true;
-	
-	socket.on('connection', function(){
+
+	io.on('connection', function(){
 		socket.emit('login', session.login);
 	})
 })
