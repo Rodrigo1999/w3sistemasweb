@@ -125,7 +125,7 @@ app.get('/admin/db', function (req, res, next) {
 							
 							if(result.rows[0].count == 1){
 								socket.handshake.session.login = true;
-								next();
+								socket.emit('login', socket.handshake.session.login);
 								
 							}else{
 								socket.handshake.session.login = false;
@@ -142,7 +142,7 @@ app.get('/admin/db', function (req, res, next) {
 app.get('/admin/db', function(req, res, next){
 	var session = req.session;
 	session.login = true;
-
+	
 	io.on('connection', function(socket){
 		socket.emit('login', session.login);
 	})
