@@ -8,11 +8,10 @@
 		<ul class="itens">
 			<li class="li-data-nome">
 				<span class="span-data-nome"><& r.nome &></span>
-				<span class="span-data-date">01/04/2017 - 17:30</span>
+				<span class="span-data-date"><& r.date &></span>
 			</li>
 			<li class="li-data-email"><& r.email &></li>
 			<li class="li-data-mensagem"><& r.mensagem &></li>
-			<li class="li-data-date">01/04/2017 - 17:30</li>
 		</ul>
 	</div>
 </li>

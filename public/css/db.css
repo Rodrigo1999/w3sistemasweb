@@ -222,9 +222,6 @@ section article ul#list-data li.parent li.li-data-nome .span-data-date{
   text-align: right;
   float: left;
 }
-section article ul#list-data li.parent li.li-data-date{
-  display: none;
-}
 section article ul#list-data li.parent li,
 section article ul#list-data li.parent li span{
   font-family: 'Calibri';

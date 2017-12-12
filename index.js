@@ -23,13 +23,15 @@ app.use(express.static(path.join(__dirname, 'public')))
 
 app.set('view engine', 'ejs');
 app.get('/', function(req, res){
+	var d = new Date();
+	var date = d.getDate()+"/"+d.getMonth()+"/"+d.getFullYear()+" - "+d.getHours()+":"+d.getMinutes();
 	res.render('home');
 	io.on('connection', function(socket){
 		socket.on('getDataPrimary', function(data, callback){
 			
 			 pg.connect(process.env.DATABASE_URL, function(err, client, done) {
-			 	var datas = "'"+data.nome+"', '"+data.email+"', '"+data.telefone+"', '"+data.celular+"', '"+data.mensagem+"'";
-			    client.query("insert into budget_message (nome, email, telefone, celular, mensagem) values ("+datas+")", function(err, result) {
+			 	var datas = "'"+data.nome+"', '"+data.email+"', '"+data.telefone+"', '"+data.celular+"', '"+data.mensagem+"', '"+date+"'";
+			    client.query("insert into budget_message (nome, email, telefone, celular, mensagem, date) values ("+datas+")", function(err, result) {
 			      done();
 			      if (err)
 			       { console.error(err); res.send("Error " + err); }
