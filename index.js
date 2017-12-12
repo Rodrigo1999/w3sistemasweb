@@ -76,7 +76,7 @@ app.get('/admin/db', function (req, res, next) {
 		})
 		socket.on('getNewResult', function(func){
 			
-			if(!socket.handshake.session.file){
+			//if(!socket.handshake.session.file){
 
 				var directory = __dirname+'/views/readdingDbList.txt';
 				if(fs.existsSync(directory)){
@@ -85,7 +85,7 @@ app.get('/admin/db', function (req, res, next) {
 					socket.handshake.session.file = false;
 				}
 				socket.handshake.session.save();
-			}
+			//}
 			
 			
 			pg.connect(process.env.DATABASE_URL, function(err, client, done) {
