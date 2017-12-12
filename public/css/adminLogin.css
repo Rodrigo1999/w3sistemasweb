@@ -1,6 +1,6 @@
 body {
     background: url('http://i.imgur.com/Eor57Ae.jpg') no-repeat fixed center center;
-    
+   
     font-family: Montserrat;
 }
 * {
@@ -87,4 +87,7 @@ body {
 
 .login-block button:hover {
     background: #ff7b81;
+}
+@media only screen and (min-width:600px){
+     background-size: cover;
 }
