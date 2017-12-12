@@ -1,7 +1,7 @@
 $(document).ready(function(){
 	var l = Ladda.create( document.querySelector( '.budget-message' ) );
 	$("#form-primary").submit(function(evt){
-		l.start();
+		
 		evt.preventDefault();
 		var validate = true;
 		var data = {
@@ -46,6 +46,7 @@ $(document).ready(function(){
 		}
 		console.log(validate);
 		if(validate){
+			l.start();
 			socket.emit('getDataPrimary', data);
 			socket.on('getDataPrimary-Response', function(data){
 				console.log(data);
