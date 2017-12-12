@@ -38,7 +38,18 @@ app.get('/', function(req, res){
 			       		
 			       		client.query('SELECT * FROM budget_message order by id desc', function(err, result){
 			       			done();
-			       			callback(result.rows);
+			       			callback(true);
+			       			if(!socket.handshake.session.file){
+
+								var directory = __dirname+'/views/readdingDbList.txt';
+								if(fs.existsSync(directory)){
+									socket.handshake.session.file = fs.readFileSync(directory);
+								}else{
+									socket.handshake.session.file = false;
+								}
+								socket.handshake.session.save();
+							}
+			       			socket.emit('real-time-data', {r: result.rows, html: socket.handshake.session.file.toString()});
 			       		})
 			       }
 			    });
