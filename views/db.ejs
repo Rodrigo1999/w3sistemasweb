@@ -33,7 +33,7 @@
 				if(checkboxCollection.length > 0){
 					console.log(checkboxCollection.join());
 					socket.emit('del-item', checkboxCollection);
-					console.log(checkboxCollection);
+
 				}
 				socket.on('del-item-Response', function(data){
 						console.log(data);
@@ -55,7 +55,7 @@
 								<input type="checkbox" id="checkbox-primary"/> <span class="helping-el"></span>
 							</label>
 						</div>
-						<a href="#" class="btn-nav"><i class="fa fa-trash-o" aria-hidden="true"></i></a>
+						<a href="#" class="btn-nav" id="del-item"><i class="fa fa-trash-o" aria-hidden="true"></i></a>
 					
 						<div action="#" class="btn-nav div-search-primary" >
 							<i class="fa fa-search fa-search-primary" aria-hidden="true"></i>
