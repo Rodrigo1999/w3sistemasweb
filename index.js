@@ -81,11 +81,9 @@ app.get('/admin/db', function (req, res, next) {
 				client.query('SELECT * FROM budget_message', function(err, result) {
 				    done();
 				    if (err){ 
-				     	socket.emit('getNewResult-Response', function(func){ func(false); }); 
+				     	socket.emit('getNewResult-Response', false); 
 				    }else{ 
-				   		socket.emit('getNewResult-Response', function(func){
-				   			func(result.rows);
-				   		});
+				   		socket.emit('getNewResult-Response', result.rows);
 				    }
 				});
 			});

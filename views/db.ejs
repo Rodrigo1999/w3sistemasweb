@@ -37,13 +37,15 @@
 				}
 				socket.on('del-item-Response', function(data){
 					if(data){
-						socket.emit('getNewResult', function(data){
-							data.forEach(function(r){
-								console.log(r.id);
-							})
-						});
+						socket.emit('getNewResult');
 					}
-				});				
+				});
+				socket.on('getNewResult-Response', function(data){
+					data.forEach(function(r){
+						console.log(r.id);
+					})
+				});
+				
 			})
 		})
 	</script>
