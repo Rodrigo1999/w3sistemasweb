@@ -1,20 +1,79 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-  <title>Node.js Getting Started on Heroku</title>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, inital-scale=1, maximum-scale=1">
+	<title>Document</title>
+	<link rel="stylesheet" href="/css/db.css">	
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+	<link rel="stylesheet" href="css/style.css">
+		<link rel="stylesheet" href="css/fonts.css">
+	<script src="https://ajax.aspnetcdn.com/ajax/jQuery/jquery-3.2.1.min.js"></script>
+	<script src="/socket.io/socket.io.js"></script>
+	<script>
+		$(document).ready(function(){
+			$(".div-search-primary").click(function(){
+				$(".opt-top-none").addClass("opt-top");
+			})
+			$(".a-close").click(function(){
+				$(".opt-top-none").removeClass("opt-top");
+			})
+		})
+	</script>
 </head>
-
 <body>
-<div class="container">
-<h2>Database Results</h2>
-
-<ul>
-    <% results.forEach(function(r) { %>
-        <li><%= r.id %> - <%= r.nome %> - <%= r.email %></li>
-    <% }); %>
-</ul>
-
-</div>
-
+	<section>
+		<header>
+			<nav>
+				<div class="content">
+					<div class="control">
+						
+						<div class="btn-nav">
+							<label class="custom-checkbox">
+								<input type="checkbox" /> <span class="helping-el"></span>
+							</label>
+						</div>
+						<a href="#" class="btn-nav"><i class="fa fa-trash-o" aria-hidden="true"></i></a>
+					
+						<div action="#" class="btn-nav div-search-primary" >
+							<i class="fa fa-search fa-search-primary" aria-hidden="true"></i>
+						</div>
+						<form action="#" method="POST" class="opt-top-none">
+							<div class="input">
+								<input type="search" name="search" id="search" placeholder="Pesquisar:">
+								<a href="#" class="a-close"><i class="fa fa-times" aria-hidden="true"></i></a>
+								<button><i class="fa fa-search fa-search-primary" aria-hidden="true"></i></button>
+							</div>
+						</form>
+					</div>
+					
+				</div>
+			</nav>
+		</header>
+		<article>
+			<ul id="list-data">
+				<% results.forEach(function(r) { %>
+					<li class="parent" id="<%= r.id %>">
+						<div class="div-checkbox">
+							<label class="custom-checkbox">
+								<input type="checkbox" /> <span class="helping-el"></span>
+							</label>
+						</div>
+						<div class="itens-data">
+							<ul class="itens">
+								<li class="li-data-nome">
+									<span class="span-data-nome"><%= r.nome %></span>
+									<span class="span-data-date">01/04/2017 - 17:30</span>
+								</li>
+								<li class="li-data-email"><%= r.email %></li>
+								<li class="li-data-mensagem"><%= r.mensagem %></li>
+								<li class="li-data-date">01/04/2017 - 17:30</li>
+							</ul>
+						</div>
+					</li>
+				<% }); %>
+			</ul>
+		</article>
+	</section>
 </body>
 </html>

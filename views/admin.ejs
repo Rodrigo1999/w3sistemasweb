@@ -1,4 +1,4 @@
-<!-- <!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
 	<meta charset="UTF-8">
@@ -32,91 +32,10 @@
 	<div class="login-block">
 		<form action="#" method="POST">
 		    <h1>Login</h1>
-		    <input type="text" name="login" placeholder="Username" id="login" />
-		    <input type="password" name="senha" placeholder="Password" id="senha" />
+		    <input type="text" name="login" placeholder="Username" id="login" value="rodrigo">
+		    <input type="password" name="senha" placeholder="Password" id="senha" / value="123">
 		    <button>Entrar</button>
 	    </form>
 	</div>
-</body>
-</html> -->
-
-
-
-
-<!DOCTYPE html>
-<html lang="en">
-<head>
-	<meta charset="UTF-8">
-	<meta name="viewport" content="width=device-width, inital-scale=1, maximum-scale=1">
-	<title>Document</title>
-	<link rel="stylesheet" href="/css/db.css">	
-	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-	<link rel="stylesheet" href="css/style.css">
-		<link rel="stylesheet" href="css/fonts.css">
-	<script src="https://ajax.aspnetcdn.com/ajax/jQuery/jquery-3.2.1.min.js"></script>
-	<script src="/socket.io/socket.io.js"></script>
-	<script>
-		$(document).ready(function(){
-			$(".div-search-primary").click(function(){
-				$(".opt-top-none").addClass("opt-top");
-			})
-			$(".a-close").click(function(){
-				$(".opt-top-none").removeClass("opt-top");
-			})
-		})
-	</script>
-</head>
-<body>
-	<section>
-		<header>
-			<nav>
-				<div class="content">
-					<div class="control">
-						
-						<div class="btn-nav">
-							<label class="custom-checkbox">
-								<input type="checkbox" /> <span class="helping-el"></span>
-							</label>
-						</div>
-						<a href="#" class="btn-nav"><i class="fa fa-trash-o" aria-hidden="true"></i></a>
-					
-						<div action="#" class="btn-nav div-search-primary" >
-							<i class="fa fa-search fa-search-primary" aria-hidden="true"></i>
-						</div>
-						<form action="#" method="POST" class="opt-top-none">
-							<div class="input">
-								<input type="search" name="search" id="search" placeholder="Pesquisar:">
-								<a href="#" class="a-close"><i class="fa fa-times" aria-hidden="true"></i></a>
-								<button><i class="fa fa-search fa-search-primary" aria-hidden="true"></i></button>
-							</div>
-						</form>
-					</div>
-					
-				</div>
-			</nav>
-		</header>
-		<article>
-			<ul id="list-data">
-				<li class="parent">
-					<div class="div-checkbox">
-						<label class="custom-checkbox">
-							<input type="checkbox" /> <span class="helping-el"></span>
-						</label>
-					</div>
-					<div class="itens-data">
-						<ul class="itens">
-							<li class="li-data-nome">
-								<span class="span-data-nome">Rodrigo</span>
-								<span class="span-data-date">01/04/2017 - 17:30</span>
-							</li>
-							<li class="li-data-email">rodrigosousa1999rss@gmail.com</li>
-							<li class="li-data-mensagem">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Nostrum facilis ad quam est ab dolor.</li>
-							<li class="li-data-date">01/04/2017 - 17:30</li>
-						</ul>
-					</div>
-				</li>
-			</ul>
-		</article>
-	</section>
 </body>
 </html>
