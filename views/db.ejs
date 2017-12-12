@@ -41,7 +41,9 @@
 					}
 				});
 				socket.on('getNewResult-Response', function(data){
-					console.log(data)
+					data.forEach(function(r){
+						console.log(r);
+					})
 				});
 				
 			})
