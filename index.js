@@ -92,7 +92,7 @@ app.get('/admin/db', function (req, res, next) {
 				client.query('SELECT * FROM budget_message', function(err, result) {
 				    done();
 
-				    err ? func(false) : func({r: result.rows, html: socket.handshake.session.file});
+				    err ? func(false) : func({r: result.rows, html: socket.handshake.session.file.toString()});
 				    
 				});
 			});

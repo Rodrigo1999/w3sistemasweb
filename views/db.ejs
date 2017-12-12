@@ -38,7 +38,7 @@
 							if(data){
 								socket.emit('getNewResult', function(data){
 									data.r.forEach(function(r){
-										console.log(data.html.toString());
+										console.log(data.html);
 										//$("#list-data").replaceWith("");
 									})
 									
