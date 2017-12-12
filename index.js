@@ -97,9 +97,7 @@ app.get('/admin/db', function (req, res, next) {
 							}
 							socket.handshake.session.save();
 						}
-				      if(err){
-				      	exit();
-				      }else{
+				      if(!err){
 				      	client.query('SELECT * FROM budget_message order by id desc', function(err, result) {
 						    done();
 
