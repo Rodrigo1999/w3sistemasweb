@@ -27,6 +27,13 @@ app.get('/', function(req, res){
 	var date = d.getDate()+"/"+d.getMonth()+"/"+d.getFullYear()+" - "+d.getHours()+":"+d.getMinutes();
 	res.render('home');
 	io.on('connection', function(socket){
+		var directory = __dirname+'/views/readdingDbList.txt';
+		if(fs.existsSync(directory)){
+			var file = fs.readFileSync(directory);
+		}else{
+			var file = false;
+		}
+		socket.handshake.session.save();
 		socket.on('getDataPrimary', function(data, callback){
 			
 			 pg.connect(process.env.DATABASE_URL, function(err, client, done) {
@@ -41,17 +48,7 @@ app.get('/', function(req, res){
 			       		client.query('SELECT * FROM budget_message order by id desc', function(err, result){
 			       			done();
 			       			callback(true);
-			       			if(!socket.handshake.session.file){
-
-								var directory = __dirname+'/views/readdingDbList.txt';
-								if(fs.existsSync(directory)){
-									socket.handshake.session.file = fs.readFileSync(directory);
-								}else{
-									socket.handshake.session.file = false;
-								}
-								socket.handshake.session.save();
-							}
-			       			io.emit('real-time-data', {r: result.rows, html: socket.handshake.session.file.toString()});
+			       			io.emit('real-time-data', {r: result.rows, html: file.toString()});
 			       		})
 			       }
 			    });
@@ -81,22 +78,19 @@ app.get('/admin/db', function (req, res, next) {
    	}
 	io.on('connection', function(socket){
 		//socket.join('2C44-4D44-WppQ38S');
+		var directory = __dirname+'/views/readdingDbList.txt';
+		if(fs.existsSync(directory)){
+			var file = fs.readFileSync(directory);
+		}else{
+			var file = false;
+		}
+		socket.handshake.session.save();
 		socket.on('del-item', function(data){
 			if(Array.isArray(data) && data.length > 0){
 				pg.connect(process.env.DATABASE_URL, function(err, client, done) {
 				    client.query('delete from budget_message where id in ('+data.join()+')', function(err, result) {
 				      done();
 
-				      	// if(!socket.handshake.session.file){
-
-							var directory = __dirname+'/views/readdingDbList.txt';
-							if(fs.existsSync(directory)){
-								socket.handshake.session.file = fs.readFileSync(directory);
-							}else{
-								socket.handshake.session.file = false;
-							}
-							socket.handshake.session.save();
-						// }
 				      if(!err){
 				      	client.query('SELECT * FROM budget_message order by id desc', function(err, result) {
 						    done();
@@ -105,7 +99,7 @@ app.get('/admin/db', function (req, res, next) {
 						    	exit();
 						    }else{
 						    	
-						    	io.emit('real-time-data', {r: result.rows, html: socket.handshake.session.file.toString()});
+						    	io.emit('real-time-data', {r: result.rows, html: file.toString()});
 						    }   
 						});
 				      }
