@@ -33,7 +33,7 @@ app.get('/', function(req, res){
 	res.render('home');
 	io.on('connection', function(socket){
 		
-		socket.on('getDataPrimary', function(data, callback){
+		socket.on('message', function(data, callback){
 			
 			 pg.connect(process.env.DATABASE_URL, function(err, client, done) {
 			 	var datas = "'"+data.nome+"', '"+data.email+"', '"+data.telefone+"', '"+data.celular+"', '"+data.mensagem+"', '"+date+"'";
