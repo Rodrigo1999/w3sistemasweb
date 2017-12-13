@@ -13,49 +13,48 @@
 	<script>
 		$(document).ready(function(){
 			var socket = io();
-			socket.on('connect', function(){
-				socket.on('real-time-data', function(data){
+			
+			socket.on('real-time-data', function(data){
 
-					$("#list-data").html('');
-					$("#count-list span").text(data.r.length);
-					data.r.forEach(function(r){
-						
-						var html = data.html;
+				$("#list-data").html('');
+				$("#count-list span").text(data.r.length);
+				data.r.forEach(function(r){
+					
+					var html = data.html;
 
-						var mat = html.match(/<& \w+\W\w+ &>/g);
-						for (var i = 0; i < mat.length; i++) {
-							html = html.replace(/<& \w+\W\w+ &>/, r[mat[i].match(/\w+\W\w+/g)[0].substr(2)])
-						}
-						$("#list-data").append(html)
-						
-					})
-
-				})
-				$(".div-search-primary").click(function(){
-					$(".opt-top-none").addClass("opt-top");
-				})
-				$(".a-close").click(function(){
-					$(".opt-top-none").removeClass("opt-top");
-				})
-				$("#checkbox-primary").change(function(){
-				  $("input[name='checkbox-del[]']").prop('checked', this.checked);
-				});
-				$("#del-item").click(function(){
-					$("#checkbox-primary").prop('checked', false);
-					checkboxCollection = [];
-					var checkbox = $("input[name='checkbox-del[]']");
-					checkbox.each(function(){
-						if($(this).is(':checked')){
-							checkboxCollection.push($(this).val());
-						}
-					})
-					if(checkboxCollection.length > 0){
-						socket.emit('del-item', checkboxCollection);
-
-					}		
+					var mat = html.match(/<& \w+\W\w+ &>/g);
+					for (var i = 0; i < mat.length; i++) {
+						html = html.replace(/<& \w+\W\w+ &>/, r[mat[i].match(/\w+\W\w+/g)[0].substr(2)])
+					}
+					$("#list-data").append(html)
+					
 				})
 
 			})
+			$(".div-search-primary").click(function(){
+				$(".opt-top-none").addClass("opt-top");
+			})
+			$(".a-close").click(function(){
+				$(".opt-top-none").removeClass("opt-top");
+			})
+			$("#checkbox-primary").change(function(){
+			  $("input[name='checkbox-del[]']").prop('checked', this.checked);
+			});
+			$("#del-item").click(function(){
+				$("#checkbox-primary").prop('checked', false);
+				checkboxCollection = [];
+				var checkbox = $("input[name='checkbox-del[]']");
+				checkbox.each(function(){
+					if($(this).is(':checked')){
+						checkboxCollection.push($(this).val());
+					}
+				})
+				if(checkboxCollection.length > 0){
+					socket.emit('del-item', checkboxCollection);
+
+				}		
+			})
+
 		})
 	</script>
 </head>
