@@ -70,7 +70,7 @@ app.get('/admin/db', function (req, res, next) {
 });
 io.on('connection', function(socket){
 
-	socket.on('message', function(data, callback){
+	socket.on('insertMsg', function(data, callback){
 		console.log('passow aqui dentro');
 		 pg.connect(process.env.DATABASE_URL, function(err, client, done) {
 		 	var datas = "'"+data.nome+"', '"+data.email+"', '"+data.telefone+"', '"+data.celular+"', '"+data.mensagem+"', '"+date+"'";

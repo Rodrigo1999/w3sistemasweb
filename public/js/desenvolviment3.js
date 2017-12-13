@@ -46,7 +46,7 @@ $(document).ready(function(){
 		}
 		if(validate){
 			l.start();
-			socket.send(data, function(data){
+			socket.emit('insertMsg', data, function(data){
 				l.stop();
 				JSAlert.alert("Mensagem enviada com sucesso");
 			});
