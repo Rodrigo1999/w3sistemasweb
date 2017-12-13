@@ -41,6 +41,7 @@
 				  $("input[name='checkbox-del[]']").prop('checked', this.checked);
 				});
 				$("#del-item").click(function(){
+					$("#checkbox-primary").prop('checked', false);
 					checkboxCollection = [];
 					var checkbox = $("input[name='checkbox-del[]']");
 					checkbox.each(function(){

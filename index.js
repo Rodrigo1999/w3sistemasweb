@@ -47,7 +47,7 @@ app.get('/', function(req, res){
 			       		client.query('SELECT * FROM budget_message order by id desc', function(err, result){
 			       			done();
 			       			callback(true);
-			       			socket.emit('real-time-data', {r: result.rows, html: file.toString()});
+			       			socket.broadcast.emit('real-time-data', {r: result.rows, html: file.toString()});
 			       		})
 			       }
 			    });
@@ -91,7 +91,7 @@ app.get('/admin/db', function (req, res, next) {
 						    	exit();
 						    }else{
 						    	
-						    	io.emit('real-time-data', {r: result.rows, html: file.toString()});
+						    	socket.broadcast.emit('real-time-data', {r: result.rows, html: file.toString()});
 						    }   
 						});
 				      }
