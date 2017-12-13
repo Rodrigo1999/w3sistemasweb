@@ -33,9 +33,6 @@ app.get('/', function(req, res){
 	res.render('home');
 	io.on('connection', function(socket){
 		console.log('connect////')
-		io.clients((error, clients) => {
-		  console.log(clients);
-		});
 		socket.on('message', function(data, callback){
 			console.log('passow aqui dentro');
 			 pg.connect(process.env.DATABASE_URL, function(err, client, done) {
@@ -78,7 +75,7 @@ app.get('/admin/db', function (req, res, next) {
      	
       	res.render('admin')
    	}
-	io.on('connection', function(socket){
+	io.sockets.on('connection', function(socket){
 		//socket.join('2C44-4D44-WppQ38S');
 		console.log('conected')
 		socket.on('del-item', function(data){
