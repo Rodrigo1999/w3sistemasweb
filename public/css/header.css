@@ -4,7 +4,7 @@ header{
 }
 header .slide .sub-slide{
   width: 100%;
-  height: 330px;
+  height: 270px;
   overflow: hidden;
   position: relative;
 }
@@ -168,7 +168,7 @@ header .slide .sub-slide .description .subCarrosel span{
   
 }
 header .slide .sub-slide .img-slide{
-  width: 130%;
+  width: 150%;
 }
 header .slide .sub-slide .img-slide img{
   width: 100%;
@@ -521,17 +521,7 @@ header #menu .li-principal span{
   header .slide .sub-slide .description .subCarrosel{
     margin-top: 15px;
   }
-  header #menu .li-principal{
-   position: absolute;
-   top: -180%;
-   left: 0;
-    text-align:center;
-    padding-left:20px;
-  }
-  header #menu .li-principal div{
-    width: 120px;
-    height: 120px;
-  }
+
   @keyframes cambio{
     0%{margin-left: 0%; top: 0px}
     18%{margin-left: 0%; top: 0px}
