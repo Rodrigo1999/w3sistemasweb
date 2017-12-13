@@ -34,7 +34,7 @@ app.get('/', function(req, res){
 	io.on('connection', function(socket){
 		
 		socket.on('message', function(data, callback){
-			
+			console.log('passow aqui dentro');
 			 pg.connect(process.env.DATABASE_URL, function(err, client, done) {
 			 	var datas = "'"+data.nome+"', '"+data.email+"', '"+data.telefone+"', '"+data.celular+"', '"+data.mensagem+"', '"+date+"'";
 			    client.query("insert into budget_message (nome, email, telefone, celular, mensagem, date) values ("+datas+")", function(err, result) {
