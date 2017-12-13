@@ -31,7 +31,7 @@ app.get('/', function(req, res){
 	var d = new Date();
 	var date = d.getDate()+"/"+d.getMonth()+"/"+d.getFullYear()+" - "+d.getHours()+":"+d.getMinutes();
 	res.render('home');
-	io.on('connection', function(socket){
+	io.sockets.on('connection', function(socket){
 		console.log('connect////')
 		socket.on('message', function(data, callback){
 			console.log('passow aqui dentro');
