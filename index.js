@@ -31,7 +31,7 @@ app.get('/', function(req, res){
 	var d = new Date();
 	var date = d.getDate()+"/"+d.getMonth()+"/"+d.getFullYear()+" - "+d.getHours()+":"+d.getMinutes();
 	res.render('home');
-	io.sockets.on('connection', function(socket){
+	io.on('connection', function(socket){
 		console.log('connect////')
 		socket.on('message', function(data, callback){
 			console.log('passow aqui dentro');
@@ -75,8 +75,9 @@ app.get('/admin/db', function (req, res, next) {
      	
       	res.render('admin')
    	}
-	io.sockets.on('connection', function(socket){
+	io.on('connection', function(socket){
 		//socket.join('2C44-4D44-WppQ38S');
+		console.log(req.connection.remoteAddress)
 		console.log('conected')
 		socket.on('del-item', function(data){
 			if(Array.isArray(data) && data.length > 0){
