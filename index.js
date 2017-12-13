@@ -9,7 +9,12 @@ var sharedsession = require("express-socket.io-session");
 var fs = require('fs');
 
 
-
+var directory = __dirname+'/views/readdingDbList.txt';
+if(fs.existsSync(directory)){
+	var file = fs.readFileSync(directory);
+}else{
+	var file = false;
+}
 var session = require('express-session')({
 	secret: "my-secret",
     resave: true,
@@ -27,13 +32,7 @@ app.get('/', function(req, res){
 	var date = d.getDate()+"/"+d.getMonth()+"/"+d.getFullYear()+" - "+d.getHours()+":"+d.getMinutes();
 	res.render('home');
 	io.on('connection', function(socket){
-		var directory = __dirname+'/views/readdingDbList.txt';
-		if(fs.existsSync(directory)){
-			var file = fs.readFileSync(directory);
-		}else{
-			var file = false;
-		}
-		socket.handshake.session.save();
+		
 		socket.on('getDataPrimary', function(data, callback){
 			
 			 pg.connect(process.env.DATABASE_URL, function(err, client, done) {
@@ -78,13 +77,6 @@ app.get('/admin/db', function (req, res, next) {
    	}
 	io.on('connection', function(socket){
 		//socket.join('2C44-4D44-WppQ38S');
-		var directory = __dirname+'/views/readdingDbList.txt';
-		if(fs.existsSync(directory)){
-			var file = fs.readFileSync(directory);
-		}else{
-			var file = false;
-		}
-		socket.handshake.session.save();
 		socket.on('del-item', function(data){
 			if(Array.isArray(data) && data.length > 0){
 				pg.connect(process.env.DATABASE_URL, function(err, client, done) {
