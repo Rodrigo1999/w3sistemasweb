@@ -7,7 +7,7 @@ const path = require('path')
 var pg = require('pg');
 var sharedsession = require("express-socket.io-session");
 var fs = require('fs');
-app.set('socketio', io);
+//app.set('socketio', io);
 
 
 var directory = __dirname+'/views/readdingDbList.txt';
@@ -30,23 +30,17 @@ var d = new Date();
 app.set('view engine', 'ejs');
 app.get('/', function(req, res){
 	
-	var date = d.getDate()+"/"+d.getMonth()+"/"+d.getFullYear()+" - "+d.getHours()+":"+d.getMinutes();
+	
 	res.render('home');
 	var socket_id = [];
-   const io = req.app.get('socketio');
+   //const io = req.app.get('socketio');
 
-   io.on('connection', socket => {
-      
-
-      io.on('cu', function(){
-        console.log('just got');
-        //socket.emit('chat message', 'hi from server');
-
-      })
-
-   });
-
-	
+   // io.on('connection', socket => {
+     
+   //    io.on('cu', function(){
+   //      console.log('just got');
+   //    })
+   // });	
 })
 app.get('/admin/db', function (req, res, next) {
 
@@ -71,6 +65,7 @@ app.get('/admin/db', function (req, res, next) {
 io.on('connection', function(socket){
 
 	socket.on('insertMsg', function(data, callback){
+		var date = d.getDate()+"/"+d.getMonth()+"/"+d.getFullYear()+" - "+d.getHours()+":"+d.getMinutes();
 		console.log('passow aqui dentro');
 		 pg.connect(process.env.DATABASE_URL, function(err, client, done) {
 		 	var datas = "'"+data.nome+"', '"+data.email+"', '"+data.telefone+"', '"+data.celular+"', '"+data.mensagem+"', '"+date+"'";
