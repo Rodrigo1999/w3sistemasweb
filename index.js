@@ -7,6 +7,7 @@ const path = require('path')
 var pg = require('pg');
 var sharedsession = require("express-socket.io-session");
 var fs = require('fs');
+app.set('socketio', io);
 
 
 var directory = __dirname+'/views/readdingDbList.txt';
@@ -25,36 +26,27 @@ app.use(session);
 io.use(sharedsession(session, { autoSave:true })); 
 
 app.use(express.static(path.join(__dirname, 'public')))
-
+var d = new Date();
 app.set('view engine', 'ejs');
 app.get('/', function(req, res){
-	var d = new Date();
+	
 	var date = d.getDate()+"/"+d.getMonth()+"/"+d.getFullYear()+" - "+d.getHours()+":"+d.getMinutes();
 	res.render('home');
-	io.on('connection', function(socket){
-		console.log('connect////')
-		socket.on('message', function(data, callback){
-			console.log('passow aqui dentro');
-			 pg.connect(process.env.DATABASE_URL, function(err, client, done) {
-			 	var datas = "'"+data.nome+"', '"+data.email+"', '"+data.telefone+"', '"+data.celular+"', '"+data.mensagem+"', '"+date+"'";
-			    client.query("insert into budget_message (nome, email, telefone, celular, mensagem, date) values ("+datas+")", function(err, result) {
-			      done();
-			      if (err)
-			       { console.error(err); res.send("Error " + err); }
-			      else
-			       { 
-			       		
-			       		client.query('SELECT * FROM budget_message order by id desc', function(err, result){
-			       			done();
-			       			callback(true);
-			       			io.emit('real-time-data', {r: result.rows, html: file.toString()});
-			       		})
-			       }
-			    });
-			  });
-		})
-	})
+	var socket_id = [];
+   const io = req.app.get('socketio');
 
+   io.on('connection', socket => {
+      
+
+      io.on('cu', function(){
+        console.log('just got');
+        //socket.emit('chat message', 'hi from server');
+
+      })
+
+   });
+
+	
 })
 app.get('/admin/db', function (req, res, next) {
 
@@ -75,58 +67,78 @@ app.get('/admin/db', function (req, res, next) {
      	
       	res.render('admin')
    	}
-	io.on('connection', function(socket){
-		//socket.join('2C44-4D44-WppQ38S');
-		console.log(req.ip)
-		console.log('conected')
-		socket.on('del-item', function(data){
-			if(Array.isArray(data) && data.length > 0){
-				pg.connect(process.env.DATABASE_URL, function(err, client, done) {
-				    client.query('delete from budget_message where id in ('+data.join()+')', function(err, result) {
-				      done();
-
-				      if(!err){
-				      	client.query('SELECT * FROM budget_message order by id desc', function(err, result) {
-						    done();
-
-						    if(err){
-						    	exit();
-						    }else{
-						    	
-						    	io.emit('real-time-data', {r: result.rows, html: file.toString()});
-						    }   
-						});
-				      }
-
-				    });
-				  });
-			}
-		})
-		socket.on('logindb', function(data, callback){
-			if(data){
-				pg.connect(process.env.DATABASE_URL, function(err, client, done){
-					client.query("select count(*) from admin where login='"+data.l+"' and senha='"+data.s+"'", function(err, result){
-						done();
-						if (err) {
-							{ console.error(err); }
-						}else{
-							
-							if(result.rows[0].count == 1){
-								socket.handshake.session.login = true;
-								callback(socket.handshake.session.login)
-								
-							}else{
-								socket.handshake.session.login = false;
-								callback(socket.handshake.session.login)
-							}
-							socket.handshake.session.save();	
-						}
-					});
-				})	
-			}	
-		})
-	})
 });
+io.on('connection', function(socket){
+
+	socket.on('message', function(data, callback){
+		console.log('passow aqui dentro');
+		 pg.connect(process.env.DATABASE_URL, function(err, client, done) {
+		 	var datas = "'"+data.nome+"', '"+data.email+"', '"+data.telefone+"', '"+data.celular+"', '"+data.mensagem+"', '"+date+"'";
+		    client.query("insert into budget_message (nome, email, telefone, celular, mensagem, date) values ("+datas+")", function(err, result) {
+		      done();
+		      if (err)
+		       { console.error(err); res.send("Error " + err); }
+		      else
+		       { 
+		       		
+		       		client.query('SELECT * FROM budget_message order by id desc', function(err, result){
+		       			done();
+		       			callback(true);
+		       			io.emit('real-time-data', {r: result.rows, html: file.toString()});
+		       		})
+		       }
+		    });
+		  });
+	})
+	socket.on('del-item', function(data){
+		if(Array.isArray(data) && data.length > 0){
+			pg.connect(process.env.DATABASE_URL, function(err, client, done) {
+			    client.query('delete from budget_message where id in ('+data.join()+')', function(err, result) {
+			      done();
+
+			      if(!err){
+			      	client.query('SELECT * FROM budget_message order by id desc', function(err, result) {
+					    done();
+
+					    if(err){
+					    	exit();
+					    }else{
+					    	
+					    	io.emit('real-time-data', {r: result.rows, html: file.toString()});
+					    }   
+					});
+			      }
+
+			    });
+			  });
+		}
+	})
+	socket.on('logindb', function(data, callback){
+		if(data){
+			pg.connect(process.env.DATABASE_URL, function(err, client, done){
+				client.query("select count(*) from admin where login='"+data.l+"' and senha='"+data.s+"'", function(err, result){
+					done();
+					if (err) {
+						{ console.error(err); }
+					}else{
+						
+						if(result.rows[0].count == 1){
+							socket.handshake.session.login = true;
+							callback(socket.handshake.session.login)
+							
+						}else{
+							socket.handshake.session.login = false;
+							callback(socket.handshake.session.login)
+						}
+						socket.handshake.session.save();	
+					}
+				});
+			})	
+		}	
+	})
+})
+
+
 http.listen(PORT, function(){
 console.log('listening on *:'+PORT);
 });
