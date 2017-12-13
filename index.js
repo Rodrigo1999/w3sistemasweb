@@ -77,7 +77,7 @@ app.get('/admin/db', function (req, res, next) {
    	}
 	io.on('connection', function(socket){
 		//socket.join('2C44-4D44-WppQ38S');
-		console.log(req.connection.remoteAddress)
+		console.log(req.ip)
 		console.log('conected')
 		socket.on('del-item', function(data){
 			if(Array.isArray(data) && data.length > 0){
