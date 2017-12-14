@@ -31,7 +31,7 @@ app.set('view engine', 'ejs');
 app.get('/', function(req, res){
 	
 	
-	res.render('home');
+	res.render('home', {date: d.getFullYear()});
 	var socket_id = [];
    //const io = req.app.get('socketio');
 
@@ -63,7 +63,7 @@ app.get('/admin/db', function (req, res, next) {
    	}
 });
 app.get('*', function(req, res){
-  res.render('404');
+  res.render('404', {date: d.getFullYear()});
 });
 io.on('connection', function(socket){
 
