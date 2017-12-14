@@ -93,8 +93,10 @@ io.on('connection', function(socket){
 			      done();
 
 			      if(!err){
-
+			      	console.log(result.rows);
 			      	callback({r: result.rows, html: file.toString()});
+			      }else{
+
 			      }
 
 			    });

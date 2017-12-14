@@ -61,9 +61,11 @@
 			})
 			$("#search").keyup(function(){
 				var val = $(this).val();
+				console.log(val);
 				if(val.length > 0){
 					socket.emit('searchLike', val, function(data){
-						
+
+						console.log('--data--', data);
 						$("#list-data").html('');
 						$("#count-list span").text(data.r.length);
 						data.r.forEach(function(r){
