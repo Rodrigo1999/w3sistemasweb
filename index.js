@@ -76,7 +76,7 @@ io.on('connection', function(socket){
 		      else
 		       { 
 		       		
-		       		client.query('SELECT * FROM budget_message order by id desc', function(err, result){
+		       		client.query('SELECT id, nome, email, mensagem FROM budget_message order by id desc', function(err, result){
 		       			done();
 		       			callback(true);
 		       			io.emit('real-time-data', {r: result.rows, html: file.toString()});
@@ -84,6 +84,22 @@ io.on('connection', function(socket){
 		       }
 		    });
 		  });
+	})
+	socket.on('searchLike', function(data, callback){
+		if (data.length > 0) {
+			pg.connect(process.env.DATABASE_URL, function(err, client, done) {
+				var query = "id LIKE '%"+data+"%' or nome LIKE '%"+data+"%' or email LIKE '%"+data+"%' or mensagem LIKE '%"+data+"%'";
+			    client.query("SELECT id, nome, email, mensagem FROM budget_message where ("+query+") order by id desc", function(err, result) {
+			      done();
+
+			      if(!err){
+
+			      	callback({r: result.rows, html: file.toString()});
+			      }
+
+			    });
+			  });
+		}
 	})
 	socket.on('del-item', function(data){
 		if(Array.isArray(data) && data.length > 0){
