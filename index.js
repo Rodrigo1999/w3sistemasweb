@@ -86,16 +86,22 @@ io.on('connection', function(socket){
 		  });
 	})
 	socket.on('searchLike', function(data, callback){
-		if (data.length > 0) {
+		
 			pg.connect(process.env.DATABASE_URL, function(err, client, done) {
-				var query = "nome like '%"+data+"%' or email like '%"+data+"%' or mensagem like '%"+data+"%'";
-			    client.query("SELECT * FROM budget_message where ("+query+") order by id desc", function(err, result) {
+				if (data.length > 0) {
+					var query = "where (nome like '%"+data+"%' or email like '%"+data+"%' or mensagem like '%"+data+"%')";
+				}else{
+					query = "";
+				}
+				
+			    client.query("SELECT id, nome, email, mensagem FROM budget_message "+query+" order by id desc", function(err, result) {
 			      done();
 
 			      if(!err){
 			      	callback({r: result.rows, html: file.toString()});
 			      }
 			    });
+
 			  });
 		}
 	})
