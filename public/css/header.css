@@ -212,7 +212,7 @@ header #menu .menu-list{
   
   right: 80px;
   position: absolute;
-  background-color: rgba(0,0,0, 0.6); 
+  background-color: rgba(0,0,0, 0.7); 
   width: 150px;
   display: block;
   border-radius:5px;
@@ -229,7 +229,7 @@ header #menu .menu-list:after{
   margin-top: -12px;
   border-width:12px;
   position:absolute;
-  border-color:transparent transparent transparent rgba(0,0,0, 0.4);  
+  border-color:transparent transparent transparent rgba(0,0,0, 0.5);  
 }
 
 header #menu .menu-list ul{
@@ -245,7 +245,7 @@ header #menu ul li a{
   
   display: block;
  font-size:20px;
-  text-shadow: 0px 0px 4px white;
+ 
   font-family:Calibri;
   color:white;
 }
