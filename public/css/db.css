@@ -130,17 +130,14 @@ section header nav form{
   left: 0;
   width: 100%;
 }
-section header nav form .input a,
-section header nav form .input button{
+section header nav form .input a{
   background-color: #ce3f2e;
   width: 50px;
   display: flex;
   align-items: center;
   color: white;
 }
-section header nav form .input button{
-  display: none;
-}
+
 section header nav form .input a i{
   display: block;
   margin: 0 auto;
@@ -266,7 +263,7 @@ section article ul#list-data li.parent .div-checkbox label{
     position: relative;
     
     left: 0;
-    width: 90%;
+    width: 100%;
     max-width: 500px;
     margin-left: 10px;
   }
@@ -278,13 +275,6 @@ section article ul#list-data li.parent .div-checkbox label{
   }
   section header nav .control .btn-nav{
     width: 90px !important;
-  }
-  section header nav form .input button{
-    border:none;
-    width: 60px;
-    background-color:#4585f3;
-    display: block;
-    border-radius:0px 3px 3px 0px;
   }
   section header nav .content{
     padding:20px 10px;
