@@ -76,7 +76,7 @@ io.on('connection', function(socket){
 		      else
 		       { 
 		       		
-		       		client.query('SELECT id, nome, email, date mensagem FROM budget_message order by id desc', function(err, result){
+		       		client.query('SELECT id, nome, email, mensagem, date FROM budget_message order by id desc', function(err, result){
 		       			done();
 		       			callback(true);
 		       			io.emit('real-time-data', {r: result.rows, html: file.toString()});
@@ -94,7 +94,7 @@ io.on('connection', function(socket){
 				var query = "";
 			}
 			
-		    client.query("SELECT id, nome, email, date mensagem FROM budget_message "+query+" order by id desc", function(err, result) {
+		    client.query("SELECT id, nome, email, mensagem, date FROM budget_message "+query+" order by id desc", function(err, result) {
 		      done();
 
 		      if(!err){
