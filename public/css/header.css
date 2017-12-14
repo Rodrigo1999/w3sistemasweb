@@ -208,28 +208,49 @@ header #menu #menu-btn i{
 header #menu .menu-list{
   z-index: 9;
   float: right;
-  top:65px;
-  right: 10px;
+  top:-54px;
+  
+  right: 80px;
   position: absolute;
-  background-color: white;
-  width: 200px;
+  background-color: rgba(0,0,0, 0.6); 
+  width: 150px;
   display: block;
   border-radius:5px;
-  border:1px solid rgb(225, 225, 225);
+  
+  box-shadow: 6px 6px 8px rgba(0,0,0,0.4), -6px -6px 8px rgba(0,0,0,0.4);
+  
 }
+header #menu .menu-list:after{
+  content: "";
+  top:50%;
+  z-index: 10;
+  left: 100%;
+  border-style:solid;
+  margin-top: -12px;
+  border-width:12px;
+  position:absolute;
+  border-color:transparent transparent transparent rgba(0,0,0, 0.4);  
+}
+
 header #menu .menu-list ul{
+  box-shadow: 1px 1px 0px rgba(200, 200, 200,0.5), -1px -1px 0px rgba(200, 200, 200,0.5);
+  border-radius: 5px;
   padding: 0;
+  position: relative;
+  z-index: 9;
 }
 header #menu ul li a{
   padding:10px 10px;
   
   display: block;
- font-size:17px;
+ font-size:20px;
+  text-shadow: 0px 0px 4px white;
   font-family:Calibri;
-  color:rgb(130, 130, 130);
+  color:white;
 }
 header #menu ul li a:hover{
-  color:black;
+  color:rgb(100, 100, 100);
+  background-color: white;
 }
 /*----------fim da parte do menu---------*/
 
