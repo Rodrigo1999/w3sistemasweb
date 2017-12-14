@@ -87,23 +87,22 @@ io.on('connection', function(socket){
 	})
 	socket.on('searchLike', function(data, callback){
 		
-			pg.connect(process.env.DATABASE_URL, function(err, client, done) {
-				if (data.length > 0) {
-					var query = "where (nome like '%"+data+"%' or email like '%"+data+"%' or mensagem like '%"+data+"%')";
-				}else{
-					query = "";
-				}
-				
-			    client.query("SELECT id, nome, email, mensagem FROM budget_message "+query+" order by id desc", function(err, result) {
-			      done();
+		pg.connect(process.env.DATABASE_URL, function(err, client, done) {
+			if (data.length > 0) {
+				var query = "where (nome like '%"+data+"%' or email like '%"+data+"%' or mensagem like '%"+data+"%')";
+			}else{
+				var query = "";
+			}
+			
+		    client.query("SELECT id, nome, email, mensagem FROM budget_message "+query+" order by id desc", function(err, result) {
+		      done();
 
-			      if(!err){
-			      	callback({r: result.rows, html: file.toString()});
-			      }
-			    });
+		      if(!err){
+		      	callback({r: result.rows, html: file.toString()});
+		      }
+		    });
 
-			  });
-		}
+		  });
 	})
 	socket.on('del-item', function(data){
 		if(Array.isArray(data) && data.length > 0){
