@@ -205,10 +205,12 @@ header #menu #menu-btn:hover{
 header #menu #menu-btn i{
   padding: 0 2px;
 }
-header #menu .menu-list{
+
+@media only screen and (max-width:799px){
+  header #menu .menu-list{
   z-index: 9;
   float: right;
-  top:-54px;
+  top:-60px;
   
   right: 80px;
   position: absolute;
@@ -231,29 +233,30 @@ header #menu .menu-list:after{
   position:absolute;
   border-color:transparent transparent transparent rgba(0,0,0, 0.5);  
 }
+  header #menu .menu-list ul{
+  
+    box-shadow: 1px 1px 0px rgba(200, 200, 200,0.5), -1px -1px 0px rgba(200, 200, 200,0.5);
+    border-radius: 5px;
+   padding: 5px;
+    position: relative;
+    z-index: 9;
+  }
+  header #menu ul li a{
+    padding:10px 10px;
 
-header #menu .menu-list ul{
-  
-  box-shadow: 1px 1px 0px rgba(200, 200, 200,0.5), -1px -1px 0px rgba(200, 200, 200,0.5);
-  border-radius: 5px;
- padding: 5px;
-  position: relative;
-  z-index: 9;
+    display: block;
+   font-size:20px;
+
+    font-family:Calibri;
+    color:white;
+  }
+  header #menu ul li a:hover{
+    border-radius:5px;
+    color:rgb(100, 100, 100);
+    background-color: white;
+  }
 }
-header #menu ul li a{
-  padding:10px 10px;
-  
-  display: block;
- font-size:20px;
- 
-  font-family:Calibri;
-  color:white;
-}
-header #menu ul li a:hover{
-  border-radius:5px;
-  color:rgb(100, 100, 100);
-  background-color: white;
-}
+
 /*----------fim da parte do menu---------*/
 
 /*----------parte do menu e foto---------*/
@@ -870,6 +873,32 @@ header #menu .li-principal span{
   }
 }
 @media only screen and (min-width:800px){
+  
+  
+ header #menu .menu-list{
+  z-index: 9;
+  float: right;
+  top:65px;
+  right: 10px;
+  position: absolute;
+  background-color: white;
+  width: 200px;
+  display: block;
+  border-radius:5px;
+  border:1px solid rgb(225, 225, 225);
+}
+header #menu .menu-list ul{
+  padding: 0;
+}
+header #menu ul li a{
+  padding:10px 10px;
+  
+  display: block;
+ font-size:17px;
+  font-family:Calibri;
+  color:rgb(130, 130, 130);
+}
+  
   header .slide .div-logo{
     left:57px;
   }
