@@ -47,7 +47,7 @@ app.get('/admin/db', function (req, res, next) {
 	var session = req.session;
 	if(session.login){
 		pg.connect(process.env.DATABASE_URL, function(err, client, done) {
-		    client.query('SELECT nome, email, mensagem, date FROM budget_message order by id desc', function(err, result) {
+		    client.query('SELECT id, nome, email, mensagem, date FROM budget_message order by id desc', function(err, result) {
 			    done();
 			    if (err) { 
 			      	console.error(err); 
