@@ -62,6 +62,9 @@ app.get('/admin/db', function (req, res, next) {
       	res.render('admin')
    	}
 });
+app.get('*', function(req, res){
+  res.render('404');
+});
 io.on('connection', function(socket){
 
 	socket.on('insertMsg', function(data, callback){

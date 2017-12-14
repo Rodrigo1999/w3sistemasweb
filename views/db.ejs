@@ -36,6 +36,10 @@
 					})
 				}
 			})
+			$("form").submit(function(e){
+				e.preventDefault();
+				return false;
+			})
 			$(".div-search-primary").click(function(){
 				$(".opt-top-none").addClass("opt-top");
 			})

@@ -8,18 +8,18 @@
 	<link rel="icon" href="/imgs/logo_mini.png" type="image/x-icon" />
 
 	<!-- ===================== css ============================== -->
-		<link rel="stylesheet" href="css/style.css">
-		<link rel="stylesheet" href="css/fonts.css">
+		<link rel="stylesheet" href="/css/style.css">
+		<link rel="stylesheet" href="/css/fonts.css">
 		<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 		<link href="https://fonts.googleapis.com/css?family=Raleway" rel="stylesheet"> 
 
 		<link rel="stylesheet" href="/dist/ladda.min.css">
 
-		<link rel="stylesheet" href="css/header.css">
-		<link rel="stylesheet" href="css/desenvolviment.css">	
-		<link rel="stylesheet" href="css/desenvolviment2.css">	
-		<link rel="stylesheet" href="css/desenvolviment3.css">	
-		<link rel="stylesheet" href="css/footer.css">	
+		<link rel="stylesheet" href="/css/header.css">
+		<link rel="stylesheet" href="/css/desenvolviment.css">	
+		<link rel="stylesheet" href="/css/desenvolviment2.css">	
+		<link rel="stylesheet" href="/css/desenvolviment3.css">	
+		<link rel="stylesheet" href="/css/footer.css">	
 
 	<!-- ===================== js ============================== -->
 		<script src="https://ajax.aspnetcdn.com/ajax/jQuery/jquery-3.2.1.min.js"></script>
@@ -53,7 +53,7 @@
 	<% include header.ejs %>
 	<% include desenvolviment.ejs %>
 	<% include desenvolviment2.ejs %>
-	<% include desenvolviment3.ejs %>
-	<% include footer.ejs %>				
+	<% include desenvolviment3.ejs %>	
+	<%- include('footer', {link: false}); %>			
 </body>
 </html>
