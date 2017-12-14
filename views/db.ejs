@@ -63,6 +63,7 @@
 				var val = $(this).val();
 				console.log(val);
 				if(val.length > 0){
+					console.log(val);
 					socket.emit('searchLike', val, function(data){
 
 						console.log('--data--', data);
