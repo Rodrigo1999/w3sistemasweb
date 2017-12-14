@@ -88,17 +88,13 @@ io.on('connection', function(socket){
 	socket.on('searchLike', function(data, callback){
 		if (data.length > 0) {
 			pg.connect(process.env.DATABASE_URL, function(err, client, done) {
-				var query = "id like '%"+data+"%' or nome like '%"+data+"%' or email like '%"+data+"%' or mensagem like '%"+data+"%'";
+				var query = "nome like '%"+data+"%' or email like '%"+data+"%' or mensagem like '%"+data+"%'";
 			    client.query("SELECT * FROM budget_message where ("+query+") order by id desc", function(err, result) {
 			      done();
 
 			      if(!err){
-			      	console.log(result.rows);
 			      	callback({r: result.rows, html: file.toString()});
-			      }else{
-			      	console.log('error', err);
 			      }
-
 			    });
 			  });
 		}
