@@ -89,7 +89,7 @@ io.on('connection', function(socket){
 		
 		pg.connect(process.env.DATABASE_URL, function(err, client, done) {
 			if (data.length > 0) {
-				var query = "where (nome like '%"+data+"%' or email like '%"+data+"%' or mensagem like '%"+data+"%')";
+				var query = "where (nome ilike '%"+data+"%' or email ilike '%"+data+"%' or mensagem ilike '%"+data+"%' or telefone ilike '%"+data+"%' or celular ilike '%"+data+"%' or date ilike '%"+data+"%')";
 			}else{
 				var query = "";
 			}
@@ -101,8 +101,7 @@ io.on('connection', function(socket){
 		      	callback({r: result.rows, html: file.toString()});
 		      }
 		    });
-
-		  });
+		});
 	})
 	socket.on('del-item', function(data){
 		if(Array.isArray(data) && data.length > 0){
