@@ -87,7 +87,6 @@ io.on('connection', function(socket){
 	})
 	socket.on('searchLike', function(data, callback){
 		if (data.length > 0) {
-			console.log(data);
 			pg.connect(process.env.DATABASE_URL, function(err, client, done) {
 				var query = "id like '%"+data+"%' or nome like '%"+data+"%' or email like '%"+data+"%' or mensagem like '%"+data+"%'";
 			    client.query("SELECT id, nome, email, mensagem FROM budget_message where ("+query+") order by id desc", function(err, result) {
@@ -97,7 +96,7 @@ io.on('connection', function(socket){
 			      	console.log(result.rows);
 			      	callback({r: result.rows, html: file.toString()});
 			      }else{
-
+			      	console.log('error', err);
 			      }
 
 			    });
