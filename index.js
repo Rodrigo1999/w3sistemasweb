@@ -92,6 +92,7 @@ io.on('connection', function(socket){
 			      done();
 
 			      if(!err){
+			      	//io.emit('real-time-data', {r: [] });
 			      	client.query('SELECT * FROM budget_message order by id desc', function(err, result) {
 					    done();
 
@@ -99,6 +100,7 @@ io.on('connection', function(socket){
 					    	exit();
 					    }else{
 					    	
+					    	console.log(result.rows);
 					    	io.emit('real-time-data', {r: result.rows, html: file.toString()});
 					    }   
 					});
