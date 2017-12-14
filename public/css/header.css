@@ -217,7 +217,7 @@ header #menu .menu-list{
   display: block;
   border-radius:5px;
   
-  box-shadow: 6px 6px 8px rgba(0,0,0,0.4), -6px -6px 8px rgba(0,0,0,0.4);
+  box-shadow: 6px 6px 12px rgba(0,0,0,0.4), -6px -6px 12px rgba(0,0,0,0.4);
   
 }
 header #menu .menu-list:after{
