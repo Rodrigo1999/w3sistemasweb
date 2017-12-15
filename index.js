@@ -13,6 +13,11 @@ var htmlentities = require('htmlentities');
 function pb(data){
 	return htmlentities.encode(data);
 }
+function dc(data){
+	data = JSON.stringify(data);
+	data = htmlentities.decode(data);
+	return JSON.parse(data);
+}
 var directory = __dirname+'/views/readdingDbList.txt';
 if(fs.existsSync(directory)){
 	var file = fs.readFileSync(directory);
@@ -51,7 +56,7 @@ app.get('/admin/db', function (req, res, next) {
 			      	console.error(err); 
 			       	res.send("Error " + err); 
 			    }else { 
-			       	res.render('db', {results: result.rows, count: result.rows.length} ); 
+			       	res.render('db', {results: dc(result.rows), count: result.rows.length} ); 
 			    }
 		    });
 		  });
