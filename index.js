@@ -8,19 +8,25 @@ var pg = require('pg');
 var sharedsession = require("express-socket.io-session");
 var fs = require('fs');
 var compression = require('compression');
- var zlib = require('zlib');
 var htmlentities = require('htmlentities');
-var input;
-
 
 function pb(data){
-	var input = htmlentities.encode(data);
-	input = Buffer.from(input);
-	input = zlib.deflateSync(input);
-	return zlib.inflateSync(input);
+	return htmlentities.encode(data);
 }
-console.log(pb('oi mundo'));
 
+
+var rep = {
+	E:function(data){
+		return data.replace('}', '9b&wt').replace(')', '8b&kt');;
+	},
+	D: function(data){
+		return data.replace('9b&wt', '}').replace('8b&kt', ')');
+	}
+}
+
+var d = rep.E('data})');
+console.log(d);
+console.log(rep.D(d))
 var directory = __dirname+'/views/readdingDbList.txt';
 if(fs.existsSync(directory)){
 	var file = fs.readFileSync(directory);
