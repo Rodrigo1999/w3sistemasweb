@@ -13,7 +13,7 @@
 	<script>
 		$(document).ready(function(){
 			var socket = io();
-
+			
 			socket.on('real-time-data', function(data){
 
 				if(data.removeOne){
@@ -26,11 +26,12 @@
 					$("#list-data").html('');
 					$("#count-list span").text(data.r.length);
 					data.r.forEach(function(r){
+						
 						var html = data.html;
 
 						var mat = html.match(/<& \w+\W\w+ &>/g);
 						for (var i = 0; i < mat.length; i++) {
-							html = html.replace(/<& \w+\W\w+ &>/, (r[mat[i].match(/\w+\W\w+/g)[0].substr(2)]);
+							html = html.replace(/<& \w+\W\w+ &>/, r[mat[i].match(/\w+\W\w+/g)[0].substr(2)])
 						}
 						$("#list-data").append(html)
 						
