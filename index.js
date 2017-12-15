@@ -2,11 +2,12 @@ var express = require('express');
 var app = express();
 var http = require('http').createServer(app);
 var io = require('socket.io')(http);
-const PORT = process.env.PORT || 5000
-const path = require('path')
+const PORT = process.env.PORT || 5000;
+const path = require('path');
 var pg = require('pg');
 var sharedsession = require("express-socket.io-session");
 var fs = require('fs');
+var compression = require('compression');
 //app.set('socketio', io);
 
 
@@ -15,7 +16,7 @@ if(fs.existsSync(directory)){
 	var file = fs.readFileSync(directory);
 }else{
 	var file = false;
-}
+};
 var session = require('express-session')({
 	secret: "my-secret",
     resave: true,
@@ -25,8 +26,8 @@ var session = require('express-session')({
 app.use(session);
 io.use(sharedsession(session, { autoSave:true })); 
 
-app.use(express.static(path.join(__dirname, 'public')))
-app.use(compression())
+app.use(express.static(path.join(__dirname, 'public')));
+app.use(compression());
 var d = new Date();
 app.set('view engine', 'ejs');
 app.get('/', function(req, res){
@@ -127,11 +128,11 @@ io.on('connection', function(socket){
 						
 						if(result.rows[0].count == 1){
 							socket.handshake.session.login = true;
-							callback(socket.handshake.session.login)
+							callback(socket.handshake.session.login);
 							
 						}else{
 							socket.handshake.session.login = false;
-							callback(socket.handshake.session.login)
+							callback(socket.handshake.session.login);
 						}
 						socket.handshake.session.save();	
 					}
