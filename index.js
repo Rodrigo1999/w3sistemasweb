@@ -11,7 +11,7 @@ var compression = require('compression');
 var htmlentities = require('htmlentities');
 
 function pb(data){
-	var data = data.replace('}', '9#&wt').replace(')', '8#&kt');
+	//var data = data.replace('}', '9#&wt').replace(')', '8#&kt');
 	return htmlentities.encode(data);
 }
 
