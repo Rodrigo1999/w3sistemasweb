@@ -14,10 +14,6 @@
 		$(document).ready(function(){
 			var socket = io();
 			
-			function rD(data){
-				return data.replace('9c&wt', '}').replace('8c&kt', ')');
-			}
-
 			socket.on('real-time-data', function(data){
 
 				if(data.removeOne){
@@ -35,7 +31,7 @@
 
 						var mat = html.match(/<& \w+\W\w+ &>/g);
 						for (var i = 0; i < mat.length; i++) {
-							var item = rD(r[mat[i].match(/\w+\W\w+/g)[0].substr(2)]);
+							var item = r[mat[i].match(/\w+\W\w+/g)[0].substr(2)].replace('9c&wt', '}').replace('8c&kt', ')');
 							html = html.replace(/<& \w+\W\w+ &>/, item);
 						}
 						$("#list-data").append(html)
