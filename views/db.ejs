@@ -15,7 +15,6 @@
 			var socket = io();
 			
 			function rD(data){
-				console.log(data.toString().replace('9c&wt', '}').replace('8c&kt', ')'))
 				return data.toString().replace('9c&wt', '}').replace('8c&kt', ')');
 			}
 
@@ -36,7 +35,8 @@
 
 						var mat = html.match(/<& \w+\W\w+ &>/g);
 						for (var i = 0; i < mat.length; i++) {
-							html = html.replace(/<& \w+\W\w+ &>/, rD(r[mat[i].match(/\w+\W\w+/g)[0].substr(2)]));
+							var item = r[mat[i].match(/\w+\W\w+/g)[0].substr(2)].toString().replace('9c&wt', '}').replace('8c&kt', ')');
+							html = html.replace(/<& \w+\W\w+ &>/, item);
 						}
 						$("#list-data").append(html)
 						
