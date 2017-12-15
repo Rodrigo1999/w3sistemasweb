@@ -15,6 +15,7 @@
 			var socket = io();
 			
 			function rD(data){
+
 				return data.toString().replace('9c&wt', '}').replace('8c&kt', ')');
 			}
 
@@ -31,12 +32,13 @@
 					$("#count-list span").text(data.r.length);
 					data.r.forEach(function(r){
 						
+						console.log(r.nome);
+						console.log(r.nome.replace('9c&wt', '}').replace('8c&kt', ')'))
 						var html = data.html;
 
 						var mat = html.match(/<& \w+\W\w+ &>/g);
 						for (var i = 0; i < mat.length; i++) {
-							var item = r[mat[i].match(/\w+\W\w+/g)[0].substr(2)].toString().replace('9c&wt', '}').replace('8c&kt', ')');
-							html = html.replace(/<& \w+\W\w+ &>/, item);
+							html = html.replace(/<& \w+\W\w+ &>/, rD(r[mat[i].match(/\w+\W\w+/g)[0].substr(2)]));
 						}
 						$("#list-data").append(html)
 						
