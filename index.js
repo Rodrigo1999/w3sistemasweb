@@ -11,14 +11,8 @@ var compression = require('compression');
 var htmlentities = require('htmlentities');
 
 function pb(data){
-	//var data = data.replace('}', '9cvwt').replace(')', '8cvkt');
-	return data;
+	return htmlentities.encode(data);
 }
-function pd(data){
-	data = JSON.stringify(data).replace('9cvwt', '}').replace('8cvkt', ')');
-	return JSON.parse(data);
-}
-
 var directory = __dirname+'/views/readdingDbList.txt';
 if(fs.existsSync(directory)){
 	var file = fs.readFileSync(directory);
