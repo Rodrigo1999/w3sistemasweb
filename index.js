@@ -8,7 +8,7 @@ var pg = require('pg');
 var sharedsession = require("express-socket.io-session");
 var fs = require('fs');
 var compression = require('compression');
-const gzipSize = require('gzip-size');
+
 /*app.set('socketio', io);*/
 
 
@@ -50,7 +50,7 @@ app.get('/admin/db', function (req, res, next) {
 			      	console.error(err); 
 			       	res.send("Error " + err); 
 			    }else { 
-			       	res.render('db', {results: gzipSize.sync(result.rows), count: result.rows.length} ); 
+			       	res.render('db', {results: result.rows, count: result.rows.length} ); 
 			    }
 		    });
 		  });
