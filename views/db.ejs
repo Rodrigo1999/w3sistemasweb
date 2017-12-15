@@ -33,7 +33,7 @@
 						for (var i = 0; i < mat.length; i++) {
 							var item = r[mat[i].match(/\w+\W\w+/g)[0].substr(2)];
 							console.log('data-', item)
-							item = item.replace('9c&wt', '}').replace('8c&kt', ')');
+							//item = item.replace('9c&wt', '}').replace('8c&kt', ')');
 							html = html.replace(/<& \w+\W\w+ &>/, item);
 						}
 						$("#list-data").append(html)
