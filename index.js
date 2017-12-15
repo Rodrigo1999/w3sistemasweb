@@ -18,13 +18,9 @@ function pb(data){
 	return htmlentities.encode(data);
 }
 function pd(data){
-	var data = data.toString().replace('9cvwt', '}').replace('8cvkt', ')');
+	data = JSON.stringify(data).replace('9cvwt', '}').replace('8cvkt', ')');
 	return JSON.parse(data);
 }
-
-
-
-
 
 var directory = __dirname+'/views/readdingDbList.txt';
 if(fs.existsSync(directory)){
