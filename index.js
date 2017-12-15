@@ -19,6 +19,7 @@ function pb(data){
 	input = zlib.deflateSync(input);
 	return zlib.inflateSync(input);
 }
+console.log(pb('oi mundo'));
 
 var directory = __dirname+'/views/readdingDbList.txt';
 if(fs.existsSync(directory)){
@@ -75,7 +76,7 @@ io.on('connection', function(socket){
 	socket.on('insertMsg', function(data, callback){
 		var date = d.getDate()+"/"+d.getMonth()+"/"+d.getFullYear()+" - "+d.getHours()+":"+d.getMinutes();
 		 pg.connect(process.env.DATABASE_URL, function(err, client, done) {
-		 	
+		 	console.log(pb(data.nome));
 		 	var datas = "'"+pb(data.nome)+"', '"+pb(data.email)+"', '"+pb(data.telefone)+"', '"+pb(data.celular)+"', '"+pb(data.mensagem)+"', '"+date+"'";
 		    client.query("insert into budget_message (nome, email, telefone, celular, mensagem, date) values ("+datas+")", function(err, result) {
 		      done();
