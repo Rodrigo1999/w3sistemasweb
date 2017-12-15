@@ -14,10 +14,16 @@
 		$(document).ready(function(){
 			var socket = io();
 			
+			function rD(data){
+				return data.replace('9#&wt', '}').replace('8#&kt', ')');
+			}
+
 			socket.on('real-time-data', function(data){
 
 				if(data.removeOne){
 					data.id.forEach(function(id){
+						var text = $("#count-list span").text();
+						$("#count-list span").text(parseInt(text)-1);
 						$("li#"+id).remove();
 					})
 				}else{
@@ -29,7 +35,7 @@
 
 						var mat = html.match(/<& \w+\W\w+ &>/g);
 						for (var i = 0; i < mat.length; i++) {
-							html = html.replace(/<& \w+\W\w+ &>/, r[mat[i].match(/\w+\W\w+/g)[0].substr(2)])
+							html = html.replace(/<& \w+\W\w+ &>/, rd(r[mat[i].match(/\w+\W\w+/g)[0].substr(2)]))
 						}
 						$("#list-data").append(html)
 						

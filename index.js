@@ -11,22 +11,10 @@ var compression = require('compression');
 var htmlentities = require('htmlentities');
 
 function pb(data){
+	var data = data.replace('}', '9#&wt').replace(')', '8#&kt');
 	return htmlentities.encode(data);
 }
 
-
-var rep = {
-	E:function(data){
-		return data.replace('}', '9b&wt').replace(')', '8b&kt');;
-	},
-	D: function(data){
-		return data.replace('9b&wt', '}').replace('8b&kt', ')');
-	}
-}
-
-var d = rep.E('data})');
-console.log(d);
-console.log(rep.D(d))
 var directory = __dirname+'/views/readdingDbList.txt';
 if(fs.existsSync(directory)){
 	var file = fs.readFileSync(directory);
