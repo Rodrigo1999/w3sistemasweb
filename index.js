@@ -11,7 +11,7 @@ var compression = require('compression');
 var htmlentities = require('htmlentities');
 
 function pb(data){
-	var data = data;
+	
 	return htmlentities.encode(data);
 }
 
