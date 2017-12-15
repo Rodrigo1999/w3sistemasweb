@@ -11,7 +11,7 @@ var compression = require('compression');
 var htmlentities = require('htmlentities');
 
 function pb(data){
-	var data = data.replace('}', '9#&wt').replace(')', '8#&kt');
+	var data = data;
 	return htmlentities.encode(data);
 }
 
@@ -72,6 +72,9 @@ app.get('/admin/db', function (req, res, next) {
       	res.render('admin')
    	}
 });
+
+create table budget_message (id )
+
 app.get('*', function(req, res){
   res.render('404', {date: d.getFullYear()});
 });
@@ -92,7 +95,7 @@ io.on('connection', function(socket){
 		       		client.query('SELECT id, nome, email, mensagem, date FROM budget_message order by id desc', function(err, result){
 		       			done();
 		       			callback(true);
-		       			io.emit('real-time-data', {r: pd(result.rows), html: file.toString()});
+		       			io.emit('real-time-data', {r: result.rows, html: file.toString()});
 		       		})
 		       }
 		    });
