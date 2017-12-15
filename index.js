@@ -10,8 +10,6 @@ var fs = require('fs');
 var compression = require('compression');
 // var zlib = require('zlib');
 var htmlentities = require('htmlentities');
-
-console.log(inp)
 var input;
 
 var directory = __dirname+'/views/readdingDbList.txt';
