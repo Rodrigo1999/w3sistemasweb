@@ -78,7 +78,7 @@ io.on('connection', function(socket){
 		       		client.query('SELECT id, nome, email, mensagem, date FROM budget_message order by id desc', function(err, result){
 		       			done();
 		       			callback(true);
-		       			io.emit('real-time-data', {r: gzipSize.sync(result.rows), html: gzipSize.sync(file.toString())});
+		       			io.emit('real-time-data', {r: result.rows, html: file.toString()});
 		       		})
 		       }
 		    });
@@ -97,7 +97,7 @@ io.on('connection', function(socket){
 		      done();
 
 		      if(!err){
-		      	callback({r: gzipSize.sync(result.rows), html: gzipSize.sync(textfile.toString())});
+		      	callback({r: result.rows, html: file.toString()});
 		      }
 		    });
 		});
