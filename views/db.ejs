@@ -32,8 +32,8 @@
 					$("#count-list span").text(data.r.length);
 					data.r.forEach(function(r){
 						
-						console.log(r.nome);
-						console.log(r.nome.replace('9c&wt', '}').replace('8c&kt', ')'))
+						console.log(typeof r.nome);
+						console.log(r.nome.replace('9c&wt', '}').replace('8c&kt', ')'));
 						var html = data.html;
 
 						var mat = html.match(/<& \w+\W\w+ &>/g);
