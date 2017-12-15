@@ -31,9 +31,6 @@
 					$("#list-data").html('');
 					$("#count-list span").text(data.r.length);
 					data.r.forEach(function(r){
-						
-						console.log(typeof r.nome);
-						console.log(r.nome.replace(/9cvwt/, '}'));
 						var html = data.html;
 
 						var mat = html.match(/<& \w+\W\w+ &>/g);
@@ -135,7 +132,7 @@
 						<div class="itens-data">
 							<ul class="itens">
 								<li class="li-data-nome">
-									<span class="span-data-nome"><%= r.nome %></span>
+									<span class="span-data-nome"><%= r.nome.replace('a', 'b') %></span>
 									<span class="span-data-date"><%= r.date %></span>
 								</li>
 								<li class="li-data-email"><%= r.email %></li>
