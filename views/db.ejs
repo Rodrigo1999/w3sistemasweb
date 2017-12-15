@@ -15,7 +15,7 @@
 			var socket = io();
 			
 			function rD(data){
-				return data.replace('9#&wt', '}').replace('8#&kt', ')');
+				return data.replace('9c&wt', '}').replace('8c&kt', ')');
 			}
 
 			socket.on('real-time-data', function(data){
@@ -35,7 +35,7 @@
 
 						var mat = html.match(/<& \w+\W\w+ &>/g);
 						for (var i = 0; i < mat.length; i++) {
-							html = html.replace(/<& \w+\W\w+ &>/, rD(r[mat[i].match(/\w+\W\w+/g)[0].substr(2)]))
+							html = html.replace(/<& \w+\W\w+ &>/, rD(r[mat[i].match(/\w+\W\w+/g)[0].substr(2)]));
 						}
 						$("#list-data").append(html)
 						
