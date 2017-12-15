@@ -35,7 +35,8 @@
 
 						var mat = html.match(/<& \w+\W\w+ &>/g);
 						for (var i = 0; i < mat.length; i++) {
-							html = html.replace(/<& \w+\W\w+ &>/, rD(r[mat[i].match(/\w+\W\w+/g)[0].substr(2)]));
+							var item = rD(r[mat[i].match(/\w+\W\w+/g)[0].substr(2)]);
+							html = html.replace(/<& \w+\W\w+ &>/, item);
 						}
 						$("#list-data").append(html)
 						
