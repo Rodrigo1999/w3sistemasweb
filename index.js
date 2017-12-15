@@ -127,7 +127,7 @@ io.on('connection', function(socket){
 	socket.on('logindb', function(data, callback){
 		if(data){
 			pg.connect(process.env.DATABASE_URL, function(err, client, done){
-				client.query("select count(*) from admin where login='"+data.l+"' and senha='"+data.s+"'", function(err, result){
+				client.query("select count(*) from admin where login='"+pb(data.l)+"' and senha='"+pb(data.s)+"'", function(err, result){
 					done();
 					if (err) {
 						{ console.error(err); }
