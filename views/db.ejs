@@ -1,1 +1,142 @@
-<!DOCTYPE html> <html lang="pt-br"> <head> <meta charset="UTF-8"> <meta name="viewport" content="width=device-width, inital-scale=1, maximum-scale=1"> <title>Document</title> <link rel="stylesheet" href="/css/db.css"> <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"> <link rel="stylesheet" href="\css/fonts.css"> <script src="https://ajax.aspnetcdn.com/ajax/jQuery/jquery-3.2.1.min.js"></script> <script src="/socket.io/socket.io.js"></script> <script> $(document).ready(function(){var socket = io(); socket.on('real-time-data', function(data){if(data.removeOne){data.id.forEach(function(id){$("li#"+id).remove(); }) }else{$("#list-data").html(''); $("#count-list span").text(data.r.length); data.r.forEach(function(r){var html = data.html; var mat = html.match(/<& \w+\W\w+ &>/g); for (var i = 0; i < mat.length; i++) {html = html.replace(/<& \w+\W\w+ &>/, r[mat[i].match(/\w+\W\w+/g)[0].substr(2)]); }; $("#list-data").append(html); }) } }); $("form").submit(function(e){e.preventDefault(); return false; }); $(".div-search-primary").click(function(){$(".opt-top-none").addClass("opt-top"); }); $(".a-close").click(function(){$(".opt-top-none").removeClass("opt-top"); }); $("#checkbox-primary").change(function(){$("input[name='checkbox-del[]']").prop('checked', this.checked); }); $("#del-item").click(function(){$("#checkbox-primary").prop('checked', false); checkboxCollection = []; var checkbox = $("input[name='checkbox-del[]']"); checkbox.each(function(){if($(this).is(':checked')){checkboxCollection.push($(this).val()); } }); if(checkboxCollection.length > 0){socket.emit('del-item', checkboxCollection); } }); $("#search").keyup(function(){var val = $(this).val(); socket.emit('searchLike', val, function(data){$("#list-data").html(''); $("#count-list span").text(data.r.length); data.r.forEach(function(r){var html = data.html; var mat = html.match(/<& \w+\W\w+ &>/g); for (var i = 0; i < mat.length; i++) {html = html.replace(/<& \w+\W\w+ &>/, r[mat[i].match(/\w+\W\w+/g)[0].substr(2)]); } $("#list-data").append(html); }) }); }) }) </script> </head> <body> <section> <header> <nav> <div class="content"> <div class="control"> <div class="btn-nav"> <label class="custom-checkbox"> <input type="checkbox" id="checkbox-primary"/> <span class="helping-el"></span> </label> </div> <a href="#" class="btn-nav" id="del-item"><i class="fa fa-trash-o" aria-hidden="true"></i></a> <a href="#" class="btn-nav" id="count-list"><span><%= count %></span></a> <div action="#" class="btn-nav div-search-primary" > <i class="fa fa-search fa-search-primary" aria-hidden="true"></i> </div> <form action="#" method="POST" class="opt-top-none"> <div class="input"> <input type="search" name="search" id="search" placeholder="Pesquisar:"> <a href="#" class="a-close"><i class="fa fa-times" aria-hidden="true"></i></a> </div> </form> </div> </div> </nav> </header> <article> <ul id="list-data"> <% results.forEach(function(r) { %> <li class="parent" id="<%= r.id %>"> <div class="div-checkbox"> <label class="custom-checkbox"> <input type="checkbox" name="checkbox-del[]" value="<%= r.id %>"> <span class="helping-el"></span> </label> </div> <div class="itens-data"> <ul class="itens"> <li class="li-data-nome"> <span class="span-data-nome"><%= r.nome %></span> <span class="span-data-date"><%= r.date %></span> </li> <li class="li-data-email"><%= r.email %></li> <li class="li-data-mensagem"><%= r.mensagem %></li> </ul> </div> </li> <% }); %> </ul> </article> </section> </body> </html>
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, inital-scale=1, maximum-scale=1">
+	<title>Document</title>
+	<link rel="stylesheet" href="/css/db.css">	
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+	
+	<link rel="stylesheet" href="\css/fonts.css">
+	<script src="https://ajax.aspnetcdn.com/ajax/jQuery/jquery-3.2.1.min.js"></script>
+	<script src="/socket.io/socket.io.js"></script>
+	<script>
+		$(document).ready(function(){
+			var socket = io();
+			
+			socket.on('real-time-data', function(data){
+
+				if(data.removeOne){
+					data.id.forEach(function(id){
+						$("li#"+id).remove();
+					})
+				}else{
+					$("#list-data").html('');
+					$("#count-list span").text(data.r.length);
+					data.r.forEach(function(r){
+						
+						var html = data.html;
+
+						var mat = html.match(/<& \w+\W\w+ &>/g);
+						for (var i = 0; i < mat.length; i++) {
+							html = html.replace(/<& \w+\W\w+ &>/, r[mat[i].match(/\w+\W\w+/g)[0].substr(2)])
+						}
+						$("#list-data").append(html)
+						
+					})
+				}
+			})
+			$("form").submit(function(e){
+				e.preventDefault();
+				return false;
+			})
+			$(".div-search-primary").click(function(){
+				$(".opt-top-none").addClass("opt-top");
+			})
+			$(".a-close").click(function(){
+				$(".opt-top-none").removeClass("opt-top");
+			})
+			$("#checkbox-primary").change(function(){
+			  $("input[name='checkbox-del[]']").prop('checked', this.checked);
+			});
+			$("#del-item").click(function(){
+				$("#checkbox-primary").prop('checked', false);
+				checkboxCollection = [];
+				var checkbox = $("input[name='checkbox-del[]']");
+				checkbox.each(function(){
+					if($(this).is(':checked')){
+						checkboxCollection.push($(this).val());
+					}
+				})
+				if(checkboxCollection.length > 0){
+					socket.emit('del-item', checkboxCollection);
+
+				}		
+			})
+			$("#search").keyup(function(){
+				var val = $(this).val();
+	
+				socket.emit('searchLike', val, function(data){
+
+					$("#list-data").html('');
+					$("#count-list span").text(data.r.length);
+					data.r.forEach(function(r){
+						
+						var html = data.html;
+
+						var mat = html.match(/<& \w+\W\w+ &>/g);
+						for (var i = 0; i < mat.length; i++) {
+							html = html.replace(/<& \w+\W\w+ &>/, r[mat[i].match(/\w+\W\w+/g)[0].substr(2)])
+						}
+						$("#list-data").append(html)	
+					})
+				});
+			})
+
+		})
+	</script>
+</head>
+<body>
+	<section>
+		<header>
+			<nav>
+				<div class="content">
+					<div class="control">
+						
+						<div class="btn-nav">
+							<label class="custom-checkbox">
+								<input type="checkbox" id="checkbox-primary"/> <span class="helping-el"></span>
+							</label>
+						</div>
+						<a href="#" class="btn-nav" id="del-item"><i class="fa fa-trash-o" aria-hidden="true"></i></a>
+						<a href="#" class="btn-nav" id="count-list"><span><%= count %></span></a>
+						<div action="#" class="btn-nav div-search-primary" >
+							<i class="fa fa-search fa-search-primary" aria-hidden="true"></i>
+						</div>
+						<form action="#" method="POST" class="opt-top-none">
+							<div class="input">
+								<input type="search" name="search" id="search" placeholder="Pesquisar:">
+								<a href="#" class="a-close"><i class="fa fa-times" aria-hidden="true"></i></a>
+							</div>
+						</form>
+					</div>
+					
+				</div>
+			</nav>
+		</header>
+		<article>
+			<ul id="list-data">
+				<% results.forEach(function(r) { %>
+					<li class="parent" id="<%= r.id %>">
+						<div class="div-checkbox">
+							<label class="custom-checkbox">
+								<input type="checkbox" name="checkbox-del[]" value="<%= r.id %>"> <span class="helping-el"></span>
+							</label>
+						</div>
+						<div class="itens-data">
+							<ul class="itens">
+								<li class="li-data-nome">
+									<span class="span-data-nome"><%= r.nome %></span>
+									<span class="span-data-date"><%= r.date %></span>
+								</li>
+								<li class="li-data-email"><%= r.email %></li>
+								<li class="li-data-mensagem"><%= r.mensagem %></li>
+							</ul>
+						</div>
+					</li>
+				<% }); %>
+			</ul>
+		</article>
+	</section>
+</body>
+</html>

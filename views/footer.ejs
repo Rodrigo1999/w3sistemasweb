@@ -1,1 +1,43 @@
-<footer> <article> <div class="flex-container"> <div class="flex-control"> <p>Nos preocupamos em desempenhar um ótimo serviço para nossos clientes, sempre buscando também exclusividade. Essa é nossa tese, essa é nossa filosofia.</p> <a href="<%if(link){%><%=link%><%}else{%>#<%}%>"> <i class="fa fa-check" aria-hidden="true"></i><span>Seja nosso cliente</span> </a> </div> <div class="flex-control"> <h2>Contato</h2> <span>Telefone: +55 89 981465249</span><br> <span>Email: <a href="#" class="gmail">w3sistemasweb@gmail.com</a></span> <h2>Horário de atendimento</h2> <p>Segunda - Sexta <br> 9h às 12h - 13h às 17h</p> </div> <div class="flex-control"> <div class="img-circle"> <img src="imgs/logo.png" width="40px"> </div> <div class="sociais"> <a href="https://www.facebook.com/w3sistemasweb/" target="_blank" class="facebook"><i class="fa fa-facebook facebook"></i></a> <a href="https://plus.google.com/106411605167594277979" class="gmail" target="_blank"><i class="fa fa-google-plus google"></i></a> </div> </div> <div class="flex-control"> <script>(function(d, s, id) {var js, fjs = d.getElementsByTagName(s)[0]; if (d.getElementById(id)) return; js = d.createElement(s); js.id = id; js.src = 'https://connect.facebook.net/pt_BR/sdk.js#xfbml=1&version=v2.11'; fjs.parentNode.insertBefore(js, fjs); }(document, 'script', 'facebook-jssdk'));</script> <div class="fb-page" data-href="https://www.facebook.com/w3sistemasweb/" data-width="300" data-height="350" data-small-header="false" data-adapt-container-width="true" data-hide-cover="false" data-show-facepile="true"><blockquote cite="https://www.facebook.com/w3sistemasweb/" class="fb-xfbml-parse-ignore"><a href="https://www.facebook.com/w3sistemasweb/">W3 Sistemas Web</a></blockquote></div> </div> </div> <hr> <p id="copyright"><%= date %> Copyright © W3 Sistemas Web - Todos os Direitos Reservados.</p> </article> </footer> <div id="fb-root"></div>
+<footer>
+	<article>
+		<div class="flex-container">
+			<div class="flex-control">
+				<p>Nos preocupamos em desempenhar um ótimo serviço para nossos clientes, sempre buscando também exclusividade. Essa é nossa tese, essa é nossa filosofia.</p>
+				<a href="<%if(link){%><%=link%><%}else{%>#<%}%>">
+					<i class="fa fa-check" aria-hidden="true"></i><span>Seja nosso cliente</span>
+				</a>
+			</div>
+			<div class="flex-control">
+				<h2>Contato</h2>
+				<span>Telefone: +55 89 981465249</span><br>
+				<span>Email: <a href="#" class="gmail">w3sistemasweb@gmail.com</a></span>
+
+				<h2>Horário de atendimento</h2>
+				<p>Segunda - Sexta <br> 9h às 12h - 13h às 17h</p>
+			</div>
+			<div class="flex-control">
+				<div class="img-circle"> 
+					<img src="imgs/logo.png" width="40px">
+				</div>
+				<div class="sociais">
+					<a href="https://www.facebook.com/w3sistemasweb/" target="_blank" class="facebook"><i class="fa fa-facebook facebook"></i></a>
+					<a href="https://plus.google.com/106411605167594277979" class="gmail" target="_blank"><i class="fa fa-google-plus google"></i></a>
+				</div>
+			</div>
+			<div class="flex-control">
+				<script>(function(d, s, id) {
+				  var js, fjs = d.getElementsByTagName(s)[0];
+				  if (d.getElementById(id)) return;
+				  js = d.createElement(s); js.id = id;
+				  js.src = 'https://connect.facebook.net/pt_BR/sdk.js#xfbml=1&version=v2.11';
+				  fjs.parentNode.insertBefore(js, fjs);
+				}(document, 'script', 'facebook-jssdk'));</script>
+
+				<div class="fb-page" data-href="https://www.facebook.com/w3sistemasweb/" data-width="300" data-height="350" data-small-header="false" data-adapt-container-width="true" data-hide-cover="false" data-show-facepile="true"><blockquote cite="https://www.facebook.com/w3sistemasweb/" class="fb-xfbml-parse-ignore"><a href="https://www.facebook.com/w3sistemasweb/">W3 Sistemas Web</a></blockquote></div>
+			</div>
+		</div>
+		<hr>
+		<p id="copyright"><%= date %> Copyright © W3 Sistemas Web - Todos os Direitos Reservados.</p>
+	</article>
+</footer>
+<div id="fb-root"></div>
