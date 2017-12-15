@@ -74,7 +74,7 @@ io.on('connection', function(socket){
 		var date = d.getDate()+"/"+d.getMonth()+"/"+d.getFullYear()+" - "+d.getHours()+":"+d.getMinutes();
 		 pg.connect(process.env.DATABASE_URL, function(err, client, done) {
 		 	console.log(pb(data.nome));
-		 	var datas = "'"+pb(data.nome)+"', '"+pb(data.email)+"', '"+pb(data.telefone)+"', '"+pb(data.celular)+"', '"+pb(data.mensagem)+"', '"+date+"'";
+		 	var datas = "'"+pb(data.nome.substr(0, 150))+"', '"+pb(data.email.substr(0, 150))+"', '"+pb(data.telefone.substr(0, 15))+"', '"+pb(data.celular.substr(0, 15))+"', '"+pb(data.mensagem)+"', '"+date+"'";
 		    client.query("insert into budget_message (nome, email, telefone, celular, mensagem, date) values ("+datas+")", function(err, result) {
 		      done();
 		      if (err)
