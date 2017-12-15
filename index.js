@@ -89,9 +89,8 @@ io.on('connection', function(socket){
 		       		client.query('SELECT id, nome, email, mensagem, date FROM budget_message order by id desc', function(err, result){
 		       			done();
 		       			callback(true);
-		       			console.log(pd(result.rows));
-		       			console.log(typeof pd(result.rows));
-		       			io.emit('real-time-data', {r: pd(result.rows), html: file.toString()});
+		       			
+		       			io.emit('real-time-data', {r: result.rows, html: file.toString()});
 		       		})
 		       }
 		    });
