@@ -11,14 +11,8 @@ var compression = require('compression');
 var htmlentities = require('htmlentities');
 
 function pb(data){
-	//var data = data.replace('}', '9#&wt').replace(')', '8#&kt');
-	return htmlentities.encode(data);
-}
-
-
-function pb(data){
 	//var data = data.replace('}', '9cvwt').replace(')', '8cvkt');
-	return htmlentities.encode(data);
+	return data;
 }
 function pd(data){
 	data = JSON.stringify(data).replace('9cvwt', '}').replace('8cvkt', ')');
@@ -92,7 +86,7 @@ io.on('connection', function(socket){
 		       		client.query('SELECT id, nome, email, mensagem, date FROM budget_message order by id desc', function(err, result){
 		       			done();
 		       			callback(true);
-		       			io.emit('real-time-data', {r: pd(result.rows), html: file.toString()});
+		       			io.emit('real-time-data', {r: result.rows, html: file.toString()});
 		       		})
 		       }
 		    });
