@@ -7,6 +7,7 @@ const path = require('path')
 var pg = require('pg');
 var sharedsession = require("express-socket.io-session");
 var fs = require('fs');
+var compression = require('compression')
 //app.set('socketio', io);
 
 
@@ -26,6 +27,7 @@ app.use(session);
 io.use(sharedsession(session, { autoSave:true })); 
 
 app.use(express.static(path.join(__dirname, 'public')))
+app.use(compression())
 var d = new Date();
 app.set('view engine', 'ejs');
 app.get('/', function(req, res){
@@ -34,13 +36,7 @@ app.get('/', function(req, res){
 	res.render('home', {date: d.getFullYear()});
 	var socket_id = [];
    //const io = req.app.get('socketio');
-
-   // io.on('connection', socket => {
-     
-   //    io.on('cu', function(){
-   //      console.log('just got');
-   //    })
-   // });	
+   // io.on('connection', socket => {io.on('cu', function(){console.log('just got');})});	
 })
 app.get('/admin/db', function (req, res, next) {
 
