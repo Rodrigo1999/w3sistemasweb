@@ -193,13 +193,16 @@ section article ul#list-data li.parent .itens-data{
 section article ul#list-data{
   width: 100%;
 }
-section article ul#list-data li.hide_text li{
+.hide_text li{
   white-space: nowrap; 
   overflow: hidden;
   text-overflow: ellipsis; 
 }
 .hide_text .tels{
   display: none;
+}
+section article ul#list-data li.parent:not(.hide_text) .li-data-mensagem {
+  overflow: visible;
 }
 section article ul#list-data li.parent li.li-data-email{
   clear: both;
