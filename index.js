@@ -10,10 +10,10 @@ var fs = require('fs');
 var compression = require('compression');
 var htmlentities = require('htmlentities');
 
-function pb(data){
+pb(data)=>{
 	return htmlentities.encode(data);
 }
-function dc(data){
+dc(data)=>{
 	data = JSON.stringify(data);
 	data = htmlentities.decode(data);
 	return JSON.parse(data);
@@ -38,17 +38,17 @@ app.use(express.static(path.join(__dirname, 'public')));
 app.use(compression());
 var d = new Date();
 app.set('view engine', 'ejs');
-app.get('/', (req, res) => {
+app.get('/', (req, res)=>{
 	
 	
 	res.render('home', {date: d.getFullYear()});
 	var socket_id = [];
-}).get('/admin/db', (req, res, next) => {
+}).get('/admin/db', (req, res, next)=>{
 
 	var session = req.session;
 	if(session.login){
-		pg.connect(process.env.DATABASE_URL, (err, client, done) => {
-		    client.query('SELECT id, nome, email, mensagem, date FROM budget_message order by id desc', (err, result) => {
+		pg.connect(process.env.DATABASE_URL, (err, client, done)=>{
+		    client.query('SELECT id, nome, email, mensagem, date FROM budget_message order by id desc', (err, result)=>{
 			    done();
 			    if (err) { 
 			      	console.error(err); 
@@ -62,23 +62,23 @@ app.get('/', (req, res) => {
      	
       	res.render('admin');
    	}
-}).get('*', (req, res) => {
+}).get('*', (req, res)=>{
   res.render('404', {date: d.getFullYear()});
 });
-io.on('connection', (socket) => {
+io.on('connection', (socket)=>{
 
-	socket.on('insertMsg', (data, callback) => {
+	socket.on('insertMsg', (data, callback)=>{
 		var date = d.getDate()+"/"+parseInt(d.getMonth()+1)+"/"+d.getFullYear()+" - "+d.getHours()+":"+d.getMinutes();
 		 pg.connect(process.env.DATABASE_URL, (err, client, done)=>{
 		 	var datas = "'"+pb(data.nome.substr(0, 150))+"', '"+pb(data.email.substr(0, 150))+"', '"+pb(data.telefone.substr(0, 15))+"', '"+pb(data.celular.substr(0, 15))+"', '"+pb(data.mensagem)+"', '"+date+"'";
-		    client.query("insert into budget_message (nome, email, telefone, celular, mensagem, date) values ("+datas+")", function(err, result) {
+		    client.query("insert into budget_message (nome, email, telefone, celular, mensagem, date) values ("+datas+")", (err, result)=>{
 		      done();
 		      if (err)
 		       { console.error(err);}
 		      else
 		       { 
 		       		
-		       		client.query('SELECT id, nome, email, mensagem, date FROM budget_message order by id desc', function(err, result){
+		       		client.query('SELECT id, nome, email, mensagem, date FROM budget_message order by id desc', (err, result)=>{
 		       			done();
 		       			callback(true);
 		       			io.emit('real-time-data', {r: result.rows, html: file.toString()});
@@ -86,16 +86,16 @@ io.on('connection', (socket) => {
 		       }
 		    });
 		  });
-	}).on('searchLike', (data, callback) => {
+	}).on('searchLike', (data, callback)=>{
 		
-		pg.connect(process.env.DATABASE_URL, function(err, client, done) {
+		pg.connect(process.env.DATABASE_URL, (err, client, done)=>{
 			if (data.length > 0) {
 				var query = "where (nome ilike '%"+data+"%' or email ilike '%"+data+"%' or mensagem ilike '%"+data+"%' or telefone ilike '%"+data+"%' or celular ilike '%"+data+"%' or date ilike '%"+data+"%')";
 			}else{
 				var query = "";
 			}
 			
-		    client.query("SELECT id, nome, email, mensagem, date FROM budget_message "+query+" order by id desc", function(err, result) {
+		    client.query("SELECT id, nome, email, mensagem, date FROM budget_message "+query+" order by id desc", (err, result)=>{
 		      done();
 
 		      if(!err){
@@ -103,10 +103,10 @@ io.on('connection', (socket) => {
 		      }
 		    });
 		});
-	}).on('del-item', (data) => {
+	}).on('del-item', (data)=>{
 		if(Array.isArray(data) && data.length > 0){
-			pg.connect(process.env.DATABASE_URL, function(err, client, done) {
-			    client.query('delete from budget_message where id in ('+data.join()+')', function(err, result) {
+			pg.connect(process.env.DATABASE_URL, (err, client, done)=>{
+			    client.query('delete from budget_message where id in ('+data.join()+')', (err, result)=>{
 			      done();
 
 			      if(!err){
@@ -117,7 +117,7 @@ io.on('connection', (socket) => {
 			    });
 			  });
 		}
-	}).on('logindb', (data, callback) => {
+	}).on('logindb', (data, callback)=>{
 		var session = socket.handshake.session;
 
 		var l = 'rodrigo';
