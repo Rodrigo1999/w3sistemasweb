@@ -10,10 +10,10 @@ var fs = require('fs');
 var compression = require('compression');
 var htmlentities = require('htmlentities');
 
-pb(data)=>{
+function pb(data){
 	return htmlentities.encode(data);
 }
-dc(data)=>{
+function dc(data){
 	data = JSON.stringify(data);
 	data = htmlentities.decode(data);
 	return JSON.parse(data);
