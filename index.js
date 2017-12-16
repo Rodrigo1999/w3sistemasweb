@@ -1,14 +1,15 @@
-var express=require('express');
-var app=express();
-var http=require('http').createServer(app);
-var io=require('socket.io')(http);
+var express=require('express'),
+app=express(),
+http=require('http').createServer(app),
+io=require('socket.io')(http),
+path=require('path'),
+pg=require('pg'),
+sharedsession=require("express-socket.io-session"),
+fs=require('fs'),
+compression=require('compression'),
+htmlentities=require('htmlentities');
 const PORT=process.env.PORT || 5000;
-const path=require('path');
-var pg=require('pg');
-var sharedsession=require("express-socket.io-session");
-var fs=require('fs');
-var compression=require('compression');
-var htmlentities=require('htmlentities');
+
 
 function pb(d){
 	return htmlentities.encode(d);

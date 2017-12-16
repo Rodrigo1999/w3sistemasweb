@@ -65,6 +65,17 @@
 
 				}		
 			})
+			$(".itens-data").click(function(){
+				
+				if($(this).attr('checkOpen') == 'false'){
+					$(this).parent().removeClass('hide_text');
+					$(this).attr('checkOpen', 'true');
+				}else{
+					$(this).parent().addClass('hide_text');
+					$(this).attr('checkOpen', 'false');
+				}
+				
+			})
 			$("#search").keyup(function(){
 				var val = $(this).val();
 	
@@ -119,19 +130,20 @@
 		<article>
 			<ul id="list-data">
 				<% results.forEach(function(r) { %>
-					<li class="parent" id="<%= r.id %>">
+					<li class="parent hide_text" id="<%= r.id %>">
 						<div class="div-checkbox">
 							<label class="custom-checkbox">
 								<input type="checkbox" name="checkbox-del[]" value="<%= r.id %>"> <span class="helping-el"></span>
 							</label>
 						</div>
-						<div class="itens-data">
+						<div class="itens-data" checkOpen="false">
 							<ul class="itens">
 								<li class="li-data-nome">
 									<span class="span-data-nome"><%= r.nome %></span>
 									<span class="span-data-date"><%= r.date %></span>
 								</li>
 								<li class="li-data-email"><%= r.email %></li>
+								<li class="tels"><span><%= r.telefone %></span><span><%= r.telefone %></span></li>
 								<li class="li-data-mensagem"><%= r.mensagem %></li>
 							</ul>
 						</div>

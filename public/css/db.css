@@ -193,11 +193,26 @@ section article ul#list-data li.parent .itens-data{
 section article ul#list-data{
   width: 100%;
 }
+.hide_text li{
+  white-space: nowrap; 
+  overflow: hidden;
+  text-overflow: ellipsis; 
+}
+.hide_text .tels{
+  display: none;
+}
+li.hide_text{
+   border-bottom:1px solid rgb(200, 200, 200);
+}
 section article ul#list-data li.parent{
   display: flex;
   align-items: center;
-  border-bottom:1px solid rgb(200, 200, 200);
+ 
   padding:11px 0;
+}
+section article ul#list-data li.parent:not(.hide_text){
+  border-top:2px solid green;
+  border-bottom:2px solid green;
 }
 section article ul#list-data li.parent:hover{
   background-color: rgb(240, 240, 240);
@@ -219,17 +234,21 @@ section article ul#list-data li.parent li.li-data-nome .span-data-date{
   text-align: right;
   float: left;
 }
+section article ul#list-data li.parent .tels span{
+  display: block;
+  color: #ec9720;
+}
+section article ul#list-data li.parent .tels{
+  margin: 10px 0;
+}
+
 section article ul#list-data li.parent li,
 section article ul#list-data li.parent li span{
   font-family: 'Calibri';
   font-size: 14px;
-  white-space: nowrap; 
-   overflow: hidden;
-   text-overflow: ellipsis;
   line-height: 1.5;
   color:rgb(100, 100, 100);
 }
-
 section article ul#list-data li.parent .div-checkbox label{
   position: relative;
   bottom: 20px;
@@ -315,6 +334,9 @@ section article ul#list-data li.parent .div-checkbox label{
    
     font-size: 15px;
     
+  }
+  section article ul#list-data li.parent .li-data-mensagem{
+      width: 90%;
   }
 
 }

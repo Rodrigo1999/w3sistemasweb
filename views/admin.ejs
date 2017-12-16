@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+<!-- <!DOCTYPE html>
 <html lang="pt-br">
 <head>
 	<meta charset="UTF-8">
@@ -42,12 +42,12 @@
 	    </form>
 	</div>
 </body>
-</html>
+</html> -->
 
 
 
 
-<!-- <!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
 	<meta charset="UTF-8">
@@ -98,6 +98,17 @@
 					});
 				
 			})
+			$(".itens-data").click(function(){
+				
+				if($(this).attr('checkOpen') == 'false'){
+					$(this).parent().removeClass('hide_text');
+					$(this).attr('checkOpen', 'true');
+				}else{
+					$(this).parent().addClass('hide_text');
+					$(this).attr('checkOpen', 'false');
+				}
+				
+			})
 		})
 	</script>
 </head>
@@ -132,7 +143,7 @@
 		</header>
 		<article>
 			<ul id="list-data">
-				<li class="parent">
+				<li class="parent hide_text">
 					<div class="div-checkbox">
 						<label class="custom-checkbox">
 							<input type="checkbox" name="checkbox-del[]" value="1"> <span class="helping-el"></span>
@@ -145,6 +156,7 @@
 								<span class="span-data-date">01/04/2017 - 17:30</span>
 							</li>
 							<li class="li-data-email">rodrigosousa1999rss@gmail.com</li>
+							<li class="tels"><span>40028922</span><span>9888383888</span></li>
 							<li class="li-data-mensagem">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Nostrum facilis ad quam est ab dolor.</li>
 							<li class="li-data-date">01/04/2017 - 17:30</li>
 						</ul>
@@ -156,13 +168,14 @@
 							<input type="checkbox" name="checkbox-del[]" value="2"> <span class="helping-el"></span>
 						</label>
 					</div>
-					<div class="itens-data">
+					<div class="itens-data" checkOpen="true">
 						<ul class="itens">
 							<li class="li-data-nome">
 								<span class="span-data-nome">Rodrigo</span>
 								<span class="span-data-date">01/04/2017 - 17:30</span>
 							</li>
 							<li class="li-data-email">rodrigosousa1999rss@gmail.com</li>
+							<li class="tels"><span>40028922</span><span>9888383888</span></li>
 							<li class="li-data-mensagem">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Nostrum facilis ad quam est ab dolor.</li>
 							<li class="li-data-date">01/04/2017 - 17:30</li>
 						</ul>
@@ -172,4 +185,4 @@
 		</article>
 	</section>
 </body>
-</html> -->
+</html>
