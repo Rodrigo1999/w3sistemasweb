@@ -1,1 +1,175 @@
-<!DOCTYPE html> <html lang="pt-br"> <head> <meta charset="UTF-8"> <meta name="viewport" content="width=device-width, inital-scale=1, maximum-scale=1"> <title>Admin</title> <link href='http://fonts.googleapis.com/css?family=Montserrat:400,700' rel='stylesheet' type='text/css'> <link rel="stylesheet" href="/css/adminLogin.css"> <script src="https://ajax.aspnetcdn.com/ajax/jQuery/jquery-3.2.1.min.js"></script> <script src="https://npmcdn.com/js-alert/dist/jsalert.min.js"></script> <script src="/socket.io/socket.io.js"></script> <script> var socket = io(); $(document).ready(function(){$("form").submit(function(evt){evt.preventDefault(); var data = {l: evt.target.login.value, s: evt.target.senha.value }; socket.emit('logindb', data, function(data){if(data){window.location.href = window.location.protocol+"//"+window.location.hostname+window.location.pathname; }else{JSAlert.alert("Login incorreto"); } }); return false; }) }) </script> </head> <body> <div class="logo"></div> <div class="login-block"> <form action="#" method="POST"> <h1>Login</h1> <input type="text" name="login" placeholder="Username" id="login" autofocus="autofocus"/> <input type="password" name="senha" placeholder="Password" id="senha"/> <button>Entrar</button> </form> </div> </body> </html>
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, inital-scale=1, maximum-scale=1">
+	<title>Admin</title>
+	<link href='http://fonts.googleapis.com/css?family=Montserrat:400,700' rel='stylesheet' type='text/css'>
+	<link rel="stylesheet" href="/css/adminLogin.css">	
+	<script src="https://ajax.aspnetcdn.com/ajax/jQuery/jquery-3.2.1.min.js"></script>
+	<script src="https://npmcdn.com/js-alert/dist/jsalert.min.js"></script>
+	<script src="/socket.io/socket.io.js"></script>
+	<script>
+		var socket = io();
+		$(document).ready(function(){
+			$("form").submit(function(evt){
+				evt.preventDefault();
+				var data = {
+					l: evt.target.login.value,
+					s: evt.target.senha.value
+				}
+
+				socket.emit('logindb', data, function(data){
+					if(data){
+						window.location.href = window.location.protocol+"//"+window.location.hostname+window.location.pathname;
+					}else{
+						JSAlert.alert("Login incorreto");
+					}
+				});
+				return false;
+			})
+		})
+	</script>
+</head>
+<body>
+	<div class="logo"></div>
+	<div class="login-block">
+		<form action="#" method="POST">
+		    <h1>Login</h1>
+		    <input type="text" name="login" placeholder="Username" id="login" autofocus="autofocus"/>
+		    <input type="password" name="senha" placeholder="Password" id="senha"/>
+		    <button>Entrar</button>
+	    </form>
+	</div>
+</body>
+</html>
+
+
+
+
+<!-- <!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, inital-scale=1, maximum-scale=1">
+	<title>Document</title>
+	<link rel="stylesheet" href="/css/db.css">	
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+	<link rel="stylesheet" href="css/style.css">
+		<link rel="stylesheet" href="css/fonts.css">
+	<script src="https://ajax.aspnetcdn.com/ajax/jQuery/jquery-3.2.1.min.js"></script>
+	<script src="/socket.io/socket.io.js"></script>
+	<script>
+		$(document).ready(function(){
+			var d = 'cabrito';
+			var html = "<ul><li><& r.id &></li><& r.name &></li></ul>";
+			var r = {id:'idc', name: 'Rodrigo'};
+			var mat = html.match(/<& \w+\W\w+ &>/g);
+			for (var i = 0; i < mat.length; i++) {
+				html = html.replace(/<& \w+\W\w+ &>/, r[mat[i].match(/\w+\W\w+/g)[0].substr(2)])
+			}
+			console.log(html)
+			
+			var socket = io();
+			$(".div-search-primary").click(function(){
+				$(".opt-top-none").addClass("opt-top");
+			})
+			$(".a-close").click(function(){
+				$(".opt-top-none").removeClass("opt-top");
+			})
+			$("#checkbox-primary").change(function(){
+			  $("input[name='checkbox-del[]']").prop('checked', this.checked);
+			});
+			$("#del-item").click(function(){
+				checkboxCollection = [];
+				var checkbox = $("input[name='checkbox-del[]']");
+				checkbox.each(function(){
+					if($(this).is(':checked')){
+						checkboxCollection.push($(this).val());
+					}
+				})
+				if(checkboxCollection.length > 0){
+					console.log(checkboxCollection.join());
+					socket.emit('del-item', checkboxCollection);
+
+				}
+				socket.on('del-item-Response', function(data){
+						console.log(data);
+					});
+				
+			})
+		})
+	</script>
+</head>
+<body>
+	<section>
+		<header>
+			<nav>
+				<div class="content">
+					<div class="control">
+						
+						<div class="btn-nav">
+							<label class="custom-checkbox">
+								<input type="checkbox" id="checkbox-primary"/> <span class="helping-el"></span>
+							</label>
+						</div>
+						<a href="#" class="btn-nav" id="del-item"><i class="fa fa-trash-o" aria-hidden="true"></i></a>
+						<a href="#" class="btn-nav" id="count-list"><span>253</span></a>
+						<div action="#" class="btn-nav div-search-primary" >
+							<i class="fa fa-search fa-search-primary" aria-hidden="true"></i>
+						</div>
+						<form action="#" method="POST" class="opt-top-none">
+							<div class="input">
+								<input type="search" name="search" id="search" placeholder="Pesquisar:">
+								<a href="#" class="a-close"><i class="fa fa-times" aria-hidden="true"></i></a>
+								<button><i class="fa fa-search fa-search-primary" aria-hidden="true"></i></button>
+							</div>
+						</form>
+					</div>
+					
+				</div>
+			</nav>
+		</header>
+		<article>
+			<ul id="list-data">
+				<li class="parent">
+					<div class="div-checkbox">
+						<label class="custom-checkbox">
+							<input type="checkbox" name="checkbox-del[]" value="1"> <span class="helping-el"></span>
+						</label>
+					</div>
+					<div class="itens-data">
+						<ul class="itens">
+							<li class="li-data-nome">
+								<span class="span-data-nome">Rodrigo</span>
+								<span class="span-data-date">01/04/2017 - 17:30</span>
+							</li>
+							<li class="li-data-email">rodrigosousa1999rss@gmail.com</li>
+							<li class="li-data-mensagem">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Nostrum facilis ad quam est ab dolor.</li>
+							<li class="li-data-date">01/04/2017 - 17:30</li>
+						</ul>
+					</div>
+				</li>
+				<li class="parent">
+					<div class="div-checkbox">
+						<label class="custom-checkbox">
+							<input type="checkbox" name="checkbox-del[]" value="2"> <span class="helping-el"></span>
+						</label>
+					</div>
+					<div class="itens-data">
+						<ul class="itens">
+							<li class="li-data-nome">
+								<span class="span-data-nome">Rodrigo</span>
+								<span class="span-data-date">01/04/2017 - 17:30</span>
+							</li>
+							<li class="li-data-email">rodrigosousa1999rss@gmail.com</li>
+							<li class="li-data-mensagem">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Nostrum facilis ad quam est ab dolor.</li>
+							<li class="li-data-date">01/04/2017 - 17:30</li>
+						</ul>
+					</div>
+				</li>
+			</ul>
+		</article>
+	</section>
+</body>
+</html> -->
