@@ -88,8 +88,7 @@ io.on('connection', function(socket){
 		       }
 		    });
 		  });
-	});
-	socket.on('searchLike', function(data, callback){
+	}).on('searchLike', function(data, callback){
 		
 		pg.connect(process.env.DATABASE_URL, function(err, client, done) {
 			if (data.length > 0) {
@@ -106,8 +105,7 @@ io.on('connection', function(socket){
 		      }
 		    });
 		});
-	});
-	socket.on('del-item', function(data){
+	}).on('del-item', function(data){
 		if(Array.isArray(data) && data.length > 0){
 			pg.connect(process.env.DATABASE_URL, function(err, client, done) {
 			    client.query('delete from budget_message where id in ('+data.join()+')', function(err, result) {
@@ -121,8 +119,7 @@ io.on('connection', function(socket){
 			    });
 			  });
 		}
-	});
-	socket.on('logindb', function(data, callback){
+	}).on('logindb', function(data, callback){
 		var session = socket.handshake.session;
 
 		var l = 'rodrigo';
