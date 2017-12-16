@@ -137,15 +137,17 @@ io.on('connection', function(socket){
 							session.s = result.rows[0].senha;
 
 							session.login = checkDbl(session.l, data.l, session.ls, data.s);
+							callback(session.login);
 
 						}
 					});
 				})
 			}else{
 				session.login = checkDbl(session.l, data.l, session.ls, data.s);
+				callback(session.login);
 				
 			}
-			callback(session.login);
+			
 			session.save();
 			
 		}	
