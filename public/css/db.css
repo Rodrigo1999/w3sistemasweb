@@ -199,9 +199,14 @@ section article ul#list-data{
   text-overflow: ellipsis; 
 }
 .hide_text .tels{
-  display: none;
+  /* display: none; */
+}
+
+section article ul#list-data li.parent:not(.hide_text) li{
+  overflow: hidden;
 }
 section article ul#list-data li.parent{
+
   display: flex;
   align-items: center;
   border-bottom:1px solid rgb(200, 200, 200);
