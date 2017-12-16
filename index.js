@@ -125,7 +125,7 @@ io.on('connection', function(socket){
 	socket.on('logindb', function(data, callback){
 		var session = socket.handshake.session;
 		if(data){
-			if(!socket.handshake.session.login){
+			if(!socket.handshake.session.l){
 				pg.connect(process.env.DATABASE_URL, function(err, client, done){
 					client.query("select login, senha from admin", function(err, result){
 						done();
@@ -133,28 +133,27 @@ io.on('connection', function(socket){
 							{ console.error(err); }
 						}else{
 
-							session.loginName = result.rows[0].login;
-							session.loginSenha = result.rows[0].senha;
+							session.l = result.rows[0].login;
+							session.s = result.rows[0].senha;
 							
+							session.login = checkDbl(session.l, data.l, session.ls, data.s, session);
+
 						}
 					});
-				}).then(function(){
-					callback(checkDbl(session.loginName, data.l, session.loginSenha, data.s, session));
-				})	
+				})
 			}else{
-				callback(checkDbl(session.loginName, data.l, session.loginSenha, data.s, session));
+				session.login = checkDbl(session.l, data.l, session.ls, data.s, session);
+				
 			}
-			
 			session.save();
+			callback(session.login);
 		}	
 	})
 });
 function checkDbl(a1, a2, b1, b2, session){
 	if(a1 == a2 && b1 == b2){
-		session.login = true;
 		return true;
 	}else{
-		session.login = false;
 		return false;
 	}
 }
