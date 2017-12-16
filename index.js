@@ -125,7 +125,7 @@ io.on('connection', function(socket){
 	socket.on('logindb', function(data, callback){
 		var session = socket.handshake.session;
 		if(data){
-			if(!socket.handshake.session.loginName){
+			if(!socket.handshake.session.l){
 				pg.connect(process.env.DATABASE_URL, function(err, client, done){
 					client.query("select login, senha from admin", function(err, result){
 						done();
@@ -133,14 +133,14 @@ io.on('connection', function(socket){
 							{ console.error(err); }
 						}else{
 
-							session.loginName = result.rows[0].login;
-							session.loginSenha = result.rows[0].senha;
+							session.l = result.rows[0].login;
+							session.s = result.rows[0].senha;
 						}
 					});
 				})	
 			}
 
-			if(session.loginName == data.l && session.loginSenha == data.s){
+			if(session.l == data.l && session.s == data.s){
 				session.login = true;
 			}else{
 				session.login = false;
