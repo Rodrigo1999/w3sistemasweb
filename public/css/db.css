@@ -169,7 +169,7 @@ section header nav  form input{
     -o-transition: border-color ease-in-out .15s,box-shadow ease-in-out .15s;
     transition: border-color ease-in-out .15s,box-shadow ease-in-out .15s;
 }
-/* ------------------------------------------------------------------------------------------------ */
+
 section article ul{
   overflow: hidden;
   padding: 0;
@@ -201,7 +201,9 @@ section article ul#list-data{
 .hide_text .tels{
   display: none;
 }
-
+section article ul#list-data li.parent li.li-data-email{
+  clear: both;
+}
 section article ul#list-data li.parent{
 
   display: flex;
@@ -240,9 +242,6 @@ section article ul#list-data li.parent li.li-data-nome .span-data-date{
   width: 50%;
   text-align: right;
   float: left;
-}
-section article ul#list-data li.parent li.li-data-email{
-  clear: both;
 }
 section article ul#list-data li.hide_text li.li-data-nome .span-data-date{
   color:#4385f3;
@@ -349,7 +348,6 @@ section article ul#list-data li.parent .div-checkbox label{
     
   }
   section article ul#list-data li.parent .li-data-mensagem{
-    font-size: 16px;
       width: 90%;
   }
 
