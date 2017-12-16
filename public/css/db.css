@@ -201,20 +201,26 @@ section article ul#list-data{
 .hide_text .tels{
   display: none;
 }
-li.hide_text{
-   border-bottom:1px solid rgb(200, 200, 200);
-}
 section article ul#list-data li.parent{
   display: flex;
   align-items: center;
- 
+  border-bottom:1px solid rgb(200, 200, 200);
   padding:11px 0;
 }
-section article ul#list-data li.parent:not(.hide_text){
-  border-top:2px solid green;
-  border-bottom:2px solid green;
+section article ul#list-data li.parent:not(.hide_text) label.custom-checkbox input[type="checkbox"] ~ .helping-el{
+  background-color: #616161;
 }
-section article ul#list-data li.parent:hover{
+section article ul#list-data li.parent:not(.hide_text) .span-data-date{
+  color: #ec9720;
+}
+section article ul#list-data li.parent:not(.hide_text){
+  background-color: #5a5a5a;
+
+}
+section article ul#list-data li.parent:not(.hide_text) .color_change{
+  color: white;
+}
+section article ul#list-data li.hide_text:hover{
   background-color: rgb(240, 240, 240);
 }
 
@@ -228,11 +234,13 @@ section article ul#list-data li.parent li.li-data-nome span{
 }
 section article ul#list-data li.parent li.li-data-nome .span-data-date{
   font-size:11px;
-  color:#4385f3;
   font-weight:900;
   width: 50%;
   text-align: right;
   float: left;
+}
+section article ul#list-data li.hide_text li.li-data-nome .span-data-date{
+  color:#4385f3;
 }
 section article ul#list-data li.parent .tels span{
   display: block;
