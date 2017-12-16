@@ -140,11 +140,8 @@ io.on('connection', function(socket){
 				})	
 			}
 
-			if(session.l == data.l && session.s == data.s){
-				session.login = true;
-			}else{
-				session.login = false;
-			}
+			session.login = session.l == data.l && session.s == data.s?true:false;
+			
 			callback(session.login);
 			session.save();
 		}	
