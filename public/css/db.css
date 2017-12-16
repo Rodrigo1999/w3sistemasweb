@@ -202,7 +202,7 @@ section article ul#list-data{
   display: none;
 }
 section article ul#list-data li.parent:not(.hide_text) .li-data-mensagem {
-
+  white-space: normal !important; 
   overflow: visible !important;
 }
 section article ul#list-data li.parent li.li-data-email{
