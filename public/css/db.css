@@ -203,7 +203,7 @@ section article ul#list-data{
 }
 
 section article ul#list-data li.parent:not(.hide_text) li{
-  overflow: hidden;
+  
 }
 section article ul#list-data li.parent{
 
