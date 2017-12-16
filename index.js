@@ -43,8 +43,7 @@ app.get('/', function(req, res){
 	
 	res.render('home', {date: d.getFullYear()});
 	var socket_id = [];
-});
-app.get('/admin/db', function (req, res, next) {
+}).get('/admin/db', function (req, res, next) {
 
 	var session = req.session;
 	if(session.login){
@@ -63,8 +62,7 @@ app.get('/admin/db', function (req, res, next) {
      	
       	res.render('admin');
    	}
-});
-app.get('*', function(req, res){
+}).get('*', function(req, res){
   res.render('404', {date: d.getFullYear()});
 });
 io.on('connection', function(socket){
