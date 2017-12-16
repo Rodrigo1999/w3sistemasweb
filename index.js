@@ -142,10 +142,10 @@ io.on('connection', function(socket){
 			
 			if(session.loginName == data.l && session.loginSenha == data.s){
 				session.login = true;
-				callback(true);
+				callback(session.login);
 			}else{
 				session.login = false;
-				callback(false);
+				callback(session.login);
 			}
 			session.save();
 		}	
