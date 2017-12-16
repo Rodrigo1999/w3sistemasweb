@@ -10,13 +10,13 @@ var fs = require('fs');
 var compression = require('compression');
 var htmlentities = require('htmlentities');
 
-function pb(data){
-	return htmlentities.encode(data);
+function pb(d){
+	return htmlentities.encode(d);
 }
-function dc(data){
-	data = JSON.stringify(data);
-	data = htmlentities.decode(data);
-	return JSON.parse(data);
+function dc(d){
+	d = JSON.stringify(d);
+	d = htmlentities.decode(d);
+	return JSON.parse(d);
 }
 var directory = __dirname+'/views/readdingDbList.txt';
 if(fs.existsSync(directory)){
@@ -48,7 +48,7 @@ app.get('/', (req, res)=>{
 	var session = req.session;
 	if(session.login){
 		pg.connect(process.env.DATABASE_URL, (err, client, done)=>{
-		    client.query('SELECT id, nome, email, mensagem, date FROM budget_message order by id desc', (err, result)=>{
+		    client.query('SELECT * FROM budget_message order by id desc', (err, result)=>{
 			    done();
 			    if (err) { 
 			      	console.error(err); 
@@ -78,7 +78,7 @@ io.on('connection', (socket)=>{
 		      else
 		       { 
 		       		
-		       		client.query('SELECT id, nome, email, mensagem, date FROM budget_message order by id desc', (err, result)=>{
+		       		client.query('SELECT * FROM budget_message order by id desc', (err, result)=>{
 		       			done();
 		       			callback(true);
 		       			io.emit('real-time-data', {r: result.rows, html: file.toString()});
@@ -95,7 +95,7 @@ io.on('connection', (socket)=>{
 				var query = "";
 			}
 			
-		    client.query("SELECT id, nome, email, mensagem, date FROM budget_message "+query+" order by id desc", (err, result)=>{
+		    client.query("SELECT * FROM budget_message "+query+" order by id desc", (err, result)=>{
 		      done();
 
 		      if(!err){
