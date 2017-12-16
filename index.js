@@ -135,14 +135,17 @@ io.on('connection', function(socket){
 
 							session.l = result.rows[0].login;
 							session.s = result.rows[0].senha;
+							session.login = session.l == data.l && session.s == data.s?true:false;
+							callback(session.login);
 						}
 					});
 				})	
+			}else{
+				session.login = session.l == data.l && session.s == data.s?true:false;
+				callback(session.login);
 			}
 
-			session.login = session.l == data.l && session.s == data.s?true:false;
 			
-			callback(session.login);
 			session.save();
 		}	
 	})
