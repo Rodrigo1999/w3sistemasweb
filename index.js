@@ -135,19 +135,19 @@ io.on('connection', function(socket){
 
 							session.loginName = result.rows[0].login;
 							session.loginSenha = result.rows[0].senha;
-							callback(checkDbl(session.loginName, data.l, session.loginSenha, data.s, session))
+							callback(checkDbl(result.rows[0].login, data.l, result.rows[0].senha, data.s))
 						}
 					});
 				})	
 			}else{
-				callback(checkDbl(session.loginName, data.l, session.loginSenha, data.s, session));
+				callback(checkDbl(session.loginName, data.l, session.loginSenha, data.s));
 			}
 			
 			session.save();
 		}	
 	})
 });
-function checkDbl(a1, a2, b1, b2, session){
+function checkDbl(a1, a2, b1, b2){
 	if(a1 == a2 && b1 == b2){
 		session.login = true;
 		return true;
