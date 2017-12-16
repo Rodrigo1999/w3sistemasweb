@@ -43,11 +43,11 @@
 	</div>
 </body>
 </html>
-<!-- 
 
 
 
-<!DOCTYPE html>
+
+<!-- <!DOCTYPE html>
 <html lang="en">
 <head>
 	<meta charset="UTF-8">
@@ -100,15 +100,19 @@
 			})
 			$(".itens-data").click(function(){
 				
-				if($(this).attr('checkOpen') == 'false'){
-					$(this).parent().removeClass('hide_text');
-					$(this).attr('checkOpen', 'true');
-				}else{
-					$(this).parent().addClass('hide_text');
-					$(this).attr('checkOpen', 'false');
-				}
+				k($(this))
+				
 				
 			})
+			function k(e){
+				if(e.attr('checkOpen') == 'false'){
+					e.parent().removeClass('hide_text');
+					e.attr('checkOpen', 'true');
+				}else{
+					e.parent().addClass('hide_text');
+					e.attr('checkOpen', 'false');
+				}
+			}
 		})
 	</script>
 </head>
