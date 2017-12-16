@@ -36,7 +36,7 @@
 						$("#list-data").append(html)
 						
 					})
-					
+					$(".itens-data").click(function(){k(this);})
 				}
 				
 			})
@@ -91,6 +91,7 @@
 				if($(e).attr('checkOpen') == 'false'){
 					$(e).parent().removeClass('hide_text');
 					$(e).attr('checkOpen', 'true');
+					$(e).find('.li-data-mensagem').css('margin', '80px')
 				}else{
 					$(e).parent().addClass('hide_text');
 					$(e).attr('checkOpen', 'false');
