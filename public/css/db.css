@@ -202,8 +202,8 @@ section article ul#list-data{
   display: none;
 }
 section article ul#list-data li.parent:not(.hide_text) .li-data-mensagem {
-  margin: 100px 0;
-  overflow: visible;
+
+  overflow: visible !important;
 }
 section article ul#list-data li.parent li.li-data-email{
   clear: both;
