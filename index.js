@@ -38,17 +38,17 @@ app.use(express.static(path.join(__dirname, 'public')));
 app.use(compression());
 var d = new Date();
 app.set('view engine', 'ejs');
-app.get('/', function(req, res){
+app.get('/', (req, res) => {
 	
 	
 	res.render('home', {date: d.getFullYear()});
 	var socket_id = [];
-}).get('/admin/db', function (req, res, next) {
+}).get('/admin/db', (req, res, next) => {
 
 	var session = req.session;
 	if(session.login){
-		pg.connect(process.env.DATABASE_URL, function(err, client, done) {
-		    client.query('SELECT id, nome, email, mensagem, date FROM budget_message order by id desc', function(err, result) {
+		pg.connect(process.env.DATABASE_URL, (err, client, done) => {
+		    client.query('SELECT id, nome, email, mensagem, date FROM budget_message order by id desc', (err, result) => {
 			    done();
 			    if (err) { 
 			      	console.error(err); 
@@ -62,14 +62,14 @@ app.get('/', function(req, res){
      	
       	res.render('admin');
    	}
-}).get('*', function(req, res){
+}).get('*', (req, res) => {
   res.render('404', {date: d.getFullYear()});
 });
-io.on('connection', function(socket){
+io.on('connection', (socket) => {
 
-	socket.on('insertMsg', function(data, callback){
+	socket.on('insertMsg', (data, callback) => {
 		var date = d.getDate()+"/"+parseInt(d.getMonth()+1)+"/"+d.getFullYear()+" - "+d.getHours()+":"+d.getMinutes();
-		 pg.connect(process.env.DATABASE_URL, function(err, client, done) {
+		 pg.connect(process.env.DATABASE_URL, (err, client, done)=>{
 		 	var datas = "'"+pb(data.nome.substr(0, 150))+"', '"+pb(data.email.substr(0, 150))+"', '"+pb(data.telefone.substr(0, 15))+"', '"+pb(data.celular.substr(0, 15))+"', '"+pb(data.mensagem)+"', '"+date+"'";
 		    client.query("insert into budget_message (nome, email, telefone, celular, mensagem, date) values ("+datas+")", function(err, result) {
 		      done();
@@ -86,7 +86,7 @@ io.on('connection', function(socket){
 		       }
 		    });
 		  });
-	}).on('searchLike', function(data, callback){
+	}).on('searchLike', (data, callback) => {
 		
 		pg.connect(process.env.DATABASE_URL, function(err, client, done) {
 			if (data.length > 0) {
@@ -103,7 +103,7 @@ io.on('connection', function(socket){
 		      }
 		    });
 		});
-	}).on('del-item', function(data){
+	}).on('del-item', (data) => {
 		if(Array.isArray(data) && data.length > 0){
 			pg.connect(process.env.DATABASE_URL, function(err, client, done) {
 			    client.query('delete from budget_message where id in ('+data.join()+')', function(err, result) {
@@ -117,7 +117,7 @@ io.on('connection', function(socket){
 			    });
 			  });
 		}
-	}).on('logindb', function(data, callback){
+	}).on('logindb', (data, callback) => {
 		var session = socket.handshake.session;
 
 		var l = 'rodrigo';
