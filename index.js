@@ -155,23 +155,3 @@ io.on('connection', function(socket){
 http.listen(PORT, function(){
 console.log('listening on *:'+PORT);
 });
-
-pg.connect(process.env.DATABASE_URL, function(err, client, done){
-	client.query("select count(*) from admin where login='"+pb(data.l)+"' and senha='"+pb(data.s)+"'", function(err, result){
-		done();
-		if (err) {
-			{ console.error(err); }
-		}else{
-			
-			if(result.rows[0].count == 1){
-				socket.handshake.session.login = true;
-				callback(socket.handshake.session.login);
-				
-			}else{
-				socket.handshake.session.login = false;
-				callback(socket.handshake.session.login);
-			}
-			socket.handshake.session.save();	
-		}
-	});
-})	
