@@ -135,23 +135,27 @@ io.on('connection', function(socket){
 
 							session.loginName = result.rows[0].login;
 							session.loginSenha = result.rows[0].senha;
-								
+							callback(checkDbl(session.loginName, data.l, session.loginSenha, data.s))
 						}
 					});
 				})	
-			}
-			if(session.loginName == data.l && session.loginSenha == data.s){
-				session.login = true;
-				callback(true);
 			}else{
-				session.login = false;
-				callback(false);
+				callback(checkDbl(session.loginName, data.l, session.loginSenha, data.s));
 			}
+			
 			session.save();
 		}	
 	})
 });
-
+function checkDbl(a1, a2, b1, b2){
+	if(a1 == a2 && b1 == b2){
+		session.login = true;
+		return true;
+	}else{
+		session.login = false;
+		return false;
+	}
+}
 
 http.listen(PORT, function(){
 console.log('listening on *:'+PORT);
