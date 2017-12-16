@@ -27,7 +27,8 @@ if(fs.existsSync(directory)){
 var session = require('express-session')({
 	secret: "my-secret",
     resave: true,
-    saveUninitialized: true
+    saveUninitialized: true,
+    cookie: { maxAge: 6000 }
 });
 
 app.use(session);
