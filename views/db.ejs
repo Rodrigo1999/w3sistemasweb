@@ -36,7 +36,7 @@
 						$("#list-data").append(html)
 						
 					})
-					$(".itens-data").click(function(){k(this);})
+					$(".itens-data").click(function(){k($(this));})
 				}
 				
 			})
@@ -67,7 +67,7 @@
 
 				}		
 			})
-			$(".itens-data").click(function(){ k(this);})
+			$(".itens-data").click(function(){ k($(this));})
 			$("#search").keyup(function(){
 				var val = $(this).val();
 	
@@ -88,12 +88,12 @@
 				});
 			})
 			function k(e){
-				if($(e).attr('checkOpen') == 'false'){
-					$(e).parent().removeClass('hide_text');
-					$(e).attr('checkOpen', 'true');
+				if(e.attr('checkOpen') == 'false'){
+					e.parent().removeClass('hide_text');
+					e.attr('checkOpen', 'true');
 				}else{
-					$(e).parent().addClass('hide_text');
-					$(e).attr('checkOpen', 'false');
+					e.parent().addClass('hide_text');
+					e.attr('checkOpen', 'false');
 				}
 			}
 
