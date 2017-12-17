@@ -23,7 +23,7 @@
 						$("li#"+id).remove();
 					})
 				}else{
-					
+					$("#list-data").html('');
 					$("#count-list span").text(data.r.length);
 					data.r.forEach(function(r){
 						
@@ -34,6 +34,7 @@
 							html = html.replace(/<& \w+\W\w+ &>/, r[mat[i].match(/\w+\W\w+/g)[0].substr(2)])
 						}
 						$("#list-data").append(html)
+						$("#list-data").find('li-data-mensagem').text(r.mensagem);
 						
 					})
 					$(".itens-data").click(function(){k(this);})
