@@ -23,7 +23,7 @@
 						$("li#"+id).remove();
 					})
 				}else{
-					$("#list-data").html('');
+					
 					$("#count-list span").text(data.r.length);
 					data.r.forEach(function(r){
 						
@@ -91,11 +91,6 @@
 				if($(e).attr('checkOpen') == 'false'){
 					$(e).parent().removeClass('hide_text');
 					$(e).attr('checkOpen', 'true');
-					$(e).find('.li-data-mensagem').css({
-						'white-space': 'normal !important',
-  						'overflow': 'visible !important',
-  						'margin': '50px'
-					})
 				}else{
 					$(e).parent().addClass('hide_text');
 					$(e).attr('checkOpen', 'false');
