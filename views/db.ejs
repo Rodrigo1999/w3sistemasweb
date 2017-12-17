@@ -33,9 +33,7 @@
 						for (var i = 0; i < mat.length; i++) {
 							html = html.replace(/<& \w+\W\w+ &>/, r[mat[i].match(/\w+\W\w+/g)[0].substr(2)])
 						}
-						$("#list-data").append(html)
-						$("#list-data").find('.li-data-mensagem').html(r.mensagem);
-						
+						$("#list-data").append(html)						
 					})
 					$(".itens-data").click(function(){k(this);})
 				}
