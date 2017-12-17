@@ -23,13 +23,8 @@
 						$("li#"+id).remove();
 					})
 				}else{
-					$("#list-data").html('');
-					$("#count-list span").text(data.r.length);
-					data.r.forEach(function(r){
-						
-						p(data,r);	
-					});
-					$(".itens-data").click(function(){k(this)});
+					p(data,r);
+					$(".itens-data").click(function(){k(this);});
 				}
 				
 			});
@@ -65,14 +60,8 @@
 				var val = $(this).val();
 	
 				socket.emit('searchLike', val, function(data){
-
-					$("#list-data").html('');
-					$("#count-list span").text(data.r.length);
-					data.r.forEach(function(r){
-						
-						p(data,r);
-					});
-					$(".itens-data").click(function(){k(this);})
+					p(data,r);
+					$(".itens-data").click(function(){k(this);});
 				});
 			});
 			function k(e){
@@ -83,15 +72,19 @@
 					$(e).parent().addClass('hide_text');
 					$(e).attr('checkOpen', 'false');
 				}
-			}
+			};
 			function p(data,r){
-				var html = data.html;
+				$("#list-data").html('');
+				$("#count-list span").text(data.r.length);
+				data.r.forEach(function(r){
+					var html = data.html;
 
-				var mat = html.match(/<& \w+\W\w+ &>/g);
-				for (var i = 0; i < mat.length; i++) {
-					html = html.replace(/<& \w+\W\w+ &>/, r[mat[i].match(/\w+\W\w+/g)[0].substr(2)])
-				};
-				$("#list-data").append(html)	
+					var mat = html.match(/<& \w+\W\w+ &>/g);
+					for (var i = 0; i < mat.length; i++) {
+						html = html.replace(/<& \w+\W\w+ &>/, r[mat[i].match(/\w+\W\w+/g)[0].substr(2)])
+					};
+					$("#list-data").append(html)
+				});	
 			}
 
 		})
