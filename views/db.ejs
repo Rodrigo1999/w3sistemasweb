@@ -27,13 +27,7 @@
 					$("#count-list span").text(data.r.length);
 					data.r.forEach(function(r){
 						
-						var html = data.html;
-
-						var mat = html.match(/<& \w+\W\w+ &>/g);
-						for (var i = 0; i < mat.length; i++) {
-							html = html.replace(/<& \w+\W\w+ &>/, r[mat[i].match(/\w+\W\w+/g)[0].substr(2)]);
-						}
-						$("#list-data").append(html);				
+						p(data,r);	
 					});
 					$(".itens-data").click(function(){k(this)});
 				}
@@ -76,7 +70,7 @@
 					$("#count-list span").text(data.r.length);
 					data.r.forEach(function(r){
 						
-						p();
+						p(data,r);
 					});
 					$(".itens-data").click(function(){k(this);})
 				});
@@ -90,7 +84,7 @@
 					$(e).attr('checkOpen', 'false');
 				}
 			}
-			function p(){
+			function p(data,r){
 				var html = data.html;
 
 				var mat = html.match(/<& \w+\W\w+ &>/g);
