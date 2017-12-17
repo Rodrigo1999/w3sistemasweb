@@ -193,11 +193,11 @@ section article ul#list-data li.parent .itens-data{
 section article ul#list-data{
   width: 100%;
 }
-section article ul#list-data li.hide_text li{
+/* section article ul#list-data li.hide_text li{
   white-space: nowrap; 
   overflow: hidden;
   text-overflow: ellipsis; 
-}
+} */
 section article ul#list-data li.hide_text .tels{
   display: none;
 }
