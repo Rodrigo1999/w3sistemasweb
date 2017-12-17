@@ -1,4 +1,5 @@
-$(document).ready(function(){var l = Ladda.create( document.querySelector( '.budget-message' ) ); $("#form-primary").submit(function(evt){evt.preventDefault(); var validate = true; var data = {nome: evt.target.nome.value, email: evt.target.email.value, telefone: evt.target.telefone.value, celular: evt.target.celular.value, mensagem: evt.target.mensagem.value } var labels = ['nome', 'mensagem']; if(!validateEmail(data.email)){
+$(document).ready(function(){var l = Ladda.create( document.querySelector( '.budget-message' ) ); $("#form-primary").submit(function(evt){evt.preventDefault(); var validate = true; var data = {nome: evt.target.nome.value, email: evt.target.email.value, telefone: evt.target.telefone.value, celular: evt.target.celular.value, mensagem: evt.target.mensagem.value }
+		var labels = ['nome', 'mensagem']; if(!validateEmail(data.email)){
 			$("label[for=email]").css('color', 'red');
 			$("label[for=email]").text('Email inválido *');
 			validate = false;
