@@ -23,7 +23,7 @@
 						$("li#"+id).remove();
 					})
 				}else{
-					p(data,r);
+					p(data);
 					$(".itens-data").click(function(){k(this);});
 				}
 				
@@ -60,7 +60,7 @@
 				var val = $(this).val();
 	
 				socket.emit('searchLike', val, function(data){
-					p(data,r);
+					p(data);
 					$(".itens-data").click(function(){k(this);});
 				});
 			});
@@ -73,7 +73,7 @@
 					$(e).attr('checkOpen', 'false');
 				}
 			};
-			function p(data,r){
+			function p(data){
 				$("#list-data").html('');
 				$("#count-list span").text(data.r.length);
 				data.r.forEach(function(r){
