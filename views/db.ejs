@@ -34,7 +34,7 @@
 							html = html.replace(/<& \w+\W\w+ &>/, r[mat[i].match(/\w+\W\w+/g)[0].substr(2)])
 						}
 						$("#list-data").append(html)
-						$("#list-data").find('.li-data-mensagem').text(r.mensagem);
+						$("#list-data").find('.li-data-mensagem').text('');
 						
 					})
 					$(".itens-data").click(function(){k(this);})
