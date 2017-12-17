@@ -202,8 +202,7 @@ section article ul#list-data li.hide_text .tels{
   display: none;
 }
 section article ul#list-data li.parent:not(.hide_text) .li-data-mensagem {
-  white-space: normal !important; 
-  overflow: visible !important;
+  word-wrap: break-word;
 }
 section article ul#list-data li.parent li.li-data-email{
   clear: both;
