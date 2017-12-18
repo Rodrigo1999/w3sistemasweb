@@ -1,1 +1,0 @@
-$(document).ready(function(){$(".continue_lendo").click(function(){var t=$(this).attr("reference"),e=$(this).attr("toogle");"false"==e?($("#"+t).removeClass("drop"),$(this).text("Fechar"),$(this).attr("toogle","true")):($("#"+t).addClass("drop"),$(this).text("Continue lendo"),$(this).attr("toogle","false"))})});
