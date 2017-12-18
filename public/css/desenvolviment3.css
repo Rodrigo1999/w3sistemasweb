@@ -20,6 +20,9 @@ section#desenvolviment3 .type-site:last-child form textarea::placeholder{
 	color: rgb(140,140,140);
 	outline: none;
 }
+section#desenvolviment3 .type-site:last-child form textarea::placeholder{
+	font-size: 17px;
+}
 section#desenvolviment3 .type-site:last-child form input:focus,
 section#desenvolviment3 .type-site:last-child form textarea:focus{
 	box-shadow: 0px 0px 5px 0px rgba(0,0,0,0.2);
@@ -51,6 +54,8 @@ section#desenvolviment3 .type-site:last-child form textarea{
 	margin-bottom: 10px;
 	height: 100px;
 	resize: none;
+	font-family: 'Calibre';
+	font-size: 16px;
 }
 
 section#desenvolviment3 .type-site:last-child form .block{
