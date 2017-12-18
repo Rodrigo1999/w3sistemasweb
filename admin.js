@@ -1,4 +1,4 @@
-module.exports = function(io, socket,pg){
+module.exports = function(io, socket,pg, file){
 	socket.on('searchLike',(data,callback)=>{
 			
 		pg.connect(process.env.DATABASE_URL,(err,client,done)=>{
