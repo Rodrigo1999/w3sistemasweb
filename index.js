@@ -85,7 +85,7 @@ io.on('connection',(socket)=>{
 		    });
 		  });
 	});
-	require('./admin')(socket, pg);
+	require('./admin')(io, socket, pg);
 })
 
 
