@@ -64,7 +64,7 @@ section#desenvolviment3 .type-site:last-child form .block div{
 
 
 section#desenvolviment3 .type-site:first-child .contato div i{
-	color:green;
+	
 	padding: 0 10px;
 }
 section#desenvolviment3 .type-site:first-child .contato div{
@@ -73,7 +73,7 @@ section#desenvolviment3 .type-site:first-child .contato div{
 section#desenvolviment3 .type-site:first-child .contato a{
 		color: black;
 }
-@media only screen and (max-width:379px){
+@media only screen and (max-width:300px){
 	section#desenvolviment3 .type-site:first-child .contato{
 		text-align: center;
 	}
