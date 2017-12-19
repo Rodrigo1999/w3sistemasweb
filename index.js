@@ -90,7 +90,7 @@ nspIndex.on('connection',(socket)=>{
 
 var nspAdmin = io.of('/admin');
 nspAdmin.on('connection', (socket)=>{
-	require('./libs/admin.js')(socket, pg, nspAdmin, file);
+	require('./libs/admin.js')(socket, pg, file, nspAdmin);
 });
 http.listen(PORT,function(){
 console.log('listening on *:'+PORT);

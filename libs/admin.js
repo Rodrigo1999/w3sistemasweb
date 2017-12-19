@@ -13,8 +13,7 @@ module.exports = function(socket, pg, file, nspAdmin){
 		      done();
 
 		      if(!err){
-		      	console.log('query', file);
-		      	callback({r: result.rows,html: file});
+		      	callback({r: result.rows,html: file.toString()});
 		      }
 		    });
 		});
