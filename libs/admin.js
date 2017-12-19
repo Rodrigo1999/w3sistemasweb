@@ -1,5 +1,5 @@
 module.exports = function(socket, pg, file, nspAdmin){
-	
+
 	socket.on('searchLike',(data,callback)=>{
 		
 		pg.connect(process.env.DATABASE_URL,(err,client,done)=>{
@@ -13,6 +13,7 @@ module.exports = function(socket, pg, file, nspAdmin){
 		      done();
 
 		      if(!err){
+		      	console.log(result.rows);
 		      	callback({r: result.rows,html: file.toString()});
 		      }
 		    });
