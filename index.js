@@ -19,9 +19,12 @@ function dc(d){
 	d=htmlentities.decode(d);
 	return JSON.parse(d);
 }
-
-var file=fs.readFileSync(__dirname+'/views/readdingDbList.txt');
-
+var directory=__dirname+'/views/readdingDbList.txt';
+if(fs.existsSync(directory)){
+	var file=fs.readFileSync(directory);
+}else{
+	var file=false;
+};
 var session=require('express-session')({
 	secret: "my-secret",
     resave: true,
@@ -39,7 +42,24 @@ app.set('view engine','ejs');
 app.all('/',(req,res)=>{	
 	res.render('home',{date: d.getFullYear()});
 }).all('/admin/db',(req,res,next)=>{
-	require('./libs/express/admin.js')(req,res,pg,dc);
+
+	var session=req.session;
+	if(session.login){
+		pg.connect(process.env.DATABASE_URL,(err,client,done)=>{
+		    client.query('SELECT * FROM budget_message order by id desc',(err,result)=>{
+			    done();
+			    if (err) { 
+			      	console.error(err); 
+			       	res.send("Error " + err); 
+			    }else { 
+			       	res.render('db',{results: dc(result.rows),count: result.rows.length} ); 
+			    }
+		    });
+		  });
+   	} else {
+     	
+      	res.render('admin');
+   	}
 }).all('*',(req,res)=>{
   res.render('404',{date: d.getFullYear()});
 });
