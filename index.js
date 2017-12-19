@@ -1,7 +1,7 @@
 var express=require('express'),
 app=express(),
 // http=require('http').createServer(app),
-http=require('http').createServer(app),
+http=require('http').createServer(app).listen(5000),
 io=require('socket.io').listen(http),
 path=require('path'),
 pg=require('pg'),
