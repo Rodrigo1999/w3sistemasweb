@@ -39,7 +39,7 @@ app.set('view engine','ejs');
 app.all('/',(req,res)=>{	
 	res.render('home',{date: d.getFullYear()});
 }).all('/admin/db',(req,res,next)=>{
-	require('./libs/express/admin.js')(req,res,pg);
+	require('./libs/express/admin.js')(req,res,pg,dc);
 }).all('*',(req,res)=>{
   res.render('404',{date: d.getFullYear()});
 });
