@@ -9,7 +9,7 @@ sharedsession=require("express-socket.io-session"),
 fs=require('fs'),
 compression=require('compression'),
 htmlentities=require('htmlentities');
-const PORT=process.env.PORT || 4555;
+const PORT=process.env.PORT || 8080;
 
 
 function pb(d){
