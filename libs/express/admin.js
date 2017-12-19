@@ -1,4 +1,4 @@
-module.exports = function(req,res,pg){
+module.exports = function(req,res,pg,dc){
 	var session=req.session;
 	if(session.login){
 		pg.connect(process.env.DATABASE_URL,(err,client,done)=>{
