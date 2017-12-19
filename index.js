@@ -83,13 +83,23 @@ nIndex.on('connection',(socket)=>{
 		       }
 		    });
 		  });
+	}).on('logindb',(data,callback)=>{
+		var session=socket.handshake.session,
+		l='rodrigo',
+		s='123';
+
+		if(data){
+			session.login=l==data.l&&s==data.s?true:false;
+			session.save();
+		}
+		callback(session.login);
 	});
 	//require('./admin')(io, socket, pg, file);
 });
 
 var nsp = io.of('/my-admin-db');
 nsp.on('connection', function(socket){
-  socket.on('searchLike',(data,callback)=>{
+  	socket.on('searchLike',(data,callback)=>{
 			
 		pg.connect(process.env.DATABASE_URL,(err,client,done)=>{
 			if (data.length > 0) {
@@ -120,17 +130,7 @@ nsp.on('connection', function(socket){
 			    });
 			  });
 		}
-	}).on('logindb',(data,callback)=>{
-		var session=socket.handshake.session,
-		l='rodrigo',
-		s='123';
-
-		if(data){
-			session.login=l==data.l&&s==data.s?true:false;
-			session.save();
-		}
-		callback(session.login);
-	});
+	})
 });
 
 
