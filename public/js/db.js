@@ -63,7 +63,7 @@ $(document).ready(function(){
 				$("#count-list span").text(data.r.length);
 				data.r.forEach(function(r){
 					var html = data.html;
-
+					console.log(data.html);
 					var mat = html.match(/<& \w+\W\w+ &>/g);
 					for (var i = 0; i < mat.length; i++) {
 						html = html.replace(/<& \w+\W\w+ &>/, r[mat[i].match(/\w+\W\w+/g)[0].substr(2)])
