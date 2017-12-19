@@ -1,7 +1,7 @@
 var express=require('express'),
 app=express(),
 // http=require('http').createServer(app),
-http=require('http').createServer(app).listen(5000),
+http=require('http').createServer(app),
 io=require('socket.io').listen(http),
 path=require('path'),
 pg=require('pg'),
@@ -9,7 +9,7 @@ sharedsession=require("express-socket.io-session"),
 fs=require('fs'),
 compression=require('compression'),
 htmlentities=require('htmlentities');
-const PORT=process.env.PORT || 8080;
+const PORT=process.env.PORT || 5000;
 
 
 function pb(d){
