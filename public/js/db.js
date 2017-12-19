@@ -1,5 +1,5 @@
 $(document).ready(function(){
-			var socket = io();
+			var socket = io('/admin');
 			
 			socket.on('real-time-data', function(data){
 
