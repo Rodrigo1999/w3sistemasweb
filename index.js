@@ -33,7 +33,7 @@ var session=require('express-session')({
 });
 
 app.use(session);
-io.use(sharedsession(session,{ autoSave:true })); 
+io.of('/admin').use(sharedsession(session,{ autoSave:true })); 
 
 app.use(express.static(path.join(__dirname,'public')));
 app.use(compression());
