@@ -1,14 +1,15 @@
 var express=require('express'),
 app=express(),
-http=require('http').createServer(app),
-io=require('socket.io')(http),
+// http=require('http').createServer(app),
+http=require('http').createServer(app).listen(5000),
+io=require('socket.io').listen(http),
 path=require('path'),
 pg=require('pg'),
 sharedsession=require("express-socket.io-session"),
 fs=require('fs'),
 compression=require('compression'),
 htmlentities=require('htmlentities');
-const PORT=process.env.PORT || 5000;
+const PORT=process.env.PORT || 4555;
 
 
 function pb(d){
@@ -39,9 +40,9 @@ app.use(express.static(path.join(__dirname,'public')));
 app.use(compression());
 var d=new Date();
 app.set('view engine','ejs');
-app.get('/',(req,res)=>{	
+app.all('/',(req,res)=>{	
 	res.render('home',{date: d.getFullYear()});
-}).get('/admin/db',(req,res,next)=>{
+}).all('/admin/db',(req,res,next)=>{
 
 	var session=req.session;
 	if(session.login){
@@ -60,7 +61,7 @@ app.get('/',(req,res)=>{
      	
       	res.render('admin');
    	}
-}).get('*',(req,res)=>{
+}).all('*',(req,res)=>{
   res.render('404',{date: d.getFullYear()});
 });
 var nspIndex = io.of('/index');
