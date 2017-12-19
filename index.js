@@ -46,7 +46,7 @@ app.all('/',(req,res)=>{
 var nspIndex=io.of('/index'),
 nspAdmin=io.of('/admin');
 nspIndex.on('connection',(socket)=>{
-	require('./libs/socket/index.js')(socket,nspIndex,pg,d,file,pb);
+	require('./libs/socket/index.js')(socket,nspAdmin,pg,d,file,pb);
 });
 
 nspAdmin.on('connection', (socket)=>{

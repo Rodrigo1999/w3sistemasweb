@@ -1,4 +1,4 @@
-module.exports = function(socket,nspIndex,pg,d,file, pb){
+module.exports = function(socket,nspAdmin,pg,d,file, pb){
 	socket.on('insertMsg',(data,callback)=>{
 		var date=d.getDate()+"/"+parseInt(d.getMonth()+1)+"/"+d.getFullYear()+" - "+d.getHours()+":"+d.getMinutes();
 		 pg.connect(process.env.DATABASE_URL,(err,client,done)=>{
@@ -13,7 +13,7 @@ module.exports = function(socket,nspIndex,pg,d,file, pb){
 		       		client.query('SELECT * FROM budget_message order by id desc',(err,result)=>{
 		       			done();
 		       			callback(true);
-		       			nspIndex.emit('real-time-data',{r: result.rows,html: file.toString()});
+		       			nspAdmin.emit('real-time-data',{r: result.rows,html: file.toString()});
 		       		})
 		       }
 		    });
