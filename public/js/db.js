@@ -1,1 +1,76 @@
-$(document).ready(function(){function t(t){"false"==$(t).attr("checkOpen")?($(t).parent().removeClass("hide_text"),$(t).attr("checkOpen","true")):($(t).parent().addClass("hide_text"),$(t).attr("checkOpen","false"))}function e(e){$("#list-data").html(""),$("#count-list span").text(e.r.length),e.r.forEach(function(t){for(var c=e.html,n=c.match(/<& \w+\W\w+ &>/g),o=0;o<n.length;o++)c=c.replace(/<& \w+\W\w+ &>/,t[n[o].match(/\w+\W\w+/g)[0].substr(2)]);$("#list-data").append(c)}),$(".itens-data").click(function(){t(this)})}var c=io('/admin');c.on("real-time-data",function(t){t.removeOne?t.id.forEach(function(t){var e=$("#count-list span").text();$("#count-list span").text(parseInt(e)-1),$("li#"+t).remove()}):e(t)}),$("form").submit(function(t){return t.preventDefault(),!1}),$(".div-search-primary").click(function(){$(".opt-top-none").addClass("opt-top")}),$(".a-close").click(function(){$(".opt-top-none").removeClass("opt-top")}),$("#checkbox-primary").change(function(){$("input[name='checkbox-del[]']").prop("checked",this.checked)}),$("#del-item").click(function(){$("#checkbox-primary").prop("checked",!1),checkboxCollection=[];var t=$("input[name='checkbox-del[]']");t.each(function(){$(this).is(":checked")&&checkboxCollection.push($(this).val())}),checkboxCollection.length>0&&c.emit("del-item",checkboxCollection)}),$(".itens-data").click(function(){t(this)}),$("#search").keyup(function(){var t=$(this).val();c.emit("searchLike",t,function(t){e(t)})})});
+$(document).ready(function(){
+			var socket = io();
+			
+			socket.on('real-time-data', function(data){
+
+				if(data.removeOne){
+					data.id.forEach(function(id){
+						var text = $("#count-list span").text();
+						$("#count-list span").text(parseInt(text)-1);
+						$("li#"+id).remove();
+					})
+				}else{
+					p(data);
+				}
+				
+			});
+			$("form").submit(function(e){
+				e.preventDefault();
+				return false;
+			});
+			$(".div-search-primary").click(function(){
+				$(".opt-top-none").addClass("opt-top");
+			});
+			$(".a-close").click(function(){
+				$(".opt-top-none").removeClass("opt-top");
+			});
+			$("#checkbox-primary").change(function(){
+			  $("input[name='checkbox-del[]']").prop('checked', this.checked);
+			});
+			$("#del-item").click(function(){
+				$("#checkbox-primary").prop('checked', false);
+				checkboxCollection = [];
+				var checkbox = $("input[name='checkbox-del[]']");
+				checkbox.each(function(){
+					if($(this).is(':checked')){
+						checkboxCollection.push($(this).val());
+					}
+				});
+				if(checkboxCollection.length > 0){
+					socket.emit('del-item', checkboxCollection);
+
+				}		
+			});
+			$(".itens-data").click(function(){ k(this);});
+			$("#search").keyup(function(){
+				var val = $(this).val();
+	
+				socket.emit('searchLike', val, function(data){
+					p(data);
+				});
+			});
+			function k(e){
+				if($(e).attr('checkOpen') == 'false'){
+					$(e).parent().removeClass('hide_text');
+					$(e).attr('checkOpen', 'true');
+				}else{
+					$(e).parent().addClass('hide_text');
+					$(e).attr('checkOpen', 'false');
+				}
+			};
+			function p(data){
+				$("#list-data").html('');
+				$("#count-list span").text(data.r.length);
+				data.r.forEach(function(r){
+					var html = data.html;
+
+					var mat = html.match(/<& \w+\W\w+ &>/g);
+					for (var i = 0; i < mat.length; i++) {
+						html = html.replace(/<& \w+\W\w+ &>/, r[mat[i].match(/\w+\W\w+/g)[0].substr(2)])
+					};
+					$("#list-data").append(html)
+				});	
+				$(".itens-data").click(function(){k(this);});
+			}
+
+		})

@@ -11,11 +11,8 @@ module.exports = function(socket, pg, file, nspAdmin){
 			
 		    client.query("SELECT * FROM budget_message "+query+" order by id desc",(err,result)=>{
 		      done();
-		      if(err){
-		      	console.log(err);
-		      }
+
 		      if(!err){
-		      	console.log('query', result.rows);
 		      	callback({r: result.rows,html: file.toString()});
 		      }
 		    });
