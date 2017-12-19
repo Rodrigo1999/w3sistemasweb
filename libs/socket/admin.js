@@ -1,4 +1,4 @@
-module.exports = function(socket, pg, file, nspAdmin){
+module.exports = function(socket,pg,file,nspAdmin){
 
 	socket.on('searchLike',(data,callback)=>{
 		

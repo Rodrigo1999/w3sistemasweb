@@ -19,12 +19,9 @@ function dc(d){
 	d=htmlentities.decode(d);
 	return JSON.parse(d);
 }
-var directory=__dirname+'/views/readdingDbList.txt';
-if(fs.existsSync(directory)){
-	var file=fs.readFileSync(directory);
-}else{
-	var file=false;
-};
+
+var file=fs.readFileSync(__dirname+'/views/readdingDbList.txt');
+
 var session=require('express-session')({
 	secret: "my-secret",
     resave: true,
@@ -42,55 +39,18 @@ app.set('view engine','ejs');
 app.all('/',(req,res)=>{	
 	res.render('home',{date: d.getFullYear()});
 }).all('/admin/db',(req,res,next)=>{
-
-	var session=req.session;
-	if(session.login){
-		pg.connect(process.env.DATABASE_URL,(err,client,done)=>{
-		    client.query('SELECT * FROM budget_message order by id desc',(err,result)=>{
-			    done();
-			    if (err) { 
-			      	console.error(err); 
-			       	res.send("Error " + err); 
-			    }else { 
-			       	res.render('db',{results: dc(result.rows),count: result.rows.length} ); 
-			    }
-		    });
-		  });
-   	} else {
-     	
-      	res.render('admin');
-   	}
+	require('./libs/express/admin.js')(req,res,pg);
 }).all('*',(req,res)=>{
   res.render('404',{date: d.getFullYear()});
 });
-var nspIndex = io.of('/index');
+var nspIndex=io.of('/index'),
+nspAdmin=io.of('/admin');
 nspIndex.on('connection',(socket)=>{
-
-	socket.on('insertMsg',(data,callback)=>{
-		var date=d.getDate()+"/"+parseInt(d.getMonth()+1)+"/"+d.getFullYear()+" - "+d.getHours()+":"+d.getMinutes();
-		 pg.connect(process.env.DATABASE_URL,(err,client,done)=>{
-		 	var datas="'"+pb(data.nome.substr(0,150))+"','"+pb(data.email.substr(0,150))+"','"+pb(data.telefone.substr(0,15))+"','"+pb(data.celular.substr(0,15))+"','"+pb(data.mensagem)+"','"+date+"'";
-		    client.query("insert into budget_message (nome,email,telefone,celular,mensagem,date) values ("+datas+")", function(err,result){
-		      done();
-		      if (err)
-		       { console.error(err);}
-		      else
-		       { 
-		       		
-		       		client.query('SELECT * FROM budget_message order by id desc',(err,result)=>{
-		       			done();
-		       			callback(true);
-		       			nspIndex.emit('real-time-data',{r: result.rows,html: file.toString()});
-		       		})
-		       }
-		    });
-		  });
-	});
+	require('./libs/socket/index.js')(socket,nspIndex,pg,d,file);
 });
 
-var nspAdmin = io.of('/admin');
 nspAdmin.on('connection', (socket)=>{
-	require('./libs/admin.js')(socket, pg, file, nspAdmin);
+	require('./libs/socket/admin.js')(socket,pg,file,nspAdmin);
 });
 http.listen(PORT,function(){
 console.log('listening on *:'+PORT);
