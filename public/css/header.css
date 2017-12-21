@@ -88,16 +88,23 @@ header .slide .sub-slide .description .imgs-carrosel img{
   animation-fill-mode: forwards; 
 }
 .slide2{
+  width:190px !important;
   animation: slide2 25s infinite linear ;
   animation-fill-mode: forwards; 
+  
 }
 .slide3{
   animation: slide3 25s infinite linear ;
   animation-fill-mode:forwards; 
+   width:190px !important;
+   top:90px !important;
 }
 .slide4{
   animation: slide4 25s infinite linear ;
   animation-fill-mode: forwards; 
+  width:90px !important;
+  right:30px !important;
+
 }
 .slide5{
   animation: slide5 25s infinite linear ;
@@ -106,6 +113,9 @@ header .slide .sub-slide .description .imgs-carrosel img{
 .slide6{
   animation: slide6 25s infinite linear ;
   animation-fill-mode: forwards; 
+  width:80px !important;
+  top:70px !important;
+   right:30px !important;
 }
 @keyframes slide1{
   0%{opacity: 1}
@@ -114,28 +124,28 @@ header .slide .sub-slide .description .imgs-carrosel img{
   100%{opacity: 0}
 }
 @keyframes slide2{
-  0%{opacity: 0; width:190px}
+  0%{opacity: 0}
   16.5%{opacity: 0}
   17%{opacity: 1}
   33.5%{opacity: 1}
   34%{opacity: 0}
-  100%{opacity: 0; width:190px}
+  100%{opacity: 0}
 }
 @keyframes slide3{
-  0%{opacity: 0; width:190px;top:90px;}
+  0%{opacity: 0}
   33.5%{opacity: 0}
   34%{opacity: 1}
   50%{opacity: 1}
   50.5%{opacity: 0}
-  100%{opacity: 0; width:190px;top:90px;}
+  100%{opacity: 0}
 }
 @keyframes slide4{
-  0%{opacity: 0; width:90px;right:30px;}
+  0%{opacity: 0}
   50%{opacity: 0}
   50.5%{opacity: 1}
   67%{opacity: 1}
   67.5%{opacity: 0}
-  100%{opacity: 0; width:90px;right:30px;}
+  100%{opacity: 0}
 }
 @keyframes slide5{
   0%{opacity: 0}
@@ -146,10 +156,10 @@ header .slide .sub-slide .description .imgs-carrosel img{
   100%{opacity: 0}
 }
 @keyframes slide6{
-  0%{opacity: 0; width:80px;top:70px; right:30px;}
+  0%{opacity: 0}
   84%{opacity: 0}
   84.5%{opacity: 1}
-  100%{opacity: 1; width:80px;top:70px; right:30px;}
+  100%{opacity: 1}
 }
 header .slide .sub-slide .description .subCarrosel span i{
   font-size: 18px;
@@ -351,10 +361,7 @@ header #menu .li-principal span{
   }
 }
 @media only screen and (min-width:330px){
-  header .slide .sub-slide .description .imgs-carrosel img{
-    width: 170px;
-    top:80px;
-  }
+ 
   header .slide .sub-slide .description .subCarrosel span{
     font-size: 14px;
   }
@@ -385,32 +392,42 @@ header #menu .li-principal span{
   }
 }
 @media only screen and (min-width:370px){
-  header .slide .sub-slide .description .imgs-carrosel .slide1{
-
-  }
-  header .slide .sub-slide .description .imgs-carrosel .slide2{
-
-    top:120px;
-    width:200px;
-  }
-  header .slide .sub-slide .description .imgs-carrosel .slide3{
-
-    top:110px;
-    width:210px;
-  }
-  header .slide .sub-slide .description .imgs-carrosel .slide4{
-
-    top:100px;
-    width:180px;
-  }
-  header .slide .sub-slide .description .imgs-carrosel .slide5{
-    top:90px;
-    width:200px;
-  }
-
   
-  header .slide .sub-slide .description .imgs-carrosel img{
-    width: 180px;
+  .slide1{
+    animation: slide1 25s infinite linear ;
+    animation-fill-mode: forwards;
+    width:190px !important; 
+  }
+  .slide2{
+   top:100px !important;
+    animation: slide2 25s infinite linear ;
+    animation-fill-mode: forwards; 
+
+  }
+  .slide3{
+    animation: slide3 25s infinite linear ;
+    animation-fill-mode:forwards; 
+     width:190px !important;
+     top:100px !important;
+  }
+  .slide4{
+    animation: slide4 25s infinite linear ;
+    animation-fill-mode: forwards; 
+    width:90px !important;
+    right:30px !important;
+
+  }
+  .slide5{
+    animation: slide5 25s infinite linear ;
+    animation-fill-mode: forwards; 
+    width:190px !important; 
+  }
+  .slide6{
+    animation: slide6 25s infinite linear ;
+    animation-fill-mode: forwards; 
+    width:80px !important;
+    top:70px !important;
+     right:30px !important;
   }
   header .slide .sub-slide .description .subCarrosel span{
     font-size: 15px;
@@ -461,29 +478,47 @@ header #menu .li-principal span{
 }
 @media only screen and (min-width:430px){
   
-  header .slide .sub-slide .description .imgs-carrosel .slide1{
-
-  }
-  header .slide .sub-slide .description .imgs-carrosel .slide2{
-    top:130px;
-    width:240px;
-  }
-  header .slide .sub-slide .description .imgs-carrosel .slide3{
-    top:110px;
-    width:240px;
-  }
-  header .slide .sub-slide .description .imgs-carrosel .slide4{
-    top:100px;
-    width:230px;
-  }
-  header .slide .sub-slide .description .imgs-carrosel .slide5{
-    top:110px;
-    width:200px;
-  }
   header .slide .sub-slide .description .imgs-carrosel img{
     width: 200px;
     right: 20px;
-    top:100px;
+    top:auto;
+  }
+  .slide1,
+  .slide2,
+  .slide3,
+  .slide4,
+  .slide5,
+  .slide6{
+    top:auto !important;
+    bottom:0 !important;
+  }
+  .slide-carrosel{
+    height:80px;
+  }
+   .slide1{
+    width:190px !important;
+  }
+  .slide2{ 
+    width:190px !important;
+    
+  }
+  .slide3{
+     width:190px !important;
+     
+  }
+  .slide4{
+
+    width:100px !important;
+    right:30px !important;
+    
+  }
+  .slide5{
+    width:190px !important; 
+    
+  }
+  .slide6{
+    width:80px !important;
+     right:30px !important;
   }
   @keyframes cambiov2{
     0%{top:300px; opacity:1}
@@ -495,26 +530,9 @@ header #menu .li-principal span{
   } 
 }
 @media only screen and (min-width:470px){
-  header .slide .sub-slide .description .imgs-carrosel .slide1{
-
+  .slide-carrosel{
+    height:100px;
   }
-  header .slide .sub-slide .description .imgs-carrosel .slide2{
-    top:140px;
-    width:270px;
-  }
-  header .slide .sub-slide .description .imgs-carrosel .slide3{
-    top:120px;
-    width:270px;
-  }
-  header .slide .sub-slide .description .imgs-carrosel .slide4{
-    top:100px;
-    width:260px;
-  }
-  header .slide .sub-slide .description .imgs-carrosel .slide5{
-    top:120px;
-    width:230px;
-  }
-  
    @keyframes cambiov1{
     0%{top:-70px; opacity:1}
     58.0001%{top:-70px; opacity:1}
@@ -533,6 +551,34 @@ header #menu .li-principal span{
   } 
 }
 @media only screen and (min-width:500px){
+ .slide-carrosel{
+    height:130px;
+  }
+ .slide1{
+    width:230px !important;
+  }
+  .slide2{ 
+    width:230px !important;
+    
+  }
+  .slide3{
+     width:230px !important;
+     
+  }
+  .slide4{
+
+    width:100px !important;
+    right:30px !important;
+    
+  }
+  .slide5{
+    width:190px !important; 
+    
+  }
+  .slide6{
+    width:80px !important;
+     right:30px !important;
+  }
   header .slide .sub-slide .description .text-propost span.first{
     margin-bottom: 10px;
     display: block;
@@ -678,25 +724,10 @@ header #menu .li-principal span{
   } 
 }
 @media only screen and (min-width:600px){
-  header .slide .sub-slide .description .imgs-carrosel .slide1{
-
+  .slide-carrosel{
+    height:160px;
   }
-  header .slide .sub-slide .description .imgs-carrosel .slide2{
-    top:200px;
-    width:300px;
-  }
-  header .slide .sub-slide .description .imgs-carrosel .slide3{
-    top:190px;
-    width:290px;
-  }
-  header .slide .sub-slide .description .imgs-carrosel .slide4{
-    top:190px;
-    width:260px;
-  }
-  header .slide .sub-slide .description .imgs-carrosel .slide5{
-    top:190px;
-    width:250px;
-  }
+ 
   @keyframes cambiov1{
     0%{top:-130px; opacity:1}
     43.0001%{top:-130px; opacity:1}
@@ -738,24 +769,34 @@ header #menu .li-principal span{
   }
 }
 @media only screen and (min-width:650px){
-  header .slide .sub-slide .description .imgs-carrosel .slide1{
+  .slide-carrosel{
+    height:170px;
+  }
+ .slide1{
+    width:270px !important;
+  }
+  .slide2{ 
+    width:270px !important;
+    
+  }
+  .slide3{
+     width:270px !important;
+     
+  }
+  .slide4{
 
+    width:130px !important;
+    right:50px !important;
+    
   }
-  header .slide .sub-slide .description .imgs-carrosel .slide2{
-    top:230px;
-    width:340px;
+  .slide5{
+    width:230px !important; 
+    right:50px !important;
+    
   }
-  header .slide .sub-slide .description .imgs-carrosel .slide3{
-    top:210px;
-    width:330px;
-  }
-  header .slide .sub-slide .description .imgs-carrosel .slide4{
-    top:200px;
-    width:290px;
-  }
-  header .slide .sub-slide .description .imgs-carrosel .slide5{
-    top:210px;
-    width:280px;
+  .slide6{
+    width:110px !important;
+     right:30px !important;
   }
   
   header .slide .sub-slide .description .carroselBsub{
@@ -802,6 +843,9 @@ header #menu .li-principal span{
   }
 }
 @media only screen and (min-width:700px){
+  .slide-carrosel{
+    height:200px;
+  }
   @keyframes cambiov2{
     0%{top:480px; opacity:1}
     43.0001%{top:480px; opacity:1}
@@ -812,6 +856,13 @@ header #menu .li-principal span{
   } 
 }
 @media only screen and (min-width:750px){
+  .slide-carrosel{
+    height:160px;
+  }
+  .slide6{
+    width:100px !important;
+     right:30px !important;
+  }
   header .slide .div-logo{
     left: 55px;
     bottom:0;
@@ -998,70 +1049,56 @@ header #menu ul li a{
     font-size:17px;
     width:70%;
   }
-  
-  header .slide .sub-slide .description .imgs-carrosel .slide1{
-
-  }
-  header .slide .sub-slide .description .imgs-carrosel .slide2{
-    top:220px;
-    width:370px;
-  }
-  header .slide .sub-slide .description .imgs-carrosel .slide3{
-    top:190px;
-    width:360px;
-  }
-  header .slide .sub-slide .description .imgs-carrosel .slide4{
-    top:190px;
-    width:300px;
-  }
-  header .slide .sub-slide .description .imgs-carrosel .slide5{
-    top:210px;
-    width:280px;
-  }
 @keyframes slide1{
-  0%{opacity: 0;}
-  0.2%{opacity: 1; right:20px;  width: 260px; top:190px;}
-  20%{opacity: 1; right:20px;  width: 260px; top:190px;}
-  20.5%{opacity: 1; right:400px; width: 100px; top:270px;}
-  40%{opacity: 1}
-  40.5%{opacity: 0}
-  100%{opacity: 0; right:400px; width: 100px; top:270px;}
+  0%{opacity: 1;bottom:0;width:0; right:30px;}
+  0.5%{width:270px}
+  16%{width:270px;bottom:0; right:30px;}
+  16.5%{width:140px; right:300px;bottom:40px}
+  33%{opacity: 1}
+  33.5%{opacity: 0}
+  100%{opacity: 0; bottom:40px;width:140px; right:300px;}
 }
 @keyframes slide2{
-  0%{opacity: 0}
-  20%{opacity: 0}
-  20.5%{opacity: 1; right:20px; width:370px; top:220px;}
-  40%{opacity: 1; right:20px; width:370px; top:220px;}
-  40.5%{opacity: 1; right:400px; width:140px; top:270px;}
-  60%{opacity: 1}
-  60.5%{opacity: 0}
-  100%{opacity: 0; right:400px; width:140px; top:270px;}
+  0%{opacity: 0;bottom:0;width:0; right:30px;}
+  16.5%{opacity: 0}
+  17%{opacity: 1; width:270px}
+  33.5%{width:270px;bottom:0; right:30px;}
+  34%{width:140px; right:300px;bottom:40px}
+  50.5%{opacity: 1}
+  51%{opacity: 0}
+  100%{opacity: 0; bottom:40px;width:140px; right:300px;}
 }
 @keyframes slide3{
-  0%{opacity: 0}
-  40%{opacity: 0}
-  40.5%{opacity: 1; right:20px; width:360px;  top:190px;}
-  60%{opacity: 1; right:20px; width:360px;  top:190px;}
-  60.5%{opacity: 1; right:350px; width:140px;  top:270px;}
-  80%{opacity: 1}
-  80.5%{opacity: 0}
-  100%{opacity: 0; right:350px; width:140px;  top:270px;}
+  0%{opacity: 0;bottom:0;width:0; right:30px;}
+  33.5%{opacity: 0}
+  34%{opacity: 1;width:270px}
+  50%{width:270px;bottom:0; right:30px;}
+  50.5%{width:140px; right:200px;bottom:40px}
+  67%{opacity: 1}
+  67.5%{opacity: 0}
+  100%{opacity: 0;width:140px; right:200px;bottom:40px}
 }
 @keyframes slide4{
-  0%{opacity: 0}
-  60%{opacity: 0}
-  60.5%{opacity: 1; right:20px; width:300px; top:190px;}
-  80%{opacity: 1; right:20px; width:300px; top:190px;}
-  80.5%{opacity: 1; right:350px; width:140px; top:270px;}
-  99%{opacity: 1}
-  99.5%{opacity: 0}
-  100%{opacity: 0; right:350px; width:140px; top:270px;}
+  0%{opacity: 0;bottom:0;width:0; right:40px;}
+  50%{opacity: 0}
+  50.5%{opacity: 1;width:130px}
+  67%{width:130px;bottom:0; right:40px;}
+  67.5%{width:80px; right:300px;bottom:20px}
+  84%{opacity: 1}
+  84.5%{opacity: 0}
+  100%{opacity: 0;width:80px; right:300px;bottom:20px}
 }
 @keyframes slide5{
-  0%{opacity: 0}
-  80.5%{opacity: 0}
-  81%{opacity: 1}
-  100%{opacity: 1}
+  0%{opacity: 0;bottom:0;width:0; right:40px;}
+  67%{opacity: 0}
+  67.5%{opacity: 1;width:230px}
+  84%{width:230px;bottom:0; right:40px;}
+  84.5%{width:150px; right:200px;bottom:30px}
+  99.9%{opacity:1}
+  100%{opacity: 0;width:150px; right:200px;bottom:30px}
+}
+.slide6{
+  right:60px !important;
 }
 }
 @media only screen and (min-width:950px){
@@ -1105,54 +1142,63 @@ header #menu ul li a{
     border-color:#3498db;
     color:#0066FF;
   }
-  @keyframes slide1{
-  0%{opacity: 0; right:50px;  width: 260px; top:190px;}
-  0.2%{opacity: 0; right:50px;  width: 260px; top:190px;}
-  0.3%{opacity: 1; right:50px;  width: 260px; top:190px;}
-  20%{opacity: 1; right:50px;  width: 260px; top:190px;}
-  20.5%{opacity: 1; right:420px; width: 100px; top:270px;}
-  40%{opacity: 1}
-  40.5%{opacity: 0}
-  100%{opacity: 0; right:420px; width: 100px; top:270px;}
-}
-@keyframes slide2{
-  0%{opacity: 0}
-  20%{opacity: 0}
-  20.5%{opacity: 1; right:50px; width:370px; top:210px;}
-  40%{opacity: 1; right:50px; width:370px; top:210px;}
-  40.5%{opacity: 1; right:400px; width:140px; top:270px;}
-  60%{opacity: 1}
-  60.5%{opacity: 0}
-  100%{opacity: 0; right:400px; width:140px; top:270px;}
-}
-@keyframes slide3{
-  0%{opacity: 0}
-  40%{opacity: 0}
-  40.5%{opacity: 1; right:50px; width:360px;  top:180px;}
-  60%{opacity: 1; right:50px; width:360px;  top:180px;}
-  60.5%{opacity: 1; right:350px; width:140px;  top:270px;}
-  80%{opacity: 1}
-  80.5%{opacity: 0}
-  100%{opacity: 0; right:350px; width:140px;  top:270px;}
-}
-@keyframes slide4{
-  0%{opacity: 0}
-  60%{opacity: 0}
-  60.5%{opacity: 1; right:50px; width:300px; top:180px;}
-  80%{opacity: 1; right:50px; width:300px; top:180px;}
-  80.5%{opacity: 1; right:350px; width:140px; top:255px;}
-  99%{opacity: 1}
-  99.5%{opacity: 0}
-  100%{opacity: 0; right:350px; width:140px; top:255px;}
-}
-@keyframes slide5{
-  0%{opacity: 0; right:50px; top:200px;}
-  80.5%{opacity: 0}
-  81%{opacity: 1}
-  100%{opacity: 1; right:50px; top:200px;}
-}
 }
 @media only screen and (min-width:1100px){
+ .slide-carrosel{
+    height:230px;
+  }
+  @keyframes slide1{
+    0%{opacity: 1;bottom:0;width:0; right:60px;}
+    0.5%{width:290px}
+    16%{width:290px;bottom:0; right:60px;}
+    16.5%{width:160px; right:350px;bottom:40px}
+    33%{opacity: 1}
+    33.5%{opacity: 0}
+    100%{opacity: 0; bottom:40px;width:160px; right:350px;}
+  }
+  @keyframes slide2{
+    0%{opacity: 0;bottom:0;width:0; right:60px;}
+    16.5%{opacity: 0}
+    17%{opacity: 1; width:290px}
+    33.5%{width:290px;bottom:0; right:60px;}
+    34%{width:160px; right:350px;bottom:40px}
+    50.5%{opacity: 1}
+    51%{opacity: 0}
+    100%{opacity: 0; bottom:40px;width:160px; right:350px;}
+  }
+  @keyframes slide3{
+    0%{opacity: 0;bottom:0;width:0; right:60px;}
+    33.5%{opacity: 0}
+    34%{opacity: 1;width:300px}
+    50%{width:300px;bottom:0; right:60px;}
+    50.5%{width:160px; right:260px;bottom:60px}
+    67%{opacity: 1}
+    67.5%{opacity: 0}
+    100%{opacity: 0;width:160px; right:260px;bottom:60px}
+  }
+  @keyframes slide4{
+    0%{opacity: 0;bottom:0;width:0; right:70px;}
+    50%{opacity: 0}
+    50.5%{opacity: 1;width:170px}
+    67%{width:170px;bottom:0; right:70px;}
+    67.5%{width:90px; right:360px;bottom:30px}
+    84%{opacity: 1}
+    84.5%{opacity: 0}
+    100%{opacity: 0;width:90px; right:360px;bottom:30px}
+  }
+  @keyframes slide5{
+    0%{opacity: 0;bottom:0;width:0; right:70px;}
+    67%{opacity: 0}
+    67.5%{opacity: 1;width:270px}
+    84%{width:270px;bottom:0; right:70px;}
+    84.5%{width:170px; right:270px;bottom:60px}
+    99.9%{opacity:1}
+    100%{opacity: 0;width:170px; right:270px;bottom:60px}
+  }
+  .slide6{
+    right:90px !important;
+    width:150px !important;
+  }
   header .slide .div-logo{
     left:50px;
     top:285px;
@@ -1163,11 +1209,6 @@ header #menu ul li a{
   
   header .slide{
     max-height: 500px;
-  }
-  header .slide .sub-slide .description .imgs-carrosel .slide-carrosel{
-    background-color: red;
-    position: relative;
-    top:-150px;
   }
   header .slide .sub-slide .description .text-propost span{
     font-size:25px;
@@ -1229,55 +1270,65 @@ header #menu ul li a{
   }
 }
 @media only screen and (min-width:1200px){
+  .slide-carrosel{
+    height:210px;
+  }
+  @keyframes slide1{
+    0%{opacity: 1;bottom:0;width:0; right:90px;}
+    0.5%{width:290px}
+    16%{width:290px;bottom:0; right:90px;}
+    16.5%{width:160px; right:400px;bottom:40px}
+    33%{opacity: 1}
+    33.5%{opacity: 0}
+    100%{opacity: 0; bottom:40px;width:160px; right:400px;}
+  }
+  @keyframes slide2{
+    0%{opacity: 0;bottom:0;width:0; right:90px;}
+    16.5%{opacity: 0}
+    17%{opacity: 1; width:290px}
+    33.5%{width:290px;bottom:0; right:90px;}
+    34%{width:160px; right:400px;bottom:40px}
+    50.5%{opacity: 1}
+    51%{opacity: 0}
+    100%{opacity: 0; bottom:40px;width:160px; right:400px;}
+  }
+  @keyframes slide3{
+    0%{opacity: 0;bottom:0;width:0; right:90px;}
+    33.5%{opacity: 0}
+    34%{opacity: 1;width:300px}
+    50%{width:300px;bottom:0; right:90px;}
+    50.5%{width:160px; right:300px;bottom:60px}
+    67%{opacity: 1}
+    67.5%{opacity: 0}
+    100%{opacity: 0;width:160px; right:300px;bottom:60px}
+  }
+  @keyframes slide4{
+    0%{opacity: 0;bottom:0;width:0; right:100px;}
+    50%{opacity: 0}
+    50.5%{opacity: 1;width:170px}
+    67%{width:170px;bottom:0; right:100px;}
+    67.5%{width:90px; right:410px;bottom:30px}
+    84%{opacity: 1}
+    84.5%{opacity: 0}
+    100%{opacity: 0;width:90px; right:410px;bottom:30px}
+  }
+  @keyframes slide5{
+    0%{opacity: 0;bottom:0;width:0; right:100px;}
+    67%{opacity: 0}
+    67.5%{opacity: 1;width:270px}
+    84%{width:270px;bottom:0; right:100px;}
+    84.5%{width:170px; right:320px;bottom:60px}
+    99.9%{opacity:1}
+    100%{opacity: 0;width:170px; right:320px;bottom:60px}
+  }
+  .slide6{
+    right:120px !important;
+    width:150px !important;
+  }
   header .slide .sub-slide .description .imgs-carrosel .slide-carrosel{
     top: -170px;
   }
-  @keyframes slide1{
-    0%{opacity: 0; right:70px;  width: 290px; top:190px;}
-    0.2%{opacity: 0; right:70px;  width: 290px; top:190px;}
-    0.3%{opacity: 1; right:70px;  width: 290px; top:190px;}
-    20%{opacity: 1; right:70px;  width: 290px; top:190px;}
-    20.5%{opacity: 1; right:470px; width: 200px; top:220px;}
-    40%{opacity: 1}
-    40.5%{opacity: 0}
-    100%{opacity: 0; right:470px; width: 200px; top:220px;}
-  }
-  @keyframes slide2{
-    0%{opacity: 0}
-    20%{opacity: 0}
-    20.5%{opacity: 1; right:70px; width:400px; top:210px;}
-    40%{opacity: 1; right:70px; width:400px; top:210px;}
-    40.5%{opacity: 1; right:470px; width:310px; top:220px;}
-    60%{opacity: 1}
-    60.5%{opacity: 0}
-    100%{opacity: 0; right:470px; width:310px; top:220px;}
-  }
-  @keyframes slide3{
-    0%{opacity: 0}
-    40%{opacity: 0}
-    40.5%{opacity: 1; right:70px; width:390px;  top:180px;}
-    60%{opacity: 1; right:70px; width:390px;  top:180px;}
-    60.5%{opacity: 1; right:420px; width:300px;  top:215px;}
-    80%{opacity: 1}
-    80.5%{opacity: 0}
-    100%{opacity: 0; right:420px; width:300px;  top:215px;}
-  }
-  @keyframes slide4{
-    0%{opacity: 0}
-    60%{opacity: 0}
-    60.5%{opacity: 1; right:70px; width:330px; top:170px;}
-    80%{opacity: 1; right:70px; width:330px; top:170px;}
-    80.5%{opacity: 1; right:420px; width:240px; top:210px;}
-    99%{opacity: 1}
-    99.5%{opacity: 0}
-    100%{opacity: 0; right:420px; width:240px; top:210px;}
-  }
-  @keyframes slide5{
-    0%{opacity: 0; right:70px; top:190px;}
-    80.5%{opacity: 0}
-    81%{opacity: 1}
-    100%{opacity: 1; right:70px; top:190px;}
-  } 
+  
   header .slide .sub-slide .description .imgs-carrosel .slide5{
     width: 320px;
   }
