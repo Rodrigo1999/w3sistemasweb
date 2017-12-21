@@ -1058,10 +1058,10 @@ header #menu ul li a{
   0%{opacity: 1;bottom:0;width:0; right:30px;}
   0.5%{width:270px}
   16%{width:270px;bottom:0; right:30px;}
-  16.5%{width:140px; right:300px;bottom:40px}
+  16.5%{width:140px; right:320px;bottom:40px}
   33%{opacity: 1}
   33.5%{opacity: 0}
-  100%{opacity: 0; bottom:40px;width:140px; right:300px;}
+  100%{opacity: 0; bottom:40px;width:140px; right:320px;}
 }
 @keyframes slide2{
   0%{opacity: 0;bottom:0;width:0; right:30px;}
@@ -1156,10 +1156,10 @@ header #menu ul li a{
     0%{opacity: 1;bottom:0;width:0; right:60px;}
     0.5%{width:290px}
     16%{width:290px;bottom:0; right:60px;}
-    16.5%{width:160px; right:350px;bottom:40px}
+    16.5%{width:160px; right:370px;bottom:40px}
     33%{opacity: 1}
     33.5%{opacity: 0}
-    100%{opacity: 0; bottom:40px;width:160px; right:350px;}
+    100%{opacity: 0; bottom:40px;width:160px; right:370px;}
   }
   @keyframes slide2{
     0%{opacity: 0;bottom:0;width:0; right:60px;}
@@ -1282,10 +1282,10 @@ header #menu ul li a{
     0%{opacity: 1;bottom:0;width:0; right:90px;}
     0.5%{width:290px}
     16%{width:290px;bottom:0; right:90px;}
-    16.5%{width:160px; right:400px;bottom:40px}
+    16.5%{width:160px; right:420px;bottom:40px}
     33%{opacity: 1}
     33.5%{opacity: 0}
-    100%{opacity: 0; bottom:40px;width:160px; right:400px;}
+    100%{opacity: 0; bottom:40px;width:160px; right:420px;}
   }
   @keyframes slide2{
     0%{opacity: 0;bottom:0;width:0; right:90px;}
