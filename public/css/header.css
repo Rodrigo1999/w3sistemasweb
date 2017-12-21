@@ -122,12 +122,12 @@ header .slide .sub-slide .description .imgs-carrosel img{
   100%{opacity: 0; width:190px}
 }
 @keyframes slide3{
-  0%{opacity: 0; width:190px;top:190px;}
+  0%{opacity: 0; width:190px;top:90px;}
   33.5%{opacity: 0}
   34%{opacity: 1}
   50%{opacity: 1}
   50.5%{opacity: 0}
-  100%{opacity: 0; width:190px;top:190px;}
+  100%{opacity: 0; width:190px;top:90px;}
 }
 @keyframes slide4{
   0%{opacity: 0; width:90px;right:30px;}
