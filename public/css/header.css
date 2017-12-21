@@ -114,20 +114,20 @@ header .slide .sub-slide .description .imgs-carrosel img{
   100%{opacity: 0}
 }
 @keyframes slide2{
-  0%{opacity: 0; width:150px}
+  0%{opacity: 0; width:180px}
   16.5%{opacity: 0}
   17%{opacity: 1}
   33.5%{opacity: 1}
   34%{opacity: 0}
-  100%{opacity: 0; width:150px}
+  100%{opacity: 0; width:180px}
 }
 @keyframes slide3{
-  0%{opacity: 0; width:170px;}
+  0%{opacity: 0; width:180px;}
   33.5%{opacity: 0}
   34%{opacity: 1}
   50%{opacity: 1}
   50.5%{opacity: 0}
-  100%{opacity: 0; width:170px;}
+  100%{opacity: 0; width:180px;}
 }
 @keyframes slide4{
   0%{opacity: 0; width:80px;right:30px;}
