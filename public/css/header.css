@@ -86,6 +86,8 @@ header .slide .sub-slide .description .imgs-carrosel img{
 .slide1{
   animation: slide1 25s infinite linear ;
   animation-fill-mode: forwards; 
+  width:160px !important;
+  top:100px;
 }
 .slide2{
   width:190px !important;
@@ -97,7 +99,7 @@ header .slide .sub-slide .description .imgs-carrosel img{
   animation: slide3 25s infinite linear ;
   animation-fill-mode:forwards; 
    width:190px !important;
-   top:90px !important;
+   top:100px !important;
 }
 .slide4{
   animation: slide4 25s infinite linear ;
@@ -109,6 +111,7 @@ header .slide .sub-slide .description .imgs-carrosel img{
 .slide5{
   animation: slide5 25s infinite linear ;
   animation-fill-mode: forwards; 
+  top:100px;
 }
 .slide6{
   animation: slide6 25s infinite linear ;
