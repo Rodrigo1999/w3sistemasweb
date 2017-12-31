@@ -12,15 +12,17 @@ $(document).ready(function(){
 		})
 	};
 	if(screen.width < 600){
-		var img = $(".img-slide").find('img').attr('src');
+		//var img = $(".img-slide").find('img').attr('src');
 
-		var timeout = setInterval(function(){
-			if(img == 'imgs/slideImpar.jpg'){
+		// var timeout = setInterval(function(){
+		// 	if(img == 'imgs/slideImpar.jpg'){
 				$(".img-slide").find('img').attr('src', 'imgs/slidePar.jpg');	
-			}else{
-				clearInterval(timeout);
-			}			
-		}, 1000);
+		// 		console.log('tem');
+		// 	}else{
+		// 		console.log('no tem');
+		// 		clearInterval(timeout);
+		// 	}			
+		// }, 1000);
 		
 	};
 	$(document).click(function(e){
