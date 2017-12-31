@@ -12,7 +12,16 @@ $(document).ready(function(){
 		})
 	};
 	if(screen.width < 600){
-		$(".img-slide").find('img').attr('src', 'imgs/slidePar.jpg');
+		var img = $(".img-slide").find('img').attr('src');
+
+		var timeout = setInterval(function(){
+			if(img == 'imgs/slideImpar.jpg'){
+				$(".img-slide").find('img').attr('src', 'imgs/slidePar.jpg');	
+			}else{
+				clearInterval(timeout);
+			}			
+		}, 1000);
+		
 	};
 	$(document).click(function(e){
 		var elem = e.target.classList[0];
